@@ -1,6 +1,6 @@
 import java.util.Scanner;
-public class Coach extends person {
-    person p;
+public class Coach extends Person {
+    Person p;
     int W_H;
 
 
