@@ -4,15 +4,15 @@ import java.util.Scanner;
 public  abstract class Person {
     public String Name ;
     private int ID ;
-    String Gander ;
+    String Gender ;
     private String Adress ;
     int Phone_number ;
     protected String E_mail;
 
-    public Person ( String Name , int ID , String Gander ,String Adress ,int Phone_number, String E_mail){
+    public Person (String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail){
         this.Name =Name;
         this.ID =ID;
-        this.Gander =Gander;
+        this.Gender =Gender;
         this.Adress=Adress;
         this.Phone_number =Phone_number;
         this.E_mail=E_mail;
@@ -56,10 +56,10 @@ public  abstract class Person {
         Phone_number = read.nextInt() ;
         System.out.println("Please Enter your  Gander\t\t\t(male / female)");
         while(true){
-            Gander = read.next() ;
+            Gender = read.next() ;
             String g_m ="male";
             String g_f ="female";
-            if (Gander.equals(g_f) || Gander.equals(g_m)){
+            if (Gender.equals(g_f) || Gender.equals(g_m)){
                 break;
             }
             else {

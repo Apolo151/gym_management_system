@@ -4,8 +4,8 @@ public class Coach extends Person {
     int W_H;
 
 
-    public Coach( String Name , int ID , String Gander ,String Adress ,int Phone_number, String E_mail, int W_H){
-        super( Name ,ID ,Gander ,Adress , Phone_number, E_mail);
+    public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
+        super(Name, ID, Gender, Adress, Phone_number, E_mail);
 
         this.W_H=W_H;
     }
@@ -17,9 +17,9 @@ public class Coach extends Person {
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
-        System.out.println("Gander: "+Gander);
+        System.out.println("Gander: "+Gender);
         System.out.println("Adress: "+this.getAdress());
-        System.out.println("Pohne_number: "+Phone_number);
+        System.out.println("Phone_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
         System.out.println("Working Hours: "+W_H);
     }
@@ -31,7 +31,7 @@ public class Coach extends Person {
         while (true){
             W_H =input.nextInt();
             if(W_H > 10){
-                System.out.println("plese enter corect number ");
+                System.out.println("plese enter correct number ");
             }
             else {
                 break;
