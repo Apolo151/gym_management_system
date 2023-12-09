@@ -11,7 +11,7 @@ public class Admin extends Person{
         
     }
     
-    public void addCoach(){
+    public void addCoach(Gym gym, Coach coach){
         
     }
     
@@ -23,7 +23,7 @@ public class Admin extends Person{
         
     }
     
-    public void addCustomer(){
+    public void addCustomer(Gym gym, Customer customer){
         
     }
     
@@ -35,11 +35,11 @@ public class Admin extends Person{
         
     }
     
-    public void addEquipment(){
+    public void addEquipment(Gym gym, Equipment equipment){
         
     }
     
-    public void editEquipment(Equipment equip){
+    public void editEquipment(Equipment equipment){
         
     }
     
@@ -63,7 +63,7 @@ public class Admin extends Person{
         
     }
     
-    public void displaySortedCoaches(){
+    public void displaySortedCoaches(Gym gym){
         
     }
     
