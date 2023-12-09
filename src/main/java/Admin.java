@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author abdallah
  */
+import EQ_GYM.Equipment;
+
 public class Admin extends Person{
     
     
@@ -37,6 +34,40 @@ public class Admin extends Person{
     public void deleteCustomer(Customer[] customers){
         
     }
+    
+    public void addEquipment(){
+        
+    }
+    
+    public void editEquipment(Equipment equip){
+        
+    }
+    
+    public void deleteEquipment(Equipment[] equipments){
+        
+    }
+    
+    public void showSubscriptionHistory(Customer customer){
+        
+    }
+    
+    public void displayGymCustomers(Gym gym, Date date){
+        
+    }
+    
+    public void displayCoachCustomers(Coach coach, Date date){
+        
+    }
+    
+    public void displayGymIncome(Date date){
+        
+    }
+    
+    public void displaySortedCoaches(){
+        
+    }
+    
+    
     
     void display(){
         System.out.println("");
