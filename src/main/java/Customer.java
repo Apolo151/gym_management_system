@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Customer extends Person {
     Person p;
-    int[] List_of_inbodies =new int[2];
+    int[] List_of_inbodies = new int[2];
 
     public Customer(){
         super();
