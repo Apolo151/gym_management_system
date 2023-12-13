@@ -9,7 +9,7 @@ public class MembershipPlan {
     int number_of_plan;
     //
     
-    public MembershipPlan (String member_name  ,  Date start_date   ,  Date end_date   ,  int number_of_plan){
+    public MembershipPlan (String member_name,  Date start_date,  Date end_date,  int number_of_plan){
         this.member_name = member_name ;
         this.start_date = start_date ;
         this.end_date = end_date ;
@@ -169,7 +169,7 @@ public class MembershipPlan {
     }
 
     public  void display () {
-            System.out.println("Name: " + member_name);
+        System.out.println("Name: " + member_name);
         System.out.println("Number of plan: " + number_of_plan);
         System.out.println("Day: " + end_date.day+"\tmonth: " + end_date.month+"\tYear: " + end_date.year);
     }

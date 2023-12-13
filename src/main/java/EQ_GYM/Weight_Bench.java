@@ -8,7 +8,7 @@ public class Weight_Bench extends Equipment{
     }
 
     @Override
-    void disp() {
+    public void disp() {
 
     }
 }

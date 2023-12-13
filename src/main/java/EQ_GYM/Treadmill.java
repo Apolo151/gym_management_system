@@ -7,9 +7,7 @@ public class Treadmill extends Equipment{
         quantity=++q_count;
     }
 
-
-
-    void disp(){
+    public void disp(){
         for (int i=0; i<quantity;i++){
             System.out.println();
         }

@@ -41,9 +41,8 @@ Equipment(String name){
     void add_equipment(Equipment e){
      e.setName(name);
      e.quantity++;
-}
-abstract void disp();
-
-
+    }
+    
+    public abstract void disp();
 
 }

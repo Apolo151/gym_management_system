@@ -9,7 +9,7 @@ public class Dumbbels extends Equipment{
     }
 
     @Override
-    void disp() {
+    public void disp() {
 
     }
 }

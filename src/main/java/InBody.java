@@ -10,7 +10,7 @@ public class InBody {
     private String Name;
     private String Gender;
     private int Age;
-    Date date=new Date();
+    Date date = new Date();
     SimpleDateFormat st= new SimpleDateFormat("yyyy/MM/dd"+"\t"+"hh:mm");
     
     
@@ -24,6 +24,7 @@ public class InBody {
     }
     
     public InBody(double Price){
+        
     }
     
     private double BMR() {
@@ -45,6 +46,12 @@ public class InBody {
         System.out.println("To lose half a kilogram per week, you must eat \"" + (Calories - 500) + "\" calories per day");
         System.out.println("To lose a kilogram per week, you must eat \"" + (Calories - 1000) + "\" calories per day");
     }
+    
+    protected double howManyKilosToReduce(){
+        // TBD
+        return 0;
+    }
+    
     private void BodyNeeds(){
         System.out.println("Your protein needs : "+(Weight*1.9));
         System.out.println("Your healthy fat needs : "+((.3*Calories)/9));

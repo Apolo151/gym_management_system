@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Coach extends Person {
     int working_hours;
     int number_of_customers;
-    Customer List_of_customer[] = new Customer[10];
+    Customer List_of_customers[] = new Customer[10];
 
 
     public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
@@ -52,24 +52,22 @@ public class Coach extends Person {
          }
     }
     
-    void show_customer (){
-        for (Customer cu: List_of_customer ){
+    void show_customers (){
+        for (Customer cu: List_of_customers){
             int i =1 ;
-            System.out.print("customer "+ i + " " +cu.Name+"\t");
-            System.out.println("customer "+ i + " " +cu.Phone_number);
+            cu.display();
             i++;
         }
      }
     
     void show_list_of_inbodies (Customer cus){
-         for (int cu: cus.List_of_inbodies ){         
-             System.out.print("Inbody 1 "  + cu + "\t" );
-             System.out.println("Date of inbody 1 " + " ");      
+         for (InBody in : cus.List_of_inbodies){         
+             in.Display();     
          }
      }
      
     void show_details_of_Customer (String name){
-         for (Customer cu: List_of_customer ){
+         for (Customer cu: List_of_customers){
             if(name.equals(cu.Name)){
                  cu.display();
             }
@@ -77,7 +75,7 @@ public class Coach extends Person {
     }
     
     void show_details_of_Customer_gender (String gender){
-        for (Customer cu: List_of_customer ){
+        for (Customer cu: List_of_customers){
             int i =1 ;
             if(gender.equals(cu.Gender)){
                System.out.println("\t\tcustomer 1");  

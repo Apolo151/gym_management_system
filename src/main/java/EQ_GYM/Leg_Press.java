@@ -9,7 +9,7 @@ public class Leg_Press extends Equipment{
     }
 
     @Override
-    void disp() {
+    public void disp() {
 
     }
 

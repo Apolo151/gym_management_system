@@ -9,9 +9,10 @@ public class Bike extends Equipment{
         quantity=++q_count;
 
     }
- void disp(){
-
-  }
+    
+    public void disp(){
+        
+    }
 
 
 }
