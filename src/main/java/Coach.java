@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Coach extends Person {
     int working_hours;
     int number_of_customers;
@@ -26,7 +27,7 @@ public class Coach extends Person {
 
     public  void read (){
         this.read_data();
-        Scanner input =new Scanner (System.in);
+        Scanner input = new Scanner (System.in);
         // Read the number of working hours
         System.out.print("How many hours do you work per day?");
         while (true){

@@ -2,6 +2,8 @@
  *
  * @author abdallah
  */
+import java.util.Scanner;
+
 import EQ_GYM.Equipment;
 
 public class Admin extends Person{
@@ -52,6 +54,20 @@ public class Admin extends Person{
     }
     
     public void displayGymCustomers(Gym gym, Date date){
+        Scanner input = new Scanner (System.in);
+        String c;
+        System.out.println("Month or Day? (enter m or d)");
+        c = input.nextLine();
+        if(c.equals('m')){
+            for(Subscription sub : gym.listOfSubscriptions){
+            
+            }
+        }
+        else{
+            for(Subscription sub : gym.listOfSubscriptions){
+            
+            }
+        }
         
     }
     
