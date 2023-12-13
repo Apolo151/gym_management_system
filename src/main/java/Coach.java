@@ -1,13 +1,13 @@
 import java.util.Scanner;
 public class Coach extends Person {
-    Person p;
-    int W_H;
+    int working_hours;
+    int number_of_customers;
+    Customer List_of_customer[] = new Customer[10];
 
 
     public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
         super(Name, ID, Gender, Adress, Phone_number, E_mail);
-
-        this.W_H=W_H;
+        this.working_hours = W_H;
     }
 
     public Coach(){
@@ -17,20 +17,21 @@ public class Coach extends Person {
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
-        System.out.println("Gander: "+Gender);
+        System.out.println("Gander: " + Gender);
         System.out.println("Adress: "+this.getAdress());
-        System.out.println("Phone_number: "+Phone_number);
+        System.out.println("Pohne_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
-        System.out.println("Working Hours: "+W_H);
+        System.out.println("Working Hours: "+working_hours);
     }
 
     public  void read (){
         this.read_data();
         Scanner input =new Scanner (System.in);
-        System.out.print("How many hours work in day ? ");
+        // Read the number of working hours
+        System.out.print("How many hours do you work per day?");
         while (true){
-            W_H =input.nextInt();
-            if(W_H > 10){
+            this.working_hours =input.nextInt();
+            if(this.working_hours > 10){
                 System.out.println("plese enter correct number ");
             }
             else {
@@ -38,8 +39,52 @@ public class Coach extends Person {
             }
 
         }
-
-
+        // Read number of customers
+        System.out.print("How many customers are you training?");
+        while (true){
+            number_of_customers = input.nextInt();
+            if(number_of_customers > 10){
+                System.out.println("please enter correct number ");
+            }
+            else {
+                break;
+            }
+         }
+    }
+    
+    void show_customer (){
+        for (Customer cu: List_of_customer ){
+            int i =1 ;
+            System.out.print("customer "+ i + " " +cu.Name+"\t");
+            System.out.println("customer "+ i + " " +cu.Phone_number);
+            i++;
+        }
+     }
+    
+    void show_list_of_inbodies (Customer cus){
+         for (int cu: cus.List_of_inbodies ){         
+             System.out.print("Inbody 1 "  + cu + "\t" );
+             System.out.println("Date of inbody 1 " + " ");      
+         }
+     }
+     
+    void show_details_of_Customer (String name){
+         for (Customer cu: List_of_customer ){
+            if(name.equals(cu.Name)){
+                 cu.display();
+            }
+        }
+    }
+    
+    void show_details_of_Customer_gender (String gender){
+        for (Customer cu: List_of_customer ){
+            int i =1 ;
+            if(gender.equals(cu.Gender)){
+               System.out.println("\t\tcustomer 1");  
+                cu.display();
+                i++;
+            }
+        }
     }
 
 }
