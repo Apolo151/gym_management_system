@@ -32,6 +32,22 @@ public  abstract class Person {
         return Adress;
     }
 
+    public String getName() {
+        return Name;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public int getPhone_number() {
+        return Phone_number;
+    }
+
+    public String getE_mail() {
+        return E_mail;
+    }
+
     public void setID(int ID) {
         this.ID = ID;
     }

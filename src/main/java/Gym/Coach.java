@@ -16,6 +16,11 @@ public class Coach extends Person {
     public Coach(){
         this("",0,"","",0,"",0);
     }
+    
+    public Coach(Coach coach){
+        super(Name, ID, Gender, Adress, Phone_number, E_mail);
+    }
+    
 
     void display (){
         System.out.println("Name: "+Name);

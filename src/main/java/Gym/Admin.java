@@ -15,11 +15,11 @@ public class Admin extends Person{
     }
     
     public void addCoach(Gym gym, Coach coach){
-        
+        gym.listOfCoaches.add(coach);
     }
     
     public void editCoach(Coach coach){
-        
+
     }
     
     public void deleteCoach(Coach[] coaches){
