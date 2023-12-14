@@ -24,6 +24,15 @@ public class Customer extends Person {
         this.subscription = sub;
     }
     
+    public Customer(Customer customer){
+        super(customer.Name, customer.getID(), customer.Gender, customer.getAdress(),
+                customer.Phone_number, customer.E_mail);
+        this.coachID = customer.coachID;
+        this.gym = customer.gym;
+        this.subscription = customer.subscription;
+    }
+    
+      
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());

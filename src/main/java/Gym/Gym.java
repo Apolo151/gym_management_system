@@ -12,6 +12,7 @@ public class Gym {
     protected ArrayList<Equipment> sportsEquipment = new ArrayList<>();
     protected ArrayList<Coach> listOfCoaches = new ArrayList<>();
     protected ArrayList<Subscription> listOfSubscriptions = new ArrayList<>();
+    protected ArrayList<Customer> listOfCustomers = new ArrayList<>();
 
     public Gym(String name, String address, long phoneNumber)
     {

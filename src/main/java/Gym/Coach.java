@@ -11,6 +11,7 @@ public class Coach extends Person {
     public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
         super(Name, ID, Gender, Adress, Phone_number, E_mail);
         this.working_hours = W_H;
+        this.number_of_customers = 0;
     }
 
     public Coach(){
@@ -18,7 +19,9 @@ public class Coach extends Person {
     }
     
     public Coach(Coach coach){
-        super(Name, ID, Gender, Adress, Phone_number, E_mail);
+        super(coach.getName(), coach.getID(), coach.getGender(), coach.getAdress(),
+                coach.getPhone_number(), coach.getE_mail());
+        
     }
     
 
