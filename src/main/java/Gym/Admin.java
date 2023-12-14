@@ -1,3 +1,4 @@
+package Gym;
 /**
  *
  * @author abdallah

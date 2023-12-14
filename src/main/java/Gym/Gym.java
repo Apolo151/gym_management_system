@@ -1,13 +1,17 @@
+package Gym;
+
 import EQ_GYM.Equipment;
+import java.util.ArrayList;
 
 public class Gym {
 
     private String name;
     private String address;
     private long phoneNumber;  // This is not " int " because it won't carry 11 numbers. Also, we can make it String.
-    protected Equipment[] sportsEquipment;
-    protected Coach[] listOfCoaches;
-    protected Subscription[] listOfSubscriptions;
+
+    protected ArrayList<Equipment> sportsEquipment = new ArrayList<>();
+    protected ArrayList<Coach> listOfCoaches = new ArrayList<>();
+    protected ArrayList<Subscription> listOfSubscriptions = new ArrayList<>();
 
     public Gym(String name, String address, long phoneNumber)
     {

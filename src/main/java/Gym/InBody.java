@@ -1,3 +1,5 @@
+package Gym;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,9 +49,29 @@ public class InBody {
         System.out.println("To lose a kilogram per week, you must eat \"" + (Calories - 1000) + "\" calories per day");
     }
     
-    protected double howManyKilosToReduce(){
-        // TBD
-        return 0;
+    protected void howManyKilosToReduce(){
+        if (Gender.equals("Male")||Gender.equals("male")){
+            if(Weight ==(50+2.3*((Height/100*39.37)-60))){
+                System.out.println("Your weight is ideal");
+            }
+            else if (Weight > (50+2.3*((Height/100*39.37)-60))){
+                System.out.println("You must lose \""+(int) (Weight - (50+2.3*((Height/100*39.37)-60))) +"\" kilogram to reach the ideal weight");
+            }
+            else {
+                System.out.println("You must gain \""+(int) ((50+2.3*((Height/100*39.37)-60)) - Weight) +"\" kilogram to reach the ideal weight");
+            }
+        }
+        else if (Gender.equals("Female")||Gender.equals("female")){
+            if(Weight ==(49+1.7*((Height/100*39.37)-60))){
+                System.out.println("Your weight is ideal");
+            }
+            else if (Weight > (49+1.7*((Height/100*39.37)-60))){
+                System.out.println("You must lose \""+(int)(Weight - (49+1.7*((Height/100*39.37)-60))) +"\" kilogram to reach the ideal weight");
+            }
+            else {
+                System.out.println("You must gain \""+(int)((49+1.7*((Height/100*39.37)-60)) - Weight) +"\" kilogram to reach the ideal weight");
+            }
+        }
     }
     
     private void BodyNeeds(){

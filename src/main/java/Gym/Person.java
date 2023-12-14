@@ -1,3 +1,5 @@
+package Gym;
+
 import java.util.Scanner;
 
 

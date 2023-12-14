@@ -1,4 +1,4 @@
-
+package Gym;
 
 public class Date {
     int day ;

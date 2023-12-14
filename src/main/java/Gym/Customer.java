@@ -1,3 +1,5 @@
+package Gym;
+
 import EQ_GYM.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class Customer extends Person {
     
     // Display coach info
     void displayCoachInfo(){
-        this.gym.listOfCoaches[this.coachID].display();
+        this.gym.listOfCoaches.get(this.coachID).display();
     }
     
     // Display all Gym Equipment
@@ -78,13 +80,7 @@ public class Customer extends Person {
             return;
         }
         //
-        double res = this.List_of_inbodies.get(0).howManyKilosToReduce();
-        if(res==0){
-            System.out.println("You don't need to lose weight");
-        }
-        else{
-            System.out.println("You need to lose " + res + " kilos to get to your ideal body weight.");
-        }
+        this.List_of_inbodies.get(this.List_of_inbodies.size()).howManyKilosToReduce();
     }
 
 

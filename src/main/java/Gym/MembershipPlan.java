@@ -1,5 +1,4 @@
-
-
+package Gym;
 
 public class MembershipPlan {
     String member_name;
