@@ -83,7 +83,7 @@ public class Main {
         String file = input.nextLine();
         ReadFile(file);
 
-        WriteFile(gymObj.getFirst().getAddress());
+        WriteFile(gymObj.get(0).getAddress());
     }
 
 
