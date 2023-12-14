@@ -82,8 +82,14 @@ public class Main {
         System.out.println("Enter the file path");
         String file = input.nextLine();
         ReadFile(file);
-
-        WriteFile(gymObj.get(0).getAddress());
+        
+        try{
+            WriteFile(gymObj.get(0).getAddress());
+        }
+        catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        
     }
 
 
