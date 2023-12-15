@@ -4,8 +4,9 @@ package Gym;
  * @author abdallah
  */
 import java.util.Scanner;
-
+import java.util.ArrayList;
 import EQ_GYM.Equipment;
+import java.util.Collections;
 
 public class Admin extends Person{
     
@@ -115,13 +116,29 @@ public class Admin extends Person{
     }
     
     public void displaySortedCoaches(Gym gym){
-        
+        ArrayList<Coach> sCoaches = new ArrayList<>(gym.listOfCoaches);
+        Collections.sort(sCoaches);
+        //
+        for(Coach coach: sCoaches){
+            coach.display();
+        }
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getE_mail() {
+        return E_mail;
     }
     
-    
-    
+       
     void display(){
-        System.out.println("");
+        System.out.println("Admin Info");
+        System.out.println("Name: "+Name);
+        System.out.println("ID:"+this.getID());
+        System.out.println("Gender: " + Gender);
+        System.out.println("Phone_number: "+Phone_number);
     }
     
     

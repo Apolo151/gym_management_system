@@ -2,7 +2,7 @@ package Gym;
 
 import java.util.Scanner;
 
-public class Coach extends Person {
+public class Coach extends Person implements Comparable<Coach> {
     int working_hours;
     int number_of_customers;
     Customer List_of_customers[] = new Customer[10];
@@ -28,7 +28,7 @@ public class Coach extends Person {
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
-        System.out.println("Gander: " + Gender);
+        System.out.println("Gender: " + Gender);
         System.out.println("Adress: "+this.getAdress());
         System.out.println("Pohne_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
@@ -94,6 +94,13 @@ public class Coach extends Person {
                 i++;
             }
         }
+    }
+    
+    //@override: Comparing descendingly
+    public int compareTo(Coach compareCoach){
+        int com = ((Coach)compareCoach).number_of_customers;
+        
+        return com-this.number_of_customers;
     }
 
 }

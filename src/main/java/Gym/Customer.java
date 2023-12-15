@@ -36,7 +36,7 @@ public class Customer extends Person {
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
-        System.out.println("Gander: "+Gender);
+        System.out.println("Gender: "+Gender);
         System.out.println("Adress: "+this.getAdress());
         System.out.println("Pohne_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
