@@ -103,4 +103,30 @@ public class Coach extends Person implements Comparable<Coach> {
         return com-this.number_of_customers;
     }
 
+    public int getWorking_hours() {
+        return working_hours;
+    }
+
+    public void setWorking_hours(int working_hours) {
+        this.working_hours = working_hours;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public void setGender(String Gender) {
+        this.Gender = Gender;
+    }
+
+    public void setPhone_number(int Phone_number) {
+        this.Phone_number = Phone_number;
+    }
+
+    public void setE_mail(String E_mail) {
+        this.E_mail = E_mail;
+    }
+    
+    
+
 }

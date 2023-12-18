@@ -18,15 +18,69 @@ public class Admin extends Person{
     public void addCoach(Gym gym, Coach coach){
         gym.listOfCoaches.add(new Coach(coach));
     }
-    
-    public void editCoach(Gym gym, int coachID){
-        for(Coach coach: gym.listOfCoaches){
-            if(coach.getID() == coachID){
-                
+
+    // Edit Coach Info
+    public void editCoach(Gym gym, int coachID) {
+        Coach coachEdit = null;
+        boolean found = false;
+        for (Coach coach : gym.listOfCoaches) {
+            if (coach.getID() == coachID) {
+                coachEdit = coach;
+                found = true;
                 break;
             }
         }
+
+        if (!found) {
+            System.out.println("No Coach was found with the provided ID");
+            return;
+        }
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Choose the information to edit:");
+        System.out.println("1. Name");
+        System.out.println("2. Gender");
+        System.out.println("3. Address");
+        System.out.println("4. Phone Number");
+        System.out.println("5. Email");
+        System.out.println("0. Cancel");
+
+        int choice = input.nextInt();
+        input.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new name: ");
+                coachEdit.setName(input.nextLine());
+                break;
+            case 2:
+                System.out.print("Enter new gender: ");
+                coachEdit.setGender(input.nextLine());
+                break;
+            case 3:
+                System.out.print("Enter new address: ");
+                coachEdit.setAdress(input.nextLine());
+                break;
+            case 4:
+                System.out.print("Enter new phone number: ");
+                coachEdit.setPhone_number(input.nextInt());
+                break;
+            case 5:
+                System.out.print("Enter new email: ");
+                coachEdit.setE_mail(input.nextLine());
+                break;
+            case 0:
+                System.out.println("Editing canceled.");
+                return;
+            default:
+                System.out.println("Invalid choice. Editing canceled.");
+                return;
+        }
+
+        System.out.println("Coach information updated successfully.");
     }
+
     
     public void deleteCoach(Gym gym, int coachID){
         gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
