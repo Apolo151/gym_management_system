@@ -78,19 +78,19 @@ public class Admin extends Person{
                 break;
             case 3:
                 System.out.print("Enter new address: ");
-                this.setAdress(input.nextLine());
+                customerEdit.setAdress(input.nextLine());
                 break;
             case 4:
                 System.out.print("Enter new phone number: ");
-                this.Phone_number = input.nextInt();
+                customerEdit.Phone_number = input.nextInt();
                 break;
             case 5:
                 System.out.print("Enter new email: ");
-                this.E_mail = input.nextLine();
+                customerEdit.E_mail = input.nextLine();
                 break;
             case 6:
                 System.out.print("Enter new coach ID: ");
-                this.coachID = input.nextInt();
+                customerEdit.coachID = input.nextInt();
                 break;
             case 0:
                 System.out.println("Editing canceled.");
