@@ -1,4 +1,5 @@
 package Gym;
+import EQ_GYM.*;
 /**
  *
  * @author abdallah
@@ -10,9 +11,44 @@ import java.util.Collections;
 
 public class Admin extends Person{
     
+    public enum EqType {
+        BIKE,
+        DUMBELLS,
+        TREADMILL,
+        LEGPRESS,
+        WEIGHT_BENCH
+    }
     
-    Admin(){
+    public enum check {
+        COACH,
+        CUSTOMER
+    }
         
+    
+    public Admin(){
+        
+    }
+    
+    private boolean existCheck(Gym gym, int ID, Coach coach){
+        for (Coach c: gym.listOfCoaches) {
+            if (c.getID() == ID) {
+                coach = c;
+                return true;
+            }
+        }
+        //
+        return false;
+    }
+        
+    private boolean existCheck(Gym gym, int ID, Customer customer){
+        for (Customer c: gym.listOfCustomers) {
+            if (c.getID() == ID) {
+                customer = c;
+                return true;
+            }
+        }
+        //
+        return false;
     }
     
     public void addCoach(Gym gym, Coach coach){
@@ -22,16 +58,8 @@ public class Admin extends Person{
     // Edit Coach Info
     public void editCoach(Gym gym, int coachID) {
         Coach coachEdit = null;
-        boolean found = false;
-        for (Coach coach : gym.listOfCoaches) {
-            if (coach.getID() == coachID) {
-                coachEdit = coach;
-                found = true;
-                break;
-            }
-        }
 
-        if (!found) {
+        if (!existCheck(gym, coachID, coachEdit)) {
             System.out.println("No Coach was found with the provided ID");
             return;
         }
@@ -47,7 +75,7 @@ public class Admin extends Person{
         System.out.println("0. Cancel");
 
         int choice = input.nextInt();
-        input.nextLine(); // Consume the newline character
+        input.nextLine();
 
         switch (choice) {
             case 1:
@@ -93,16 +121,8 @@ public class Admin extends Person{
     // Edit Customer Info
     public void editCustomer(Gym gym, int customerID){
         Customer customerEdit = null;
-        boolean found = false;
-        for(Customer customer: gym.listOfCustomers){
-            if(customer.getID() == customerID){
-                customerEdit = customer;
-                found = true;
-                break;
-            }
-        }
         //
-        if(!found){
+        if(!existCheck(gym, customerID, customerEdit)){
             System.out.println("No Customer was found with the provided ID");
             return;
         }
@@ -119,7 +139,7 @@ public class Admin extends Person{
         System.out.println("0. Cancel");
 
         int choice = input.nextInt();
-        input.nextLine(); // Consume the newline character
+        input.nextLine();
 
         switch (choice) {
             case 1:
@@ -160,9 +180,31 @@ public class Admin extends Person{
     public void deleteCustomer(Gym gym, int customerID){
         gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
     }
+
     
-    public void addEquipment(Gym gym, int type, Equipment equipment){
-        //gym.sportsEquipment.add(new Equipment(equipment));
+    public void addEquipment(Gym gym, EqType type, Equipment equipment){
+        // Assuming Equipment class has a constructor that takes a name and quantity
+        switch (type) {
+            case BIKE:
+                equipment = new Bike();
+                break;
+            case DUMBELLS:
+                equipment = new Dumbbels();
+                break;
+            case TREADMILL:
+                equipment = new Treadmill();
+                break;
+            case LEGPRESS:
+                equipment = new Leg_Press();
+                break;
+            case WEIGHT_BENCH:
+                equipment = new Weight_Bench();
+                break;
+            // Add more cases for other equipment types if needed
+        }
+
+        // Add the equipment to the gym's list
+        gym.sportsEquipment.add(equipment);
     }
     
     public void editEquipment(Gym gym, Equipment equipment){
@@ -246,17 +288,9 @@ public class Admin extends Person{
             coach.display();
         }
     }
-
-    public String getName() {
-        return Name;
-    }
-
-    public String getE_mail() {
-        return E_mail;
-    }
     
        
-    void display(){
+    public void display(){
         System.out.println("Admin Info");
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());

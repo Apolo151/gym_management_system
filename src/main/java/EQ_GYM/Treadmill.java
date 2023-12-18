@@ -2,7 +2,7 @@ package EQ_GYM;
 
 public class Treadmill extends Equipment{
     static int q_count=0;
-    Treadmill(){
+    public Treadmill(){
         super("Treadmill");
         quantity=++q_count;
     }

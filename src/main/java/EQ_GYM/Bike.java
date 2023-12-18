@@ -4,7 +4,7 @@ public class Bike extends Equipment{
 
     static int q_count=0;
 
-    Bike(){
+    public Bike(){
         super("Bike");
         quantity=++q_count;
 

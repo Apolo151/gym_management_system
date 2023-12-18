@@ -36,6 +36,10 @@ public  abstract class Person {
     public String getName() {
         return Name;
     }
+    
+    public String getPassword(){
+        return password;
+    }
 
     public String getGender() {
         return Gender;
