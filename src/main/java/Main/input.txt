@@ -1,30 +1,41 @@
-GYM: FitnessCenter,123 Main St,555-1234,SportsEquipments1,SportsEquipments2,SportsEquipments3,Coach1,Coach2,Coach3,Subscription1,Subscription2
-Equipment: Treadmill,TM001,5,treadmill_photo.jpg
-Equipment: Rowing Machine,RM002,3,rowing_machine_photo.jpg
-Customer: 101,John Doe,Male,456 Oak St,555-5678,john@example.com,Subscription101,InBody1,InBody2
-Customer: 102,Jane Doe,Female,789 Pine St,555-8765,jane@example.com,Subscription102,InBody3
-Coach: 201,Coach Smith,Male,321 Elm St,555-4321,coach@example.com,8
-Coach: 202,Coach Johnson,Female,654 Birch St,555-7890,coach2@example.com,10
-Subscription: Subscription101,201,MembershipPlan1
-Subscription: Subscription102,202,MembershipPlan2
-MembershipPlan: MembershipPlan1,2022-01-01,3,6,500.0
-MembershipPlan: MembershipPlan2,2022-02-01,6,8,800.0
-InBody: InBody1,2022-01-15,1.75,70,15,5,45,10
-InBody: InBody2,2022-02-01,1.80,75,18,6,50,12
-InBody: InBody3,2022-03-01,1.65,60,12,4,40,8
+Gym
+FitnessCenter,123 Main St,555-1234
 
-Equipment: Elliptical,EL001,4,elliptical_photo.jpg
-Equipment: Leg Press,LP002,2,leg_press_photo.jpg
-Equipment: Dumbbells,DB003,10,dumbbells_photo.jpg
-Customer: 103,Mark Johnson,Male,111 Maple St,555-9876,mark@example.com,Subscription103,InBody4,InBody5
-Customer: 104,Lisa Wilson,Female,222 Cedar St,555-6543,lisa@example.com,Subscription104,InBody6
-Coach: 203,Coach Davis,Male,333 Oak St,555-8765,coach3@example.com,9
-Coach: 204,Coach Brown,Female,444 Pine St,555-4321,coach4@example.com,7
-Subscription: Subscription103,203,MembershipPlan3
-Subscription: Subscription104,204,MembershipPlan4
-MembershipPlan: MembershipPlan3,2022-03-15,6,6,600.0
-MembershipPlan: MembershipPlan4,2022-04-01,3,9,750.0
-InBody: InBody4,2022-03-20,1.78,80,20,7,50,15
-InBody: InBody5,2022-04-05,1.65,65,15,5,40,10
-InBody: InBody6,2022-05-01,1.72,70,18,6,45,12
+Equipment
+Treadmill,TM001,5
+Rowing Machine,RM002,3
+Elliptical,EL001,4
+Dumbbells,DB003,10
+Leg Press,LP002,2
 
+Customer
+101,John Doe,Male,456 Oak St,555-5678,john@example.com,Subscription101,InBody1,InBody2
+102,Jane Doe,Female,789 Pine St,555-8765,jane@example.com,Subscription102,InBody3
+103,Mark Johnson,Male,111 Maple St,555-9876,mark@example.com,Subscription103,InBody4,InBody5
+104,Lisa Wilson,Female,222 Cedar St,555-6543,lisa@example.com,Subscription104,InBody6
+
+Coach
+201,Coach Smith,Male,321 Elm St,555-4321,coach@example.com,8
+202,Coach Johnson,Female,654 Birch St,555-7890,coach2@example.com,10
+203,Coach Davis,Male,333 Oak St,555-8765,coach3@example.com,9
+204,Coach Brown,Female,444 Pine St,555-4321,coach4@example.com,7
+
+Subscription
+Subscription101,201,MembershipPlan1
+Subscription102,202,MembershipPlan2
+Subscription103,203,MembershipPlan3
+Subscription104,204,MembershipPlan4
+
+MembershipPlan
+MembershipPlan1,2022-01-01,3,6,500.0
+MembershipPlan2,2022-02-01,6,8,800.0
+MembershipPlan3,2022-03-15,6,6,600.0
+MembershipPlan4,2022-04-01,3,9,750.0
+
+InBody
+InBody1,2022-01-15,1.75,70,15,5,45,10
+InBody2,2022-02-01,1.80,75,18,6,50,12
+InBody3,2022-03-01,1.65,60,12,4,40,8
+InBody4,2022-03-20,1.78,80,20,7,50,15
+InBody5,2022-04-05,1.65,65,15,5,40,10
+InBody6,2022-05-01,1.72,70,18,6,45,12
