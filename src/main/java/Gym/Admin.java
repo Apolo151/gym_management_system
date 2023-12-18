@@ -173,8 +173,13 @@ public class Admin extends Person{
         gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
     
-    public void showSubscriptionHistory(Customer customer){
-        
+    
+    public void showSubscriptionHistory(Gym gym, int customerID){
+        for(Subscription sub: gym.listOfSubscriptions){
+            if(sub.getCostumer_id() == customerID){
+                sub.getMembershipPlan().display();
+            }
+        }
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
@@ -232,6 +237,7 @@ public class Admin extends Person{
         }
     }
     
+    // Display Gym Coaches, sorted descendingly according to their number of customers
     public void displaySortedCoaches(Gym gym){
         ArrayList<Coach> sCoaches = new ArrayList<>(gym.listOfCoaches);
         Collections.sort(sCoaches);

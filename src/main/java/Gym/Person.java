@@ -10,6 +10,7 @@ public  abstract class Person {
     private String Adress ;
     int Phone_number ;
     protected String E_mail;
+    protected String password;
 
     public Person (String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail){
         this.Name =Name;
