@@ -28,32 +28,32 @@ public class Admin extends Person{
         }
     }
     
-    public void deleteCoach(Coach[] coaches){
-        
+    public void deleteCoach(Gym gym, int coachID){
+        gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
     }
     
     public void addCustomer(Gym gym, Customer customer){
-            gym.listOfCustomers.add(new Customer(customer));
+        gym.listOfCustomers.add(new Customer(customer));
     }
     
-    public void editCustomer(Customer customer){
+    public void editCustomer(Gym gym, Customer customer){
         
     }
     
-    public void deleteCustomer(Customer[] customers){
-        
+    public void deleteCustomer(Gym gym, int customerID){
+        gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
     }
     
     public void addEquipment(Gym gym, Equipment equipment){
+        //gym.sportsEquipment.add(new Equipment(equipment));
+    }
+    
+    public void editEquipment(Gym gym, Equipment equipment){
         
     }
     
-    public void editEquipment(Equipment equipment){
-        
-    }
-    
-    public void deleteEquipment(Equipment[] equipments){
-        
+    public void deleteEquipment(Gym gym, int equipmentCode){
+        gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
     
     public void showSubscriptionHistory(Customer customer){
