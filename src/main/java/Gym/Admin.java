@@ -161,7 +161,7 @@ public class Admin extends Person{
         gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
     }
     
-    public void addEquipment(Gym gym, Equipment equipment){
+    public void addEquipment(Gym gym, int type, Equipment equipment){
         //gym.sportsEquipment.add(new Equipment(equipment));
     }
     
