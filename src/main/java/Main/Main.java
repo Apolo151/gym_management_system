@@ -14,6 +14,7 @@ public class Main {
     static File output = new File("output.csv");
     static ArrayList<Gym> gymObj = new ArrayList<>();
     static Map<String, Boolean> className = new HashMap<String, Boolean>();
+    
     public static void ReadFile(String file)
     {
         File newFile = new File(file);
@@ -81,14 +82,19 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the file path");
         String file = input.nextLine();
-        ReadFile(file);
         
-        try{
-            WriteFile(gymObj.get(0).getAddress());
-        }
-        catch (Exception e){
-            System.out.println("Error: " + e.getMessage());
-        }
+        // Read File
+        ReadFile(file);
+        // Sign in & Choose Role
+        // Exception handling for invalid login
+        
+   
+        // According to Role, choose functionality
+        
+        // Save
+        WriteFile(gymObj.get(0).getAddress());
+        // close application
+        System.out.println("");
         
     }
 

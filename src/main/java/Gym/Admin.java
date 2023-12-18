@@ -35,9 +35,72 @@ public class Admin extends Person{
     public void addCustomer(Gym gym, Customer customer){
         gym.listOfCustomers.add(new Customer(customer));
     }
-    
-    public void editCustomer(Gym gym, Customer customer){
+
+    // Edit Customer Info
+    public void editCustomer(Gym gym, int customerID){
+        Customer customerEdit = null;
+        boolean found = false;
+        for(Customer customer: gym.listOfCustomers){
+            if(customer.getID() == customerID){
+                customerEdit = customer;
+                found = true;
+                break;
+            }
+        }
+        //
+        if(!found){
+            System.out.println("No Customer was found with the provided ID");
+            return;
+        }
         
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Choose the information to edit:");
+        System.out.println("1. Name");
+        System.out.println("2. Gender");
+        System.out.println("3. Address");
+        System.out.println("4. Phone Number");
+        System.out.println("5. Email");
+        System.out.println("6. Coach ID");
+        System.out.println("0. Cancel");
+
+        int choice = input.nextInt();
+        input.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new name: ");
+                customerEdit.setName(input.nextLine());
+                break;
+            case 2:
+                System.out.print("Enter new gender: ");
+                customerEdit.setGender(input.nextLine());
+                break;
+            case 3:
+                System.out.print("Enter new address: ");
+                this.setAdress(input.nextLine());
+                break;
+            case 4:
+                System.out.print("Enter new phone number: ");
+                this.Phone_number = input.nextInt();
+                break;
+            case 5:
+                System.out.print("Enter new email: ");
+                this.E_mail = input.nextLine();
+                break;
+            case 6:
+                System.out.print("Enter new coach ID: ");
+                this.coachID = input.nextInt();
+                break;
+            case 0:
+                System.out.println("Editing canceled.");
+                return;
+            default:
+                System.out.println("Invalid choice. Editing canceled.");
+                return;
+        }
+
+        System.out.println("Customer information updated successfully.");
     }
     
     public void deleteCustomer(Gym gym, int customerID){

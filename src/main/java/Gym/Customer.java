@@ -92,7 +92,37 @@ public class Customer extends Person {
         this.List_of_inbodies.get(this.List_of_inbodies.size()).howManyKilosToReduce();
     }
 
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
 
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
 
+    public void setCoachID(int coachID) {
+        this.coachID = coachID;
+    }
 
+    public void setList_of_inbodies(ArrayList<InBody> List_of_inbodies) {
+        this.List_of_inbodies = List_of_inbodies;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public void setGender(String Gender) {
+        this.Gender = Gender;
+    }
+
+    public void setPhone_number(int Phone_number) {
+        this.Phone_number = Phone_number;
+    }
+
+    public void setE_mail(String E_mail) {
+        this.E_mail = E_mail;
+    }
+    
+    
 }
