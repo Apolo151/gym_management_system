@@ -260,9 +260,9 @@ public class Admin extends Person{
     }
     
     // Display all the customers of a specific coach
-    public void displayCoachCustomers(Coach coach){
+    public void displayCoachCustomers(Coach coachID){
         for(Customer customer: coach.List_of_customers){
-            if(customer.subscription.getCoach_id() == coach.getID()){
+            if(customer.subscription.getCoach_id() == coachID){
                 customer.display();
             }
         }
@@ -319,7 +319,7 @@ public class Admin extends Person{
                     displayCoachCustomers(gym);
                     break;
                 case 5:
-                    displayGymIncome(gym);
+                    displayGymIncome(gym, );
                     break;
                 case 6:
                     displaySortedCoaches(gym);

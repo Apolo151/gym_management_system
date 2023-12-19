@@ -126,6 +126,58 @@ public class Coach extends Person implements Comparable<Coach> {
     public void setE_mail(String E_mail) {
         this.E_mail = E_mail;
     }
+
+    public void readScenario() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nCoach Functionalities: (Enter the corresponding number)");
+            System.out.println("1. Show a list of all his customers.");
+            System.out.println("2. Get the inbody history of any of his customers.");
+            System.out.println("3. Get all the details of a customer by his name.");
+            System.out.println("4. Show a list of all his female/male customers.");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            System.out.println("");
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nList of All Customers:");
+                    show_customers();
+                    break;
+                case 2:
+                    System.out.print("\nEnter customer name to get inbody history: ");
+                    String customerName = scanner.next();
+                    for (Customer customer : List_of_customers) {
+                        if (customerName.equals(customer.getName())) {
+                            System.out.println("\nInBody History of " + customerName + ":");
+                            show_list_of_inbodies(customer);
+                            break;
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.print("\nEnter customer name to get details: ");
+                    String customerDetailsName = scanner.next();
+                    System.out.println("\nDetails of Customer " + customerDetailsName + ":");
+                    show_details_of_Customer(customerDetailsName);
+                    break;
+                case 4:
+                    System.out.print("\nEnter 'male' or 'female' to show customers of that gender: ");
+                    String genderChoice = scanner.next();
+                    System.out.println("\nList of " + genderChoice + " Customers:");
+                    show_details_of_Customer_gender(genderChoice);
+                    break;
+                case 0:
+                    System.out.println("Exiting Coach Functionalities.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
     
     
 

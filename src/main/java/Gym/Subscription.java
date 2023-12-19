@@ -9,11 +9,11 @@ public class Subscription {
    private int costumer_id;
    private MembershipPlan membershipPlan;
     
-    public Subscription(int coach_id,int costumer_id, MembershipPlan membershipPlan)
+    public Subscription(int coach_id,int costumer_id)
     {
     this.coach_id=coach_id;
     this.costumer_id=costumer_id;
-    this.membershipPlan=membershipPlan;
+    
     }
 
     public int getCoach_id() {
@@ -32,12 +32,5 @@ public class Subscription {
         this.costumer_id = costumer_id;
     }
 
-    public MembershipPlan getMembershipPlan() {
-        return membershipPlan;
-    }
 
-    public void setMembershipPlan(MembershipPlan membershipPlan) {
-        this.membershipPlan = membershipPlan;
-    }
-    
 }

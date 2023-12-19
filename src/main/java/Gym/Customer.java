@@ -123,6 +123,58 @@ public class Customer extends Person {
     public void setE_mail(String E_mail) {
         this.E_mail = E_mail;
     }
-    
-    
+
+    public void readScenario() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nCustomer Functionalities: (Choose the Corresponding number)");
+            System.out.println("1. Get his coach info (Name, Phone number, working hours)");
+            System.out.println("2. Display all the Gym Equipment.");
+            System.out.println("3. Display the customer's membership plan details.");
+            System.out.println("4. Display the in-body information at a specific date.");
+            System.out.println("5. Display how many kilos need to be reduced according to his body.");
+            System.out.println("0. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            System.out.println("");
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nCoach Info:");
+                    displayCoachInfo();
+                    break;
+                case 2:
+                    System.out.println("\nList of Gym Equipment:");
+                    displayGymEquipment();
+                    break;
+                case 3:
+                    System.out.println("\nMembership Plan Details:");
+                    displayMembershipPlan();
+                    break;
+                case 4:
+                    System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
+                    String dateString = scanner.next();
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date = sdf.parse(dateString);
+                        System.out.println("\nIn-Body Information at " + dateString + ":");
+                        displayInBodyAtDate(date);
+                    } catch (ParseException e) {
+                        System.out.println("Invalid date format. Please enter a valid date.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("\nHow Many Kilos Need to be Reduced:");
+                    displayHowManyKilosToReduce();
+                    break;
+                case 0:
+                    System.out.println("Exiting Customer Functionalities.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
 }
