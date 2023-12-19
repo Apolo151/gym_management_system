@@ -38,7 +38,7 @@ public class Customer extends Person {
         System.out.println("ID:"+this.getID());
         System.out.println("Gender: "+Gender);
         System.out.println("Adress: "+this.getAdress());
-        System.out.println("Pohne_number: "+Phone_number);
+        System.out.println("Phone_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
         //
         for(InBody in : this.List_of_inbodies){

@@ -49,7 +49,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        /*className.put("Gym",true);
+        /*
+        // Create Map of Classes
+        className.put("Gym",true);
         className.put("Equipment", true);
         className.put("Customer", true);
         className.put("Coach", true);
@@ -57,19 +59,18 @@ public class Main {
         className.put("MembershipPlan", true);
         className.put("InBody", true);
         className.put("Admin", true);
-        className.put("Exit",true);*/
+        className.put("Exit",true);
+        Map<String, Boolean> className = new HashMap<String, Boolean>();*/
         
-        ArrayList<Gym> gymObj = new ArrayList<>();
+        Gym gym = new Gym("GYMO", "Addddd", 2343242);
         ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
         ArrayList<InBody> InBodyList = new ArrayList<>();
-        Map<String, Boolean> className = new HashMap<String, Boolean>();
-        gymObj.add(new Gym("GYMO", "Addddd", 2343242));
-        Gym gymO = gymObj.get(0);
-        gymO.listOfCoaches.add(new Coach("Name1", 1, "SSS", 5, gymO));
-        gymO.listOfCoaches.add(new Coach("Name2", 2, "trrrt", 7, gymO));
-        gymO.listOfCustomers.add(new Customer(1, "Cu1", gymObj.get(0)));
-        gymO.listOfCustomers.add(new Customer(2, "Cu2", gymObj.get(0)));
-        System.out.println(gymO.listOfCustomers.toArray().length);
+        
+        gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));
+        gym.listOfCoaches.add(new Coach("Coacher2F", 2, "female", "9 el Street", 07775000, "Coacher2F@gmail.com", 6));
+        gym.listOfCustomers.add(new Customer(1, "Cu1", gym));
+        gym.listOfCustomers.add(new Customer(2, "Cu2", gym));
+        System.out.println(gym.listOfCustomers.toArray().length);
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the file path");
         String file = input.nextLine();
