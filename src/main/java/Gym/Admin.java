@@ -26,7 +26,7 @@ public class Admin extends Person{
         
     
     public Admin(){
-        
+        super();
     }
     
     private boolean existCheck(Gym gym, int ID, Coach coach){
@@ -289,13 +289,113 @@ public class Admin extends Person{
         }
     }
     
+    public void readScenario(Gym gym) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Choose an action:");
+            System.out.println("1. Add/Edit/Delete Coaches, Equipment, and Customers");
+            System.out.println("2. Show Subscription History for a Customer");
+            System.out.println("3. Display Customers Subscribed in a Month/Day");
+            System.out.println("4. Display Customers of a Specific Coach");
+            System.out.println("5. Display Gym Income in a Given Month");
+            System.out.println("6. Display Coaches Sorted by Assigned Customers");
+            System.out.println("0. Exit");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    manageEntities(gym);
+                    break;
+                case 2:
+                    showSubscriptionHistory(gym);
+                    break;
+                case 3:
+                    displayCustomersInMonthOrDay(gym);
+                    break;
+                case 4:
+                    displayCoachCustomers(gym);
+                    break;
+                case 5:
+                    displayGymIncome(gym);
+                    break;
+                case 6:
+                    displaySortedCoaches(gym);
+                    break;
+                case 0:
+                    System.out.println("Exiting the admin panel.");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    private void manageEntities(Gym gym) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Choose an action:");
+        System.out.println("1. Add Coach");
+        System.out.println("2. Edit Coach");
+        System.out.println("3. Delete Coach");
+        System.out.println("4. Add Customer");
+        System.out.println("5. Edit Customer");
+        System.out.println("6. Delete Customer");
+        System.out.println("7. Add Equipment");
+        System.out.println("8. Edit Equipment");
+        System.out.println("9. Delete Equipment");
+        System.out.println("0. Back");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 1:
+                addCoach(gym);
+                break;
+            case 2:
+                editCoach(gym);
+                break;
+            case 3:
+                deleteCoach(gym);
+                break;
+            case 4:
+                addCustomer(gym);
+                break;
+            case 5:
+                editCustomer(gym);
+                break;
+            case 6:
+                deleteCustomer(gym);
+                break;
+            case 7:
+                addEquipment(gym);
+                break;
+            case 8:
+                editEquipment(gym);
+                break;
+            case 9:
+                deleteEquipment(gym);
+                break;
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
+        }
+    }
+
+    
        
     public void display(){
         System.out.println("Admin Info");
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
         System.out.println("Gender: " + Gender);
-        System.out.println("Phone_number: "+Phone_number);
+        System.out.println("Phone_number: "+ Phone_number);
     }
     
     
