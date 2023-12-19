@@ -1,4 +1,5 @@
 package Gym;
+import Gym.Date;
 
 public class MembershipPlan {
     String member_name;
