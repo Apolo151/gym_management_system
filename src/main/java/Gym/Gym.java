@@ -9,10 +9,10 @@ public class Gym {
     private String address;
     private long phoneNumber;  // This is not " int " because it won't carry 11 numbers. Also, we can make it String.
 
-    protected ArrayList<Equipment> sportsEquipment = new ArrayList<>();
-    protected ArrayList<Coach> listOfCoaches = new ArrayList<>();
-    protected ArrayList<Subscription> listOfSubscriptions = new ArrayList<>();
-    protected ArrayList<Customer> listOfCustomers = new ArrayList<>();
+    public static ArrayList<Equipment> sportsEquipment = new ArrayList<>();
+    public static ArrayList<Coach> listOfCoaches = new ArrayList<>();
+    public static ArrayList<Subscription> listOfSubscriptions = new ArrayList<>();
+    public static ArrayList<Customer> listOfCustomers = new ArrayList<>();
 
     public Gym(String name, String address, long phoneNumber)
     {

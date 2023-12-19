@@ -12,7 +12,7 @@ public  abstract class Person {
     protected String E_mail;
     protected String password;
 
-    public Person (String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail){
+    public Person (String Name, int ID, String Gender, String Adress, int Phone_number, String E_mail){
         this.Name =Name;
         this.ID =ID;
         this.Gender =Gender;
@@ -102,5 +102,13 @@ public  abstract class Person {
             }
         }
         System.out.println("congratulations Now you have an accont ");
+    }
+    
+    public void register(){
+        
+    }
+    
+    public void login(){
+        
     }
 }

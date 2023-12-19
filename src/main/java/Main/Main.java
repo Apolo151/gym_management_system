@@ -27,183 +27,6 @@ public class Main {
     
     public void ReadFile(String file)
     {
-        File newFile = new File(file);
-        //try (Scanner scanner = new Scanner(Paths.get(file)))
-        //gymObj.add(new Gym("GYMO", "Addddd", 2343242));
-        //Gym gymO = gymObj.get(0);
-        //gymO.listOfCoaches.add(new Coach("Lol", 1, "ththt", "ss", 3, "fdfd", 5));
-        /*Gym.listOfCoaches.add(new Coach("Lol2", 2, "trrrt", "ss2", 6, "fdfd2", 7));
-        Gym.listOfCustomers.add(new Customer(1, gymObj.get(0)));
-        Gym.listOfCustomers.add(new Customer(2, gymObj.get(0)));*/
-        
-        try{
-            List<String> lines = Files.readAllLines(Paths.get(file));
-            for(String line: lines) {
-
-            //String line = scanner.nextLine();
-            System.out.println(line);
-            if (line.isEmpty()) {
-                continue;
-            }
-            if(line.equals("Gym"))
-            {
-                System.out.println("I Work here");
-                while(true)
-                {
-                    /*line = scanner.nextLine();
-                    if(className.get(line)!= null)
-                    {
-                        break;
-                    }
-                    String[] attribute = line.split(",");
-                    String name = attribute[0];
-                    for(String s: attribute){
-                        System.out.println(s + " | ");
-                    }
-                    String address = attribute[1];
-                    long phoneNumber = Long.valueOf(attribute[2]);
-                    //System.out.println(name);
-                    gymObj.add(new Gym(name, address, phoneNumber));*/
-                }
-            }
-            /* if(line.equals("Equipment"))
-            {
-                while(true)
-                {
-                    line = scanner.nextLine();
-                    if(className.get(line)!= null)
-                    {
-                        break;
-                    }
-                    String[] attribute = line.split(",");
-                    String name = attribute[0];
-                    String address = attribute[1];
-                    long phoneNumber = Long.valueOf(attribute[2]);
-
-                    gymObj.add(new Gym(name, address, phoneNumber));
-                }
-            }*/
-
-  //          if(line.equals("Coach"))
-          //  {
-            //    while(true)
-              //  {
-                //    //line = scanner.nextLine();
-                  //  if(className.get(line)!= null)
-            //      {
-               //         break;
-             //       }
-              //      String[] attribute = line.split(",");
-
-//                    String Name = attribute[0];
-  //                  int ID = Integer.valueOf(attribute[1]);
-    //                String Gender = attribute[2];
-      //              String Adress = attribute[3];
-        //            int Phone_number =  Integer.valueOf(attribute[4]);
-          //          String E_mail = attribute[5];
-            //        int W_H =  Integer.valueOf(attribute[6]);
-//
-  //                  listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H));
-    //            }
-      //      }
-            /*if(line.equals("MembershipPlan"))
-            {
-                while(true)
-                {
-                    line = scanner.nextLine();
-                    if(className.get(line)!= null)
-                    {
-                        break;
-                    }
-                    String[] attribute = line.split(",");
-                    String member_name = attribute[0];
-                    String startDateString = attribute[1];
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                    Date start_date;
-                    try {
-                        start_date = df.parse(startDateString);
-                        String newDateString = df.format(start_date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    String end_date = attribute[0];
-                    int number_of_plan = Integer.valueOf(attribute[2]);
-
-                    membershipPlans.add(new MembershipPlan(member_name,start_date ,end_date, number_of_plan));
-                }
-            }*/
-//            if(line.equals("Subscription"))
-  //          {
-    //            while(true)
-      //          {
-        //            //line = scanner.nextLine();
-          //          if(className.get(line)!= null)
-            //        {
-              //          break;
-//                    }
-  //                  String[] attribute = line.split(",");
-    //                int coach_id = Integer.valueOf(attribute[0]);
-      //              int costumer_id = Integer.valueOf(attribute[1]);
-        //            listOfSubscriptions.add(new Subscription(coach_id,costumer_id));
-          //      }
-//            }
-  //          if(line.equals("Customer"))
-    //        {
-      //          int i = 0;
-        //        while(true)
-          //      {
-            //        //line = scanner.nextLine();
-              //      if(className.get(line)!= null)
-                //    {
-                  //      break;
-//                    }
-  //                  String[] attribute = line.split(",");
-//
-  //                  String Name = attribute[0];
-    //                int ID = Integer.valueOf(attribute[1]);
-      //              String Gender = attribute[2];
-        //            String Adress = attribute[3];
-          //          int Phone_number =  Integer.valueOf(attribute[4]);
-           //         String E_mail = attribute[5];
-            //        int coachID =  Integer.valueOf(attribute[6]);
-//
-  //                  Gym gym = gymObj.get(0);
-    //                Subscription sub = listOfSubscriptions.get(0);
-      //              i++;
-//
-  //                  listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
-    //                        Phone_number, E_mail, coachID,gym,sub));
-      //          }
-        ///    }
-//
-  //          if(line.equals("InBody"))
-    //        {
-      //          while(true)
-        //        {
-          //          //line = scanner.nextLine();
-            //        if(className.get(line)!= null)
-              //      {
-                //        break;
-                 //   }
-//                    String[] attribute = line.split(",");
-  //                  double Weight = Double.valueOf(attribute[0]);
-    //                double Height = Double.valueOf(attribute[1]);
-      //              int Age = Integer.valueOf(attribute[2]);
-        //            String Name = attribute[3];
-          ///          String Gender = attribute[4];
-             //       InBodyList.add(new InBody(Weight,Height,Age,Name,Gender));
-               // }
-         //   }
-
-
-         }
-
-    }
-        catch (IOException ex) {
-            // handle exception...
-            System.out.println("Error in file reading");
-        }
-
         /*catch (Exception e)
         {
             System.out.println("Error: " + e.getMessage());
@@ -251,16 +74,11 @@ public class Main {
         System.out.println("Enter the file path");
         String file = input.nextLine();
         
-        //System.out.println(gymO.toArray().length);
         // Read File
         //ReadFile(file);
         //for(Coach coach: Gym.listOfCoaches){
         //    System.out.println(coach.getName()  );
         //}
-        //System.out.println(gymObj.get(0).getAddress());
-        //System.out.println(listOfCoaches.toArray().length);
-        //System.out.println(gymObj.toArray().length);
-        //System.out.println(listOfCustomers.toArray().length);
         // Sign in & Choose Role
         boolean run = true;
         while(run) {
@@ -326,9 +144,10 @@ public class Main {
 
                         }
                         //
-                        coach.readScenario(scan);
-                            
-    }
+                        coach.readScenario();
+                    }
+                    break;
+                case "Admin":
                     
                     break;
                 case "Stop":
@@ -339,11 +158,5 @@ public class Main {
 
             }
         }
-        // Exception handling for invalid login
-
-        // According to Role, choose functionality
-        // close application
-        //System.out.println("");
-        
     }
 }

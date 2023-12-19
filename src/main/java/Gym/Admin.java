@@ -51,7 +51,9 @@ public class Admin extends Person{
         return false;
     }
     
-    public void addCoach(Gym gym, Coach coach){
+    public void addCoach(Gym gym){
+        Coach coach;
+        System.out.println("Enter the Coach's Name:" );
         gym.listOfCoaches.add(new Coach(coach));
     }
 

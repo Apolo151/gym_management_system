@@ -1,11 +1,12 @@
 package Gym;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Coach extends Person implements Comparable<Coach> {
     int working_hours;
     int number_of_customers;
-    Customer List_of_customers[] = new Customer[10];
+    ArrayList<Customer> List_of_customers = new ArrayList<>();
 
 
     public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
@@ -21,6 +22,7 @@ public class Coach extends Person implements Comparable<Coach> {
     public Coach(Coach coach){
         super(coach.getName(), coach.getID(), coach.getGender(), coach.getAdress(),
                 coach.getPhone_number(), coach.getE_mail());
+        this.working_hours = coach.working_hours;
         
     }
     
