@@ -1,4 +1,5 @@
 package Main;
+
 import EQ_GYM.*;
 import Gym.*;
 
@@ -47,15 +48,14 @@ public class Main {
                             break;
                         }
                         String[] attribute = line.split(",");
-                        System.out.println(attribute.length);
                         String name = attribute[0];
                         String address = attribute[1];
                         long phoneNumber = Long.valueOf(attribute[2]);
-
+                        System.out.println(name);
                         gymObj.add(new Gym(name, address, phoneNumber));
                     }
                 }
-                if(line.equals("Equipment"))
+               /* if(line.equals("Equipment"))
                 {
                     while(true)
                     {
@@ -71,7 +71,7 @@ public class Main {
 
                         gymObj.add(new Gym(name, address, phoneNumber));
                     }
-                }
+                }*/
 
                 if(line.equals("Coach"))
                 {
@@ -95,7 +95,32 @@ public class Main {
                         listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H));
                     }
                 }
-                
+                /*if(line.equals("MembershipPlan"))
+                {
+                    while(true)
+                    {
+                        line = scanner.nextLine();
+                        if(className.get(line)!= null)
+                        {
+                            break;
+                        }
+                        String[] attribute = line.split(",");
+                        String member_name = attribute[0];
+                        String startDateString = attribute[1];
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                        Date start_date;
+                        try {
+                            start_date = df.parse(startDateString);
+                            String newDateString = df.format(start_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        String end_date = attribute[0];
+                        int number_of_plan = Integer.valueOf(attribute[2]);
+
+                        membershipPlans.add(new MembershipPlan(member_name,start_date ,end_date, number_of_plan));
+                    }
+                }*/
                 if(line.equals("Subscription"))
                 {
                     while(true)
@@ -108,9 +133,7 @@ public class Main {
                         String[] attribute = line.split(",");
                         int coach_id = Integer.valueOf(attribute[0]);
                         int costumer_id = Integer.valueOf(attribute[1]);
-                        MembershipPlan membershipPlan = membershipPlans.get(0);
-
-                        listOfSubscriptions.add(new Subscription(coach_id,costumer_id));
+                       listOfSubscriptions.add(new Subscription(coach_id,costumer_id));
                     }
                 }
                 if(line.equals("Customer"))
@@ -134,7 +157,7 @@ public class Main {
                         int coachID =  Integer.valueOf(attribute[6]);
 
                         Gym gym = gymObj.get(0);
-                        Subscription sub = listOfSubscriptions.get(i);
+                        Subscription sub = listOfSubscriptions.get(0);
                         i++;
 
                         listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
@@ -200,7 +223,11 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the file path");
         String file = input.nextLine();
-        
+        //System.out.println(gymObj.get(0).getAddress());
+        System.out.println(listOfCoaches.toArray().length);
+        System.out.println(gymObj.toArray().length);
+        System.out.println(listOfCustomers.toArray().length);
+
         // Read File
         ReadFile(file);
         // Sign in & Choose Role
@@ -220,14 +247,14 @@ public class Main {
                         i++;
                         switch (function) {
                             case "Get coach info":
-                                WriteFile(listOfCustomers.get(i).displayCoachInfo());
+                                listOfCustomers.get(0).displayCoachInfo();
 
                                 break;
                             case "Display gym equipment":
-                                WriteFile(listOfCustomers.get(i).displayGymEquipment());
+                                //WriteFile(listOfCustomers.get(i).displayGymEquipment());
                                 break;
                             case "Display membership plan detail":
-                                WriteFile(listOfCustomers.get(i).displayMembershipPlan());
+                                //WriteFile(listOfCustomers.get(i).displayMembershipPlan());
                                 break;
                             case "Display in-body information":
                                 System.out.println("enter date");
