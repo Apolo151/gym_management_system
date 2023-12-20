@@ -36,7 +36,7 @@ public  abstract class Person {
     public String getName() {
         return Name;
     }
-    
+
     public String getPassword(){
         return password;
     }
@@ -103,12 +103,12 @@ public  abstract class Person {
         }
         System.out.println("congratulations Now you have an accont ");
     }
-    
+
     public void register(){
-        
+
     }
-    
+
     public void login(){
-        
+
     }
 }

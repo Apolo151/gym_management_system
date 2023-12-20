@@ -27,8 +27,9 @@ import static Gym.Gym.sportsEquipment;*/
 
 public class Main {
     static Map<String, Boolean> className = new HashMap<>();
-    static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
     static ArrayList<Gym> gymObj = new ArrayList<>();
+    static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
+    public static ArrayList<InBody> inBodyList = new ArrayList<>();
     public static void ReadFile(String file)
     {
         File newFile = new File(file);

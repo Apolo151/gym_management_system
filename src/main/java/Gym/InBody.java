@@ -28,7 +28,11 @@ public class InBody {
     public InBody(double Price){
         
     }
-    
+
+    public String getName() {
+        return Name;
+    }
+
     private double BMR() {
 
         if (Gender.equals("male") || Gender.equals("Male")) {

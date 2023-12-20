@@ -1,8 +1,14 @@
 package Gym;
 
 import EQ_GYM.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import static Main.Main.inBodyList;
 
 public class Customer extends Person {
     Gym gym;
@@ -15,16 +21,19 @@ public class Customer extends Person {
         this.coachID = coachID;
         this.gym = gym;
     }
-    
+
     public Customer(String Name , int ID , String Gender ,String Address,
-            int Phone_number, String E_mail, int coachID){
+                    int Phone_number, String E_mail, int coachID){
         super(Name, ID, Gender, Address, Phone_number, E_mail);
         this.coachID = coachID;
-
-
-        //this.subscription = sub;
     }
-    
+    public Customer(String Name , int ID , String Gender ,String Address,
+                    int Phone_number, String E_mail, int coachID,Subscription sub){
+        super(Name, ID, Gender, Address, Phone_number, E_mail);
+        this.coachID = coachID;
+        this.subscription = sub;
+    }
+
     public Customer(Customer customer){
         super(customer.Name, customer.getID(), customer.Gender, customer.getAdress(),
                 customer.Phone_number, customer.E_mail);
@@ -32,8 +41,11 @@ public class Customer extends Person {
         this.gym = customer.gym;
         this.subscription = customer.subscription;
     }
-    
-      
+
+    public int getCoachID() {
+        return coachID;
+    }
+
     void display (){
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
@@ -56,12 +68,21 @@ public class Customer extends Person {
             System.out.print("Please Enter your "+ j +" inbody");
         }
     }
-    
+    public void addInBody()
+    {
+        for(InBody inBody: inBodyList)
+        {
+            if(inBody.getName().equals(this.Name))
+                this.List_of_inbodies.add(inBody);
+        }
+    }
+
+
     // Display coach info
     void displayCoachInfo(){
         Gym.listOfCoaches.get(this.coachID).display();
     }
-    
+
     // Display all Gym Equipment
     void displayGymEquipment(){
         for(Equipment eq : Gym.sportsEquipment){
@@ -69,12 +90,12 @@ public class Customer extends Person {
             System.out.println("-------");
         }
     }
-    
+
     // Display membership plan details
     void displayMembershipPlan(){
-        //this.subscription.getMembershipPlan().display();
+        this.subscription.getMembershipPlan().display();
     }
-    
+
     // Display inbody info at a specific date
     void displayInBodyAtDate(java.util.Date date){
         for(InBody in : this.List_of_inbodies){
@@ -83,15 +104,16 @@ public class Customer extends Person {
             }
         }
     }
-    
+
     // Display how many kilos need to be reduced according to his body
     void displayHowManyKilosToReduce(){
+        addInBody();
         if(this.List_of_inbodies.size() == 0){
             System.out.println("You must perform an Inbody to be able to find how many kilos you need to reduce.");
             return;
         }
         //
-        this.List_of_inbodies.get(this.List_of_inbodies.size()).howManyKilosToReduce();
+        this.List_of_inbodies.get(this.List_of_inbodies.size()-1).howManyKilosToReduce();
     }
 
     public void setGym(Gym gym) {
@@ -110,10 +132,6 @@ public class Customer extends Person {
         this.List_of_inbodies = List_of_inbodies;
     }
 
-    public int getCoachID() {
-        return coachID;
-    }
-
     public void setName(String Name) {
         this.Name = Name;
     }
@@ -130,8 +148,7 @@ public class Customer extends Person {
         this.E_mail = E_mail;
     }
 
-    public void readScenario(Scanner input) {
-
+    public void readScenario(Scanner scanner) {
         while (true) {
             System.out.println("\nCustomer Functionalities: (Choose the Corresponding number)");
             System.out.println("1. Get his coach info (Name, Phone number, working hours)");
@@ -142,8 +159,8 @@ public class Customer extends Person {
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
-            int choice = input.nextInt();
-            input.nextLine(); // Consume the newline character
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -159,16 +176,16 @@ public class Customer extends Person {
                     displayMembershipPlan();
                     break;
                 case 4:
-                    /*System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
+                    System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
                     String dateString = scanner.next();
                     try {
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date date = sdf.parse(dateString);
                         System.out.println("\nIn-Body Information at " + dateString + ":");
                         displayInBodyAtDate(date);
                     } catch (ParseException e) {
                         System.out.println("Invalid date format. Please enter a valid date.");
-                    }*/
+                    }
                     break;
                 case 5:
                     System.out.println("\nHow Many Kilos Need to be Reduced:");
