@@ -5,6 +5,7 @@ import EQ_GYM.Equipment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.Comparator;
 
 public abstract class Admin extends Person{
     public Admin(String Name , int ID , String Gender ,String Address,
@@ -140,7 +141,14 @@ public abstract class Admin extends Person{
 
     
     public static void deleteCoach(int coachID){
+        Coach coachCheck = (Coach)existCheck(coachID,userType.COACH);
+        if(coachCheck==null){
+            System.out.println("No Coach exists with this ID.");
+            return;
+        }
         Gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
+        System.out.println("Coach deleted successfully");
+
     }
 
     public static void addCustomer(Scanner input) {
@@ -322,7 +330,7 @@ public abstract class Admin extends Person{
     // Display all the customers that subscribed to the gym in a given month/day
     public static void displayCustomersInMonthOrDay(Date date){
         Scanner input = new Scanner (System.in);
-        /*String c;
+        /* TODO String c;
         System.out.println("Month or Day? (enter m or d)");
         c = input.nextLine();
         if(c.equals("m")){
@@ -364,7 +372,7 @@ public abstract class Admin extends Person{
         }
     }
     
-    // Display the GYM income in a given month
+    // Display the GYM income in a given month TODO
 /*    public void displayGymIncome(Date date){
         double income = 0;
         for(Subscription sub: Gym.listOfSubscriptions){
@@ -377,12 +385,18 @@ public abstract class Admin extends Person{
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
     public static void displaySortedCoaches(){
-        ArrayList<Coach> sCoaches = new ArrayList<>(Gym.listOfCoaches);
-        Collections.sort(sCoaches);
+        ArrayList<Coach> sortedCoaches = new ArrayList<>(Gym.listOfCoaches);
+
+        // Sort the coaches based on the number of customers (descending order)
+        Collections.sort(sortedCoaches, new Comparator<Coach>() {
+            @Override
+            public int compare(Coach coach1, Coach coach2) {
+                return coach2.number_of_customers - coach1.number_of_customers;
+            }
+        });
         //
-        for(Coach coach: sCoaches){
+        for(Coach coach: sortedCoaches){
             coach.display();
-            System.out.println("------");
         }
     }
 

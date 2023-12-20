@@ -3,7 +3,7 @@ package Gym;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Coach extends Person implements Comparable<Coach> {
+public class Coach extends Person /*implements Comparable<Coach>*/ {
     int working_hours;
     int number_of_customers;
     public ArrayList<Customer> List_of_customers = new ArrayList<>();

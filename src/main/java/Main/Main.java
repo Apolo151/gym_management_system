@@ -94,16 +94,14 @@ public class Main {
                         String Name = attribute[0];
                         int ID = Integer.valueOf(attribute[1]);
                         String Gender = attribute[2];
-                        String Adress = attribute[3];
+                        String Address = attribute[3];
                         int Phone_number =  Integer.valueOf(attribute[4]);
                         String E_mail = attribute[5];
                         int coachID =  Integer.valueOf(attribute[6]);
-
-                        Gym gym = gymObj.get(0);
                         //Subscription sub = listOfSubscriptions.get(i);
                         i++;
-
-                        Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
+                        Coach coach = null;
+                        Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Address,
                                 Phone_number, E_mail, coachID));
                     }
                 }
@@ -319,9 +317,9 @@ public class Main {
                     String userName, pass, choice="r";
                     userName = pass = " ";
                     while(true){
-                        System.out.println("Enter the Admin's Username: ");
+                        System.out.println("Enter the admin Username: ");
                         userName = input.nextLine();
-                        System.out.println("Enter the Admin's Password: ");
+                        System.out.println("Enter the admin Password: ");
                         pass = input.nextLine();
                         //
                         if(!userName.equals("Admin") || !pass.equals("Admin")){
