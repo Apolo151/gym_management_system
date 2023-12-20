@@ -131,8 +131,7 @@ public class Coach extends Person /*implements Comparable<Coach>*/ {
         this.E_mail = E_mail;
     }
 
-    public void readScenario() {
-        Scanner scanner = new Scanner(System.in);
+    public void readScenario(Scanner input) {
 
         while (true) {
             System.out.println("\nCoach Functionalities: (Enter the corresponding number)");
@@ -143,8 +142,8 @@ public class Coach extends Person /*implements Comparable<Coach>*/ {
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            //System.out.println("");
+            int choice = input.nextInt();
+            input.nextLine(); // Consume the newline character
 
             switch (choice) {
                 case 1:
@@ -156,7 +155,7 @@ public class Coach extends Person /*implements Comparable<Coach>*/ {
                     break;
                 case 2:
                     System.out.print("\nEnter customer name to get inbody history: ");
-                    String customerName = scanner.next();
+                    String customerName = input.next();
                     for (Customer customer : List_of_customers) {
                         if (customerName.equals(customer.getName())) {
                             System.out.println("\nInBody History of " + customerName + ":");
@@ -167,13 +166,13 @@ public class Coach extends Person /*implements Comparable<Coach>*/ {
                     break;
                 case 3:
                     System.out.print("\nEnter customer name to get details: ");
-                    String customerDetailsName = scanner.next();
+                    String customerDetailsName = input.next();
                     System.out.println("\nDetails of Customer " + customerDetailsName + ":");
                     show_details_of_Customer(customerDetailsName);
                     break;
                 case 4:
                     System.out.print("\nEnter 'male' or 'female' to show customers of that gender: ");
-                    String genderChoice = scanner.next();
+                    String genderChoice = input.next();
                     System.out.println("\nList of " + genderChoice + " Customers:");
                     show_details_of_Customer_gender(genderChoice);
                     break;

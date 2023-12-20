@@ -333,7 +333,7 @@ public abstract class Admin {
     }
 
 
-    public void showSubscriptionHistory(int customerID){
+    public static void showSubscriptionHistory(int customerID){
         for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
                 //sub.getMembershipPlan().display();
@@ -342,7 +342,7 @@ public abstract class Admin {
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public static void displayCustomersInMonthOrDay(Date date){
+    public static void displayCustomersInDate(Date date){
         Scanner input = new Scanner (System.in);
         /* TODO String c;
         System.out.println("Month or Day? (enter m or d)");
@@ -387,7 +387,7 @@ public abstract class Admin {
     }
     
     // Display the GYM income in a given month TODO
-/*    public void displayGymIncome(Date date){
+/*    public static void displayGymIncome(Date date){
         double income = 0;
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
@@ -438,7 +438,7 @@ public abstract class Admin {
                     //showSubscriptionHistory(cuID);
                     break;
                 case 3:
-                    displayCustomersInMonthOrDay(getUserDate(input));
+                    displayCustomersInDate(getUserDate(input));
                     break;
                 case 4:
                     System.out.println("Enter the Coach's ID: ");

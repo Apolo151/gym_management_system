@@ -8,9 +8,7 @@ public abstract class Equipment {
     private int code;
     Equipment(String name){
         this.name=name;
-    }
-    Equipment(){
-
+        this.quantity = 0;
     }
 
     Equipment(String name,int quantity,int code){
@@ -18,11 +16,6 @@ public abstract class Equipment {
         this.quantity=quantity;
         this.code=code;
     }
-    Equipment(Equipment e){
-        this.name=e.name;
-        this.quantity=e.quantity+e.quantity;
-    }
-
 
     public void setCode(int code) {
         this.code = code;

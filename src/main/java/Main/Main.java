@@ -292,7 +292,7 @@ public class Main {
 
                     }
                     // Check password
-                    if(customer != null) customer.readScenario();
+                    if(customer != null) customer.readScenario(input);
                     break;
                 case "Coach":
                     //Scanner scan = new Scanner(System.in);
@@ -318,7 +318,7 @@ public class Main {
                         }
                     }
                     //
-                    if(coach != null) coach.readScenario();
+                    if(coach != null) coach.readScenario(input);
                     break;
                 case "Admin":
                     // Check Username and Password

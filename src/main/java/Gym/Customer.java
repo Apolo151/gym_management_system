@@ -130,8 +130,7 @@ public class Customer extends Person {
         this.E_mail = E_mail;
     }
 
-    public void readScenario() {
-        Scanner scanner = new Scanner(System.in);
+    public void readScenario(Scanner input) {
 
         while (true) {
             System.out.println("\nCustomer Functionalities: (Choose the Corresponding number)");
@@ -143,8 +142,8 @@ public class Customer extends Person {
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            System.out.println("");
+            int choice = input.nextInt();
+            input.nextLine(); // Consume the newline character
 
             switch (choice) {
                 case 1:
