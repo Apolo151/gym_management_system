@@ -12,19 +12,19 @@ public class Coach extends Person implements Comparable<Coach> {
     public ArrayList<Customer> List_of_customers = new ArrayList<>();
 
 
-    public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
-        super(Name, ID, Gender, Adress, Phone_number, E_mail);
+    public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H, String password){
+        super(Name, ID, Gender, Adress, Phone_number, E_mail, password);
         this.working_hours = W_H;
         this.number_of_customers = 0;
     }
 
     public Coach(){
-        this("",0,"","",0,"",0);
+        this("",0,"","",0,"",0, "");
     }
 
     public Coach(Coach coach){
         super(coach.getName(), coach.getID(), coach.getGender(), coach.getAdress(),
-                coach.getPhone_number(), coach.getE_mail());
+                coach.getPhone_number(), coach.getE_mail(), coach.getPassword());
         this.working_hours = coach.working_hours;
 
     }

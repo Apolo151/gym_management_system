@@ -69,9 +69,11 @@ public abstract class Admin {
 
         System.out.println("Enter the Coach's Working Hours:");
         int workingHours = input.nextInt();
+        System.out.println("Enter the Coach's Top Secret Password: ");
+        String password = input.next();
 
         //
-        Gym.listOfCoaches.add(new Coach(name, id, gender, address, phoneNumber, email, workingHours));
+        Gym.listOfCoaches.add(new Coach(name, id, gender, address, phoneNumber, email, workingHours, password));
         System.out.println("Coach added successfully!");
     }
 
@@ -165,6 +167,9 @@ public abstract class Admin {
         System.out.println("Enter the ID of the Coach for the Customer:");
         int coachId = input.nextInt();
 
+        System.out.println("Enter the Customer's Top Secret Password: ");
+        String password = input.next();
+
         // Find the coach with the specified ID and add the customer to their list
         boolean coachIdCorrect=false;
         for (Coach coach : Gym.listOfCoaches) {
@@ -178,7 +183,7 @@ public abstract class Admin {
                     return;
                 }
                 // Add to all gym customers
-                Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId));
+                Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId, password));
                 // Add to Coach customers
                 coach.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
 

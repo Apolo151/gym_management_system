@@ -10,19 +10,20 @@ public  abstract class Person {
     private String Adress ;
     int Phone_number ;
     protected String E_mail;
-    protected String password;
+    private String password;
 
-    public Person (String Name, int ID, String Gender, String Adress, int Phone_number, String E_mail){
+    public Person (String Name, int ID, String Gender, String Adress, int Phone_number, String E_mail, String password){
         this.Name =Name;
         this.ID =ID;
         this.Gender =Gender;
         this.Adress=Adress;
         this.Phone_number =Phone_number;
         this.E_mail=E_mail;
+        this.password = password;
     }
 
     public Person (){ //defalt constractor
-        this("",0,"","",0,"");
+        this("",0,"","",0,"", "");
     }
 
     public int getID() {

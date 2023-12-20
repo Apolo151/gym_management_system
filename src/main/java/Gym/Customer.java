@@ -23,20 +23,20 @@ public class Customer extends Person {
     }
 
     public Customer(String Name , int ID , String Gender ,String Address,
-                    int Phone_number, String E_mail, int coachID){
-        super(Name, ID, Gender, Address, Phone_number, E_mail);
+                    int Phone_number, String E_mail, int coachID, String password){
+        super(Name, ID, Gender, Address, Phone_number, E_mail, password);
         this.coachID = coachID;
     }
     public Customer(String Name , int ID , String Gender ,String Address,
-                    int Phone_number, String E_mail, int coachID,Subscription sub){
-        super(Name, ID, Gender, Address, Phone_number, E_mail);
+                    int Phone_number, String E_mail, int coachID,Subscription sub, String password){
+        super(Name, ID, Gender, Address, Phone_number, E_mail, password);
         this.coachID = coachID;
         this.subscription = sub;
     }
 
     public Customer(Customer customer){
         super(customer.Name, customer.getID(), customer.Gender, customer.getAdress(),
-                customer.Phone_number, customer.E_mail);
+                customer.Phone_number, customer.E_mail, customer.getPassword());
         this.coachID = customer.coachID;
         this.gym = customer.gym;
         this.subscription = customer.subscription;

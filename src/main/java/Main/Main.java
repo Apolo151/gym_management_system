@@ -184,8 +184,9 @@ public class Main {
                         int Phone_number =  Integer.valueOf(attribute[4]);
                         String E_mail = attribute[5];
                         int W_H =  Integer.valueOf(attribute[6]);
+                        String password = attribute[7];
 
-                        Gym.listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H));
+                        Gym.listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H, password));
                     }
                 }
                 if(line.equals("Customer"))
@@ -207,12 +208,12 @@ public class Main {
                         int Phone_number =  Integer.valueOf(attribute[4]);
                         String E_mail = attribute[5];
                         int coachID =  Integer.valueOf(attribute[6]);
-
+                        String password = attribute[7];
                         Subscription sub = Gym.listOfSubscriptions.get(i);
                         i++;
 
                         Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
-                                Phone_number, E_mail, coachID,sub));
+                                Phone_number, E_mail, coachID,sub, password));
                     }
                 }
 
@@ -239,8 +240,57 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    static void sign_up(ArrayList<User> log_list) {
+        while (true) {
+            System.out.println("  SIGN UP  ");
+            System.out.println("------------");
+            String name, password;
+            int type_work;
+            Scanner in = new Scanner(System.in);
+            System.out.println("Are you a: ");
+            System.out.println("1-customer " + "2-Coach ");
+            type_work = in.nextInt();
+            System.out.println("You have to call an Admin Boiii");
+            String userName, pass, choice="r";
 
+                while(true){
+                    System.out.println("Enter the admin Username: ");
+                    userName = input.nextLine();
+                    System.out.println("Enter the admin Password: ");
+                    pass = input.nextLine();
+                    //
+                    if(!userName.equals("Admin") || !pass.equals("Admin")){
+                        System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
+                        choice = input.nextLine();
+                        if(choice.equals("r"))
+                            continue;
+                        else
+                            break;
+                    }
+                    break;
+                }
+            //switch case
+            System.out.println("Enter your username: ");
+            name = in.next();
+            System.out.println("Enter your password: ");
+            password = in.next();
+            boolean f = true;
+            for (int i = 0; i < log_list.size(); i++) {
+                if (name.equals(log_list.get(i).name) && password.equals(log_list.get(i).password)) {
+                    System.out.println("This user is already exit: ");
+                    f = false;
+                    break;
+                }
+            }
+            if (f == true) {
+                System.out.println("Success sign up ");
+                System.out.println("Hello Mr : " + name);
+                log_list.add(new User(name, password));
+                break;
+            }
 
+        }
+    }
 
     public static void main(String[] args) {
 
