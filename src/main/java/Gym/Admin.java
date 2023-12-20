@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.Comparator;
+import java.util.Date;
 
 public abstract class Admin {
 
     public static Date getUserDate(Scanner input){
-        int day, month, year;
+        /*int day, month, year;
         System.out.println("Enter the Date you want to specify: (a single number for each value, 0 for any)");
         System.out.println("Day: ");
         day = input.nextInt();
@@ -19,7 +20,8 @@ public abstract class Admin {
         System.out.println("Year: ");
         year = input.nextInt();
         //
-        return (new Date(day, month, year));
+        return (new Date(day, month, year));*/
+        return new Date();
     }
 
     private enum userType {
@@ -46,16 +48,6 @@ public abstract class Admin {
         //
         return null;
     }
-        
-    /*private static Customer existCheck(int customerID){
-        for (Customer customer: Gym.listOfCustomers) {
-            if (customer.getID() == customerID) {
-                return customer;
-            }
-        }
-        //
-        return null;
-    }*/
 
     public static void addCoach(Scanner input) {
         System.out.println("Enter the Coach's Name:");
@@ -142,7 +134,11 @@ public abstract class Admin {
             System.out.println("No Coach exists with this ID.");
             return;
         }
-        Gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
+        //
+        Gym.listOfCoaches.removeIf(coach -> coach.getID() == coachID);
+        Gym.listOfCustomers.removeIf(customer -> customer.getCoachID() == coachID);
+        Gym.listOfSubscriptions.removeIf(sub -> sub.getCoach_id() == coachID);
+        //
         System.out.println("Coach deleted successfully");
 
     }
@@ -270,6 +266,7 @@ public abstract class Admin {
         Coach coach = (Coach)existCheck(customerCheck.coachID, userType.COACH);
         if(coach != null) coach.List_of_customers.removeIf(customer -> customer.getID() == customerID);
         Gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
+        Gym.listOfSubscriptions.removeIf(sub -> sub.getCostumer_id() == customerID);
 
     }
 
@@ -336,44 +333,35 @@ public abstract class Admin {
     public static void showSubscriptionHistory(int customerID){
         for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
-                //sub.getMembershipPlan().display();
+                sub.getMembershipPlan().display();
             }
         }
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public static void displayCustomersInDate(Date date){
-        Scanner input = new Scanner (System.in);
-        /* TODO String c;
-        System.out.println("Month or Day? (enter m or d)");
-        c = input.nextLine();
+    public static void displayCustomersInDate(Date date, Scanner input){
+        System.out.println("Month(m) or Day(d)?");
+        String c = input.nextLine();
         if(c.equals("m")){
-            for(Subscription sub : Gym.listOfSubscriptions){
-                if(sub.getMembershipPlan().start_date.month == date.month){
-                   for(Customer customer: Gym.listOfCustomers){
-                       if(customer.Name.equals(sub.getMembershipPlan())){
-                           customer.display();
-                           break;
-                       }
-                   } 
+            for(Customer customer: Gym.listOfCustomers){
+                if(customer.subscription.getMembershipPlan().start_date.getMonth() == date.getMonth()){
+                    customer.display();
+                    System.out.println("--------");
                 }
-            }
+           }
         }
         //
-        else{
-            for(Subscription sub : Gym.listOfSubscriptions){
-                if(sub.getMembershipPlan().start_date.day == date.day){
-                   for(Customer customer: Gym.listOfCustomers){
-                       if(customer.Name.equals(sub.getMembershipPlan())){
-                           customer.display();
-                           break;
-                       }
-                   } 
+        else if(c.equals("d")) {
+            for (Customer customer : Gym.listOfCustomers) {
+                if (customer.subscription.getMembershipPlan().start_date.getDay() == date.getDay()) {
+                    customer.display();
+                    System.out.println("--------");
                 }
-
             }
         }
-        */
+        else{
+            System.out.println("Invalid Choice, Out!!!");
+        }
     }
     
     // Display all the customers of a specific coach
@@ -386,16 +374,18 @@ public abstract class Admin {
         }
     }
     
-    // Display the GYM income in a given month TODO
-/*    public static void displayGymIncome(Date date){
+    // Display the GYM income in a given month
+    public static void displayGymIncome(Date date){
         double income = 0;
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
-            if(mem.start_date.month == date.month && mem.start_date.year == date.year){
+            if(mem.start_date.getMonth() == date.getMonth() && mem.start_date.getYear() == date.getYear()){
                 income+= mem.discount_price(mem.number_of_plan);
             }
         }
-    }*/
+        //
+        System.out.println("The income in month " + date.getMonth() + " of the year " + date.getYear() + " Was: " + income);
+    }
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
     public static void displaySortedCoaches(){
@@ -435,10 +425,10 @@ public abstract class Admin {
                 case 2:
                     System.out.println("Enter the Customer's ID: ");
                     int cuID = input.nextInt();
-                    //showSubscriptionHistory(cuID);
+                    showSubscriptionHistory(cuID);
                     break;
                 case 3:
-                    displayCustomersInDate(getUserDate(input));
+                    displayCustomersInDate(getUserDate(input), input);
                     break;
                 case 4:
                     System.out.println("Enter the Coach's ID: ");
@@ -446,7 +436,7 @@ public abstract class Admin {
                     displayCoachCustomers(coID);
                     break;
                 case 5:
-                    //displayGymIncome(getUserDate(input));
+                    displayGymIncome(getUserDate(input));
                     break;
                 case 6:
                     displaySortedCoaches();

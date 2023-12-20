@@ -43,7 +43,7 @@ public class MembershipPlan {
 
     }
 
-    /*public void updtate_member (Date end_date ,boolean ch ,Date day_date ){
+    /*public void update_member (Date end_date ,boolean ch ,Date day_date ){
         boolean check = false ;
         if(ch==false){
             switch (number_of_plan){
@@ -152,8 +152,8 @@ public class MembershipPlan {
     }
 
     public  void display () {
-        //System.out.println("Name: " + member_name);
+        System.out.println("Name: " + member_name);
         System.out.println("Number of plan: " + number_of_plan);
-        System.out.println("Day: " + start_date.getDay()+"\tmonth: " + start_date.getDate()+"\tYear: " + start_date.getYear());
+        System.out.println("Day: " + start_date.getDay()+"\tmonth: " + start_date.getMonth()+"\tYear: " + start_date.getYear());
     }
 }

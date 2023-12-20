@@ -8,7 +8,7 @@ public class Customer extends Person {
     Gym gym;
     Subscription subscription;
     int coachID;
-    ArrayList<InBody> List_of_inbodies = new ArrayList<>();
+    public ArrayList<InBody> List_of_inbodies = new ArrayList<>();
 
     public Customer(int coachID, Gym gym){
         super();

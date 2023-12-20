@@ -104,6 +104,12 @@ public class Main {
                         Coach coach = null;
                         Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Address,
                                 Phone_number, E_mail, coachID));
+                        for(Coach co: Gym.listOfCoaches){
+                            if(co.getID() == coachID){
+                                co.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+                                break;
+                            }
+                        }
                     }
                 }
                 if(line.equals("Coach"))
@@ -173,21 +179,31 @@ public class Main {
                 }
                 if(line.equals("InBody"))
                 {
-                    /*while(true)
+                    while(true)
                     {
                         line = scanner.nextLine();
                         if(className.get(line)!= null)
                         {
                             break;
                         }
+                        //
+                        int customerID=1;
                         String[] attribute = line.split(",");
                         double Weight = Double.valueOf(attribute[0]);
                         double Height = Double.valueOf(attribute[1]);
                         int Age = Integer.valueOf(attribute[2]);
                         String Name = attribute[3];
                         String Gender = attribute[4];
-                        Gym.InBodyList.add(new InBody(Weight,Height,Age,Name,Gender));
-                    }*/
+                        //
+                        Customer customer = null;
+                        for(Customer cu: Gym.listOfCustomers){
+                            if(cu.getID() == customerID){
+                                customer = cu;
+                                break;
+                            }
+                        }
+                        customer.List_of_inbodies.add(new InBody(Weight,Height,Age,Name,Gender));
+                    }
                 }
 
             }
