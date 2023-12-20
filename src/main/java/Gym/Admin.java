@@ -5,7 +5,6 @@ import EQ_GYM.Equipment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.Comparator;
 import java.util.Date;
 
 public abstract class Admin {
@@ -267,6 +266,7 @@ public abstract class Admin {
         if(coach != null) coach.List_of_customers.removeIf(customer -> customer.getID() == customerID);
         Gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
         Gym.listOfSubscriptions.removeIf(sub -> sub.getCostumer_id() == customerID);
+        System.out.println("Customer deleted successfully.");
 
     }
 
@@ -339,12 +339,14 @@ public abstract class Admin {
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public static void displayCustomersInDate(Date date, Scanner input){
+    public static void displayCustomersInDate(Scanner input){
         System.out.println("Month(m) or Day(d)?");
         String c = input.nextLine();
         if(c.equals("m")){
+            System.out.println("Enter a Month: 1-12");
+            int month = input.nextInt();
             for(Customer customer: Gym.listOfCustomers){
-                if(customer.subscription.getMembershipPlan().start_date.getMonth() == date.getMonth()){
+                if(customer.subscription.getMembershipPlan().start_date.getMonth()+1 == month){
                     customer.display();
                     System.out.println("--------");
                 }
@@ -352,8 +354,10 @@ public abstract class Admin {
         }
         //
         else if(c.equals("d")) {
+            System.out.println("Enter a Day: 1:31");
+            int day = input.nextInt();
             for (Customer customer : Gym.listOfCustomers) {
-                if (customer.subscription.getMembershipPlan().start_date.getDay() == date.getDay()) {
+                if (customer.subscription.getMembershipPlan().start_date.getDay()+1 == day) {
                     customer.display();
                     System.out.println("--------");
                 }
@@ -375,16 +379,21 @@ public abstract class Admin {
     }
     
     // Display the GYM income in a given month
-    public static void displayGymIncome(Date date){
+    public static void displayGymIncome(Scanner input){
         double income = 0;
+        int month, year;
+        System.out.println("Enter year: (2000-2050)");
+        year = input.nextInt();
+        System.out.println("Enter month: (1-12)");
+        month = input.nextInt();
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
-            if(mem.start_date.getMonth() == date.getMonth() && mem.start_date.getYear() == date.getYear()){
+            if(mem.start_date.getMonth() == month && mem.start_date.getYear() == year){
                 income+= mem.discount_price(mem.number_of_plan);
             }
         }
         //
-        System.out.println("The income in month " + date.getMonth() + " of the year " + date.getYear() + " Was: " + income);
+        System.out.println("The income in month " + month + " of the year " + year + " Was: " + income);
     }
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
@@ -392,9 +401,9 @@ public abstract class Admin {
         ArrayList<Coach> sortedCoaches = new ArrayList<>(Gym.listOfCoaches);
 
         // Sort the coaches based on the number of customers (descending order)
-        Collections.sort(Gym.listOfCoaches, (c1, c2) -> {return c2.number_of_customers-c1.number_of_customers;});
+        Collections.sort(sortedCoaches);
         //
-        for(Coach coach: Gym.listOfCoaches){
+        for(Coach coach: sortedCoaches){
             coach.display();
             System.out.println("--------");
         }
@@ -424,7 +433,7 @@ public abstract class Admin {
                     showSubscriptionHistory(cuID);
                     break;
                 case 3:
-                    displayCustomersInDate(getUserDate(input), input);
+                    displayCustomersInDate(input);
                     break;
                 case 4:
                     System.out.println("Enter the Coach's ID: ");
@@ -432,7 +441,7 @@ public abstract class Admin {
                     displayCoachCustomers(coID);
                     break;
                 case 5:
-                    displayGymIncome(getUserDate(input));
+                    displayGymIncome(input);
                     break;
                 case 6:
                     displaySortedCoaches();

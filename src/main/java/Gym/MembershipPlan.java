@@ -18,7 +18,8 @@ public class MembershipPlan {
         this.number_of_plan =number_of_plan;
 
     }
-    public MembershipPlan (Date start_date, int number_of_plan){
+    public MembershipPlan (String member_name, Date start_date, int number_of_plan){
+        this.member_name = member_name;
         this.start_date = start_date;
         this.number_of_plan =number_of_plan;
 
@@ -154,6 +155,6 @@ public class MembershipPlan {
     public  void display () {
         System.out.println("Name: " + member_name);
         System.out.println("Number of plan: " + number_of_plan);
-        System.out.println("Day: " + start_date.getDay()+"\tmonth: " + start_date.getMonth()+"\tYear: " + start_date.getYear());
+        System.out.println("Day: " + Integer.valueOf(start_date.getDay()+1)+"\tmonth: " + Integer.valueOf(start_date.getMonth()+1)+"\tYear: " + Integer.valueOf(start_date.getYear()+1900));
     }
 }

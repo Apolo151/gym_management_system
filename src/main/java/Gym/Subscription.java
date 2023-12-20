@@ -9,10 +9,11 @@ public class Subscription {
    private int costumer_id;
    private MembershipPlan membershipPlan;
     
-    public Subscription(int coach_id,int costumer_id)
+    public Subscription(int coach_id,int costumer_id, MembershipPlan memberPlan)
     {
     this.coach_id=coach_id;
     this.costumer_id=costumer_id;
+    this.membershipPlan = memberPlan;
     
     }
 

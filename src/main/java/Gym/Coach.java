@@ -116,10 +116,10 @@ public class Coach extends Person implements Comparable<Coach> {
     }
 
     //@override: Comparing descendingly
-    public int compareTo(Coach compareCoach){
-        int com = ((Coach)compareCoach).number_of_customers;
+    @Override public int compareTo(Coach compareCoach){
+        int com = ((Coach)compareCoach).List_of_customers.toArray().length;
 
-        return com-this.number_of_customers;
+        return com-this.List_of_customers.toArray().length;
     }
 
     public int getWorking_hours() {
