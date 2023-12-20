@@ -1,20 +1,17 @@
 package EQ_GYM;
 
 public class Bike extends Equipment{
-    final int MAX_TIMER = 20;// 20 min
 
-    public Bike(){
+    static int q_count=0;
+
+    Bike(){
         super("Bike");
-    }
-    public Bike(String name, int quantity,int code){
-        super(name, quantity, code);
-    }
+        quantity=++q_count;
 
-
-    public void display(){
-        System.out.println("Type: " + this.getName());
-        System.out.println("Quantity: " + this.quantity);
-        System.out.println("Code: " + this.getCode());
+    }
+    
+    public void disp(){
+        
     }
 
 

@@ -1,19 +1,14 @@
 package EQ_GYM;
 
-public class Weight_Bench extends Equipment {
-
+public class Weight_Bench extends Equipment{
+    static int q_count=0;
     Weight_Bench(){
-        super("Weight_Bench");
-    }
-    public Weight_Bench(String name ,int quantity,int code){
-        super(name,quantity,code);
+        super("weight_Bench");
+        quantity=++q_count;
     }
 
+    @Override
+    public void disp() {
 
-    public void display(){
-        System.out.println("Type: " + this.getName());
-        System.out.println("Quantity: " + this.quantity);
-        System.out.println("Code: " + this.getCode());
     }
-
 }
