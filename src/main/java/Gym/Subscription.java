@@ -7,7 +7,7 @@ package Gym;
 public class Subscription {
    private int coach_id;
    private int costumer_id;
-   private MembershipPlan membershipPlan;
+   //private MembershipPlan membershipPlan;
     
     public Subscription(int coach_id,int costumer_id)
     {
@@ -32,7 +32,7 @@ public class Subscription {
         this.costumer_id = costumer_id;
     }
 
-    public MembershipPlan getMembershipPlan() {
+    /*public MembershipPlan getMembershipPlan() {
         return membershipPlan;
-    }
+    }*/
 }

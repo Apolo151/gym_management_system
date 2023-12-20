@@ -76,6 +76,6 @@ public abstract class Equipment {
         }
     }
 
-    abstract void display();
+    public abstract void display();
 
 }

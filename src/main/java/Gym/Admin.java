@@ -262,20 +262,20 @@ public abstract class Admin extends Person{
     public void deleteEquipment(int equipmentCode){
         Gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
-    
-    
-    public void showSubscriptionHistory(int customerID){
+
+
+/*    public void showSubscriptionHistory(int customerID){
         for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
                 sub.getMembershipPlan().display();
             }
         }
-    }
+    }*/
     
     // Display all the customers that subscribed to the gym in a given month/day
     public void displayCustomersInMonthOrDay(Date date){
         Scanner input = new Scanner (System.in);
-        String c;
+        /*String c;
         System.out.println("Month or Day? (enter m or d)");
         c = input.nextLine();
         if(c.equals("m")){
@@ -304,7 +304,7 @@ public abstract class Admin extends Person{
 
             }
         }
-        
+        */
     }
     
     // Display all the customers of a specific coach
@@ -317,7 +317,7 @@ public abstract class Admin extends Person{
     }
     
     // Display the GYM income in a given month
-    public void displayGymIncome(Date date){
+/*    public void displayGymIncome(Date date){
         double income = 0;
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
@@ -325,7 +325,7 @@ public abstract class Admin extends Person{
                 income+= mem.discount_price(mem.number_of_plan);
             }
         }
-    }
+    }*/
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
     public void displaySortedCoaches(){
@@ -358,7 +358,7 @@ public abstract class Admin extends Person{
                 case 2:
                     System.out.println("Enter the Customer's ID: ");
                     int cuID = input.nextInt();
-                    showSubscriptionHistory(cuID);
+                    //showSubscriptionHistory(cuID);
                     break;
                 case 3:
                     displayCustomersInMonthOrDay(getUserDate(input));
@@ -369,7 +369,7 @@ public abstract class Admin extends Person{
                     displayCoachCustomers(coID);
                     break;
                 case 5:
-                    displayGymIncome(getUserDate(input));
+                    //displayGymIncome(getUserDate(input));
                     break;
                 case 6:
                     displaySortedCoaches();

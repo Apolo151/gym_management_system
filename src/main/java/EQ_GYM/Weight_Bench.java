@@ -5,13 +5,15 @@ public class Weight_Bench extends Equipment {
     Weight_Bench(){
         super("Weight_Bench");
     }
-Weight_Bench(String name ,int quantity,int code){
-    super(name,quantity,code);
-}
+    public Weight_Bench(String name ,int quantity,int code){
+        super(name,quantity,code);
+    }
 
 
-    void display(){
-
+    public void display(){
+        System.out.println("Type: " + this.getName());
+        System.out.println("Quantity: " + this.quantity);
+        System.out.println("Code: " + this.getCode());
     }
 
 }

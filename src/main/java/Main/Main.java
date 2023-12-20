@@ -67,14 +67,14 @@ public class Main {
                         }
                         String[] attribute = line.split(",");
                         String name = attribute[0];
-                        String code = attribute[1];
+                        int code = Integer.valueOf(attribute[1]);
                         int quantity = Integer.valueOf(attribute[2]);
                         switch (name) {
                             case "Dumbbells":
-                                Gym.sportsEquipment.add(new Dumbbells(name, code, quantity));
+                                Gym.sportsEquipment.add(new Dumbbells(name, quantity, code));
                                 break;
                             case "Treadmill":
-                                Gym.sportsEquipment.add(new Treadmill(name, code, quantity));
+                                Gym.sportsEquipment.add(new Treadmill(name, quantity, code));
                                 break;
                         }
                     }
@@ -224,7 +224,7 @@ public class Main {
         Map<String, Boolean> className = new HashMap<String, Boolean>();
         
         //Gym gym = new Gym("GYMO", "Addddd", 2343242);
-        ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
+        //ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
         ArrayList<InBody> InBodyList = new ArrayList<>();
 
         /*Gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));

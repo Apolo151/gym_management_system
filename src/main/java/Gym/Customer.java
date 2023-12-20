@@ -65,13 +65,14 @@ public class Customer extends Person {
     // Display all Gym Equipment
     void displayGymEquipment(){
         for(Equipment eq : Gym.sportsEquipment){
-            eq.disp();
+            eq.display();
+            System.out.println("-------");
         }
     }
     
     // Display membership plan details
     void displayMembershipPlan(){
-        this.subscription.getMembershipPlan().display();
+        //this.subscription.getMembershipPlan().display();
     }
     
     // Display inbody info at a specific date

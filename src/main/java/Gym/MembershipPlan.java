@@ -1,3 +1,4 @@
+/*
 package Gym;
 import Gym.Date;
 
@@ -174,4 +175,4 @@ public class MembershipPlan {
         System.out.println("Number of plan: " + number_of_plan);
         System.out.println("Day: " + end_date.day+"\tmonth: " + end_date.month+"\tYear: " + end_date.year);
     }
-}
+}*/
