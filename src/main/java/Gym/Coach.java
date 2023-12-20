@@ -66,9 +66,10 @@ public class Coach extends Person implements Comparable<Coach> {
     }
     
     void show_customers (){
-        for (Customer cu: List_of_customers){
+        for (Customer cu: Gym.listOfCustomers){
             int i =1 ;
-            cu.display();
+            if(cu.coachID == this.getID())
+                cu.display();
             System.out.println("-------");
             i++;
         }
@@ -147,7 +148,7 @@ public class Coach extends Person implements Comparable<Coach> {
             switch (choice) {
                 case 1:
                     System.out.println("\nList of All Customers:");
-                    if(this.List_of_customers.isEmpty())
+                    if(Gym.listOfCustomers.isEmpty())
                         System.out.println("You have no Customers.");
                     else
                         this.show_customers();

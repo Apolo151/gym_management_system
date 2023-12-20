@@ -1,2 +1,13 @@
-Gym:Name,add,2343243
+Gym
+FitnessCenter,123MainSt,5551234
+Customer
+John Doe,0,Male,456 Oak St,555678,john@example.com,2
+Jane Doe,1,Female,789 Pine St,558765,jane@example.com,1
+Mark Johnson,2,Male,111 Maple St,559876,mark@example.com,0
+Lisa Wilson,3,Female,222 Cedar St,556543,lisa@example.com,1
+Coach
+Coach Smith,0,Male,321 Elm St,554321,coach@example.com,8
+Coach Johnson,1,Female,654 Birch St,557890,coach2@example.com,10
+Coach Davis,2,Male,333 Oak St,558765,coach3@example.com,9
+Coach Brown,3,Female,444 Pine St,554321,coach4@example.com,7
 Exit

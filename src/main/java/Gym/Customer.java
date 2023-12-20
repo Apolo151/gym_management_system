@@ -41,10 +41,10 @@ public class Customer extends Person {
         System.out.println("Adress: "+this.getAdress());
         System.out.println("Phone_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
-        //
+        /*
         for(InBody in : this.List_of_inbodies){
             in.Display();
-        }
+        }*/
     }
 
     void read (){
