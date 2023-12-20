@@ -5,15 +5,16 @@ import java.util.Date;
 public class MembershipPlan {
     String member_name;
     Date start_date = null ;
-    //int numberOfMonths;
+    int numberOfMonths;
     //Date end_date = new Date();
     final float price_of_month = 300;
     int number_of_plan;
     //
 
-    public MembershipPlan (String member_name,  Date start_date, int number_of_plan){
+    public MembershipPlan (String member_name,  Date start_date, int noOfMonths, int number_of_plan){
         this.member_name = member_name;
         this.start_date = start_date;
+        this.numberOfMonths = noOfMonths;
         this.number_of_plan =number_of_plan;
 
     }
@@ -34,37 +35,13 @@ public class MembershipPlan {
     }*/
     //
 
-    /*public boolean check_is_active (Date day_date, Date end_date){
-        boolean check = true ;
-        if (end_date.year==day_date.year){
-            if (end_date.month== day_date.month){ // 1
-                if (end_date.day==day_date.day){ // 2
-                    return true;
-                }
-                else if (end_date.day > day_date.day){
-                    return true;
-                }
-                else if (end_date.day < day_date.day){
-                    return  false ;
-                }
-            } // month
-            else if (end_date.month> day_date.month) { // 1 year
-                return true;
-            }
-            else if (end_date.month < day_date.month) {
-                return false;
-            }
-        }
+    public boolean check_is_active (){
+        long durationInMillis = this.numberOfMonths * 30L * 24L * 60L * 60L * 1000L; // Convert months to milliseconds
+        Date endDate = new Date(start_date.getTime() + durationInMillis);
 
-        else if(end_date.year > day_date.year){
-            return true;
-        }
-        else if (end_date.year < day_date.year){
-            return false;
-        }
+        return !this.start_date.after(endDate);
 
-        return false;
-    }*/
+    }
 
     /*public void updtate_member (Date end_date ,boolean ch ,Date day_date ){
         boolean check = false ;

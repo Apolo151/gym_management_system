@@ -149,8 +149,9 @@ public class Main {
 
                         }
                         int number_of_plan = Integer.valueOf(attribute[2]);
+                        int noOfMonths=3;
 
-                        membershipPlans.add(new MembershipPlan(member_name, start_date, number_of_plan));
+                        membershipPlans.add(new MembershipPlan(member_name, start_date, noOfMonths, number_of_plan));
                     }
                 }
                 if(line.equals("Subscription:"))

@@ -7,11 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.Comparator;
 
-public abstract class Admin extends Person{
-    public Admin(String Name , int ID , String Gender ,String Address,
-                 int Phone_number, String E_mail){
-        super(Name, ID, Gender, Address, Phone_number, E_mail);
-    }
+public abstract class Admin {
 
     public static Date getUserDate(Scanner input){
         int day, month, year;
@@ -483,7 +479,6 @@ public abstract class Admin extends Person{
 
         switch (choice) {
             case 1:
-                System.out.println("En");
                 addCoach(input);
                 break;
             case 2:
@@ -509,7 +504,8 @@ public abstract class Admin extends Person{
                 addEquipment(input);
                 break;
             case 8:
-                // TODO editEquipment();
+                System.out.println("Enter the Equipment Code: ");
+                editEquipment(input.nextInt(), input);
                 break;
             case 9:
                 System.out.println("Enter the Equipment's Code: ");
@@ -523,15 +519,4 @@ public abstract class Admin extends Person{
         }
     }
 
-    
-       
-    public void display(){
-        System.out.println("Admin Info");
-        System.out.println("Name: "+Name);
-        System.out.println("ID:"+this.getID());
-        System.out.println("Gender: " + Gender);
-        System.out.println("Phone_number: "+ Phone_number);
-    }
-    
-    
 }
