@@ -240,7 +240,7 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    static void sign_up(ArrayList<User> log_list) {
+    static void sign_up(ArrayList<User> log_list, Scanner input) {
         while (true) {
             System.out.println("  SIGN UP  ");
             System.out.println("------------");
@@ -252,23 +252,27 @@ public class Main {
             type_work = in.nextInt();
             System.out.println("You have to call an Admin Boiii");
             String userName, pass, choice="r";
-
-                while(true){
-                    System.out.println("Enter the admin Username: ");
-                    userName = input.nextLine();
-                    System.out.println("Enter the admin Password: ");
-                    pass = input.nextLine();
-                    //
-                    if(!userName.equals("Admin") || !pass.equals("Admin")){
-                        System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
-                        choice = input.nextLine();
-                        if(choice.equals("r"))
-                            continue;
-                        else
-                            break;
-                    }
-                    break;
+            //
+            while(true){
+                System.out.println("Enter the admin Username: ");
+                userName = input.nextLine();
+                System.out.println("Enter the admin Password: ");
+                pass = input.nextLine();
+                //
+                if(!userName.equals("Admin") || !pass.equals("Admin")){
+                    System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
+                    choice = input.nextLine();
+                    if(choice.equals("r"))
+                        continue;
+                    else
+                        break;
                 }
+                break;
+            }
+            if(choice.equals("r")){
+                Admin.readScenario(input);
+                System.out.println("You registered successfully.");
+            }
             //switch case
             System.out.println("Enter your username: ");
             name = in.next();

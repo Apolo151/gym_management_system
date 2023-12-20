@@ -521,4 +521,8 @@ public abstract class Admin {
         }
     }
 
+    public static void registerUser(){
+
+    }
+
 }

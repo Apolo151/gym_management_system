@@ -7,16 +7,16 @@ public  abstract class Person {
     public String Name ;
     private int ID ;
     String Gender ;
-    private String Adress ;
+    private String Address ;
     int Phone_number ;
     protected String E_mail;
     private String password;
 
-    public Person (String Name, int ID, String Gender, String Adress, int Phone_number, String E_mail, String password){
+    public Person (String Name, int ID, String Gender, String Address, int Phone_number, String E_mail, String password){
         this.Name =Name;
         this.ID =ID;
         this.Gender =Gender;
-        this.Adress=Adress;
+        this.Address=Address;
         this.Phone_number =Phone_number;
         this.E_mail=E_mail;
         this.password = password;
@@ -30,8 +30,8 @@ public  abstract class Person {
         return ID;
     }
 
-    public String getAdress() {
-        return Adress;
+    public String getAddress() {
+        return Address;
     }
 
     public String getName() {
@@ -59,7 +59,7 @@ public  abstract class Person {
     }
 
     public void setAdress(String Adress) {
-        this.Adress = Adress;
+        this.Address = Adress;
     }
 
     abstract void display ();
@@ -75,7 +75,7 @@ public  abstract class Person {
         System.out.print("Please Enter your ID: ");
         ID = read.nextInt() ;
         System.out.print("Please Enter your Adress: ");
-        Adress = read.next() ;
+        Address = read.next() ;
         System.out.print("Please Enter your Phone Number: ");
         Phone_number = read.nextInt() ;
         System.out.println("Please Enter your  Gander\t\t\t(male / female)");

@@ -23,7 +23,7 @@ public class Coach extends Person implements Comparable<Coach> {
     }
 
     public Coach(Coach coach){
-        super(coach.getName(), coach.getID(), coach.getGender(), coach.getAdress(),
+        super(coach.getName(), coach.getID(), coach.getGender(), coach.getAddress(),
                 coach.getPhone_number(), coach.getE_mail(), coach.getPassword());
         this.working_hours = coach.working_hours;
 
@@ -41,7 +41,7 @@ public class Coach extends Person implements Comparable<Coach> {
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
         System.out.println("Gender: " + Gender);
-        System.out.println("Address: "+this.getAdress());
+        System.out.println("Address: "+this.getAddress());
         System.out.println("Phone_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
         System.out.println("Working Hours: "+working_hours);

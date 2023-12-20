@@ -35,7 +35,7 @@ public class Customer extends Person {
     }
 
     public Customer(Customer customer){
-        super(customer.Name, customer.getID(), customer.Gender, customer.getAdress(),
+        super(customer.Name, customer.getID(), customer.Gender, customer.getAddress(),
                 customer.Phone_number, customer.E_mail, customer.getPassword());
         this.coachID = customer.coachID;
         this.gym = customer.gym;
@@ -50,7 +50,7 @@ public class Customer extends Person {
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
         System.out.println("Gender: "+Gender);
-        System.out.println("Adress: "+this.getAdress());
+        System.out.println("Adress: "+this.getAddress());
         System.out.println("Phone_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
         /*
