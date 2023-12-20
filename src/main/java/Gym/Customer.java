@@ -16,9 +16,9 @@ public class Customer extends Person {
         this.gym = gym;
     }
     
-    public Customer( String Name , int ID , String Gender ,String Adress,
+    public Customer(String Name , int ID , String Gender ,String Address,
             int Phone_number, String E_mail, int coachID){
-        super(Name, ID, Gender, Adress, Phone_number, E_mail);
+        super(Name, ID, Gender, Address, Phone_number, E_mail);
         this.coachID = coachID;
 
 

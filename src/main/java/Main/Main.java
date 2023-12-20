@@ -115,13 +115,13 @@ public class Main {
 
                     }
                     //
-                    customer.readScenario();
+                    if(customer != null) customer.readScenario();
                     break;
                 case "Coach":
                     //Scanner scan = new Scanner(System.in);
                     Coach coach =  null;
                     while(coach == null){
-                        System.out.println("Enter you name:");
+                        System.out.println("Enter your name:");
                         String cName = input.nextLine();
                         //System.out.println(Gym.listOfCoaches.toArray().length);
                         for(Coach co: Gym.listOfCoaches){
@@ -139,14 +139,9 @@ public class Main {
                                 break;
                             }
                         }
-
                     }
                     //
-                    if(coach != null){
-                        System.out.println(coach.List_of_customers.toArray().length);
-                        coach.readScenario();
-                    }
-
+                    if(coach != null) coach.readScenario();
                     break;
                 case "Admin":
                     

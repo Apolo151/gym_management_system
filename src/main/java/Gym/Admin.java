@@ -25,13 +25,27 @@ public class Admin extends Person{
     }
         
     
-    public Admin(){
-        super();
+    public Admin(String Name , int ID , String Gender ,String Address,
+                 int Phone_number, String E_mail){
+        super(Name, ID, Gender, Address, Phone_number, E_mail);
+    }
+
+    public Date getUserDate(Scanner input){
+        int day, month, year;
+        System.out.println("Enter the Date you want to specify: (a single number for each value, 0 for any)");
+        System.out.println("Day: ");
+        day = input.nextInt();
+        System.out.println("Month: ");
+        month = input.nextInt();
+        System.out.println("Year: ");
+        year = input.nextInt();
+        //
+        return (new Date(day, month, year));
     }
     
-    private boolean existCheck(Gym gym, int ID, Coach coach){
-        for (Coach c: gym.listOfCoaches) {
-            if (c.getID() == ID) {
+    private boolean existCheck(int coachID, Coach coach){
+        for (Coach c: Gym.listOfCoaches) {
+            if (c.getID() == coachID) {
                 coach = c;
                 return true;
             }
@@ -40,9 +54,9 @@ public class Admin extends Person{
         return false;
     }
         
-    private boolean existCheck(Gym gym, int ID, Customer customer){
-        for (Customer c: gym.listOfCustomers) {
-            if (c.getID() == ID) {
+    private boolean existCheck(int customerID, Customer customer){
+        for (Customer c: Gym.listOfCustomers) {
+            if (c.getID() == customerID) {
                 customer = c;
                 return true;
             }
@@ -50,24 +64,43 @@ public class Admin extends Person{
         //
         return false;
     }
-    
-    /*public void addCoach(Gym gym){
-        Coach coach;
-        System.out.println("Enter the Coach's Name:" );
-        gym.listOfCoaches.add(new Coach(coach));
-    }*/
+
+    public void addCoach(Scanner input) {
+        System.out.println("Enter the Coach's Name:");
+        String name = input.nextLine();
+
+        System.out.println("Enter the Coach's ID:");
+        int id = input.nextInt();
+
+        System.out.println("Enter the Coach's Gender:");
+        String gender = input.nextLine();
+
+        System.out.println("Enter the Coach's Address:");
+        String address = input.nextLine();
+
+        System.out.println("Enter the Coach's Phone Number:");
+        int phoneNumber = input.nextInt();
+
+        System.out.println("Enter the Coach's Email:");
+        String email = input.next();
+
+        System.out.println("Enter the Coach's Working Hours:");
+        int workingHours = input.nextInt();
+
+        //
+        Gym.listOfCoaches.add(new Coach(name, id, gender, address, phoneNumber, email, workingHours));
+        System.out.println("Coach added successfully!");
+    }
+
 
     // Edit Coach Info
-    public void editCoach(Gym gym, int coachID) {
+    public void editCoach(int coachID, Scanner input) {
         Coach coachEdit = null;
-
-        if (!existCheck(gym, coachID, coachEdit)) {
+        if (!existCheck(coachID, coachEdit)) {
             System.out.println("No Coach was found with the provided ID");
             return;
         }
-
-        Scanner input = new Scanner(System.in);
-
+        //
         System.out.println("Choose the information to edit:");
         System.out.println("1. Name");
         System.out.println("2. Gender");
@@ -78,7 +111,7 @@ public class Admin extends Person{
 
         int choice = input.nextInt();
         input.nextLine();
-
+        //
         switch (choice) {
             case 1:
                 System.out.print("Enter new name: ");
@@ -107,30 +140,64 @@ public class Admin extends Person{
                 System.out.println("Invalid choice. Editing canceled.");
                 return;
         }
-
         System.out.println("Coach information updated successfully.");
     }
 
     
-    public void deleteCoach(Gym gym, int coachID){
-        gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
+    public void deleteCoach(int coachID){
+        Gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
     }
-    
-    public void addCustomer(Gym gym, Customer customer){
-        gym.listOfCustomers.add(new Customer(customer));
+
+    public void addCustomer(Scanner input) {
+        System.out.println("Enter the Customer's Name:");
+        String name = input.nextLine();
+
+        System.out.println("Enter the Customer's ID:");
+        int id = input.nextInt();
+
+        System.out.println("Enter the Customer's Gender:");
+        String gender = input.nextLine();
+
+        System.out.println("Enter the Customer's Address:");
+        String address = input.nextLine();
+
+        System.out.println("Enter the Customer's Phone Number:");
+        int phoneNumber = input.nextInt();
+
+        System.out.println("Enter the Customer's Email:");
+        String email = input.next();
+
+        System.out.println("Enter the ID of the Coach for the Customer:");
+        int coachId = input.nextInt();
+
+        // Find the coach with the specified ID and add the customer to their list
+        boolean coachIdCorrect=false;
+        for (Coach coach : Gym.listOfCoaches) {
+            if (coach.getID() == coachId) {
+                // Add the new customer to the list of Gym customers
+                Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId));
+                // Add the new customer to the list of Coach customers
+                coach.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+                coachIdCorrect=true;
+                break;
+            }
+        }
+        if(!coachIdCorrect){
+            System.out.println("No Coach exists with the specified Coach ID");
+            return;
+        }
+
+        System.out.println("Customer added successfully!");
     }
 
     // Edit Customer Info
-    public void editCustomer(Gym gym, int customerID){
+    public void editCustomer(int customerID, Scanner input){
         Customer customerEdit = null;
-        //
-        if(!existCheck(gym, customerID, customerEdit)){
+        if(!existCheck(customerID, customerEdit)){
             System.out.println("No Customer was found with the provided ID");
             return;
         }
-        
-        Scanner input = new Scanner(System.in);
-
+        //
         System.out.println("Choose the information to edit:");
         System.out.println("1. Name");
         System.out.println("2. Gender");
@@ -142,7 +209,7 @@ public class Admin extends Person{
 
         int choice = input.nextInt();
         input.nextLine();
-
+        //
         switch (choice) {
             case 1:
                 System.out.print("Enter new name: ");
@@ -175,7 +242,6 @@ public class Admin extends Person{
                 System.out.println("Invalid choice. Editing canceled.");
                 return;
         }
-
         System.out.println("Customer information updated successfully.");
     }
     
@@ -218,7 +284,7 @@ public class Admin extends Person{
     }
     
     
-    public void showSubscriptionHistory(Gym gym, int customerID){
+    public void showSubscriptionHistory(int customerID){
         for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
                 sub.getMembershipPlan().display();
@@ -227,7 +293,7 @@ public class Admin extends Person{
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public void displayGymCustomers(Date date){
+    public void displayCustomersInMonthOrDay(Date date){
         Scanner input = new Scanner (System.in);
         String c;
         System.out.println("Month or Day? (enter m or d)");
@@ -291,9 +357,7 @@ public class Admin extends Person{
         }
     }
 
-    /*public void readScenario(Gym gym) {
-        Scanner scanner = new Scanner(System.in);
-
+    public void readScenario(Scanner input) {
         while (true) {
             System.out.println("Choose an action:");
             System.out.println("1. Add/Edit/Delete Coaches, Equipment, and Customers");
@@ -304,27 +368,31 @@ public class Admin extends Person{
             System.out.println("6. Display Coaches Sorted by Assigned Customers");
             System.out.println("0. Exit");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            int choice = input.nextInt();
+            input.nextLine(); // Consume the newline character
 
             switch (choice) {
                 case 1:
-                    manageEntities(gym);
+                    manageObjects(input);
                     break;
                 case 2:
-                    showSubscriptionHistory(gym);
+                    System.out.println("Enter the Customer's ID: ");
+                    int cuID = input.nextInt();
+                    showSubscriptionHistory(cuID);
                     break;
                 case 3:
-                    displayCustomersInMonthOrDay(gym);
+                    displayCustomersInMonthOrDay(getUserDate(input));
                     break;
                 case 4:
-                    displayCoachCustomers(gym);
+                    System.out.println("Enter the Coach's ID: ");
+                    int coID = input.nextInt();
+                    displayCoachCustomers(coID);
                     break;
                 case 5:
-                    displayGymIncome(gym);
+                    displayGymIncome(getUserDate(input));
                     break;
                 case 6:
-                    displaySortedCoaches(gym);
+                    displaySortedCoaches();
                     break;
                 case 0:
                     System.out.println("Exiting the admin panel.");
@@ -336,9 +404,7 @@ public class Admin extends Person{
         }
     }
 
-    private void manageEntities(Gym gym) {
-        Scanner scanner = new Scanner(System.in);
-
+    private void manageObjects(Scanner input) {
         System.out.println("Choose an action:");
         System.out.println("1. Add Coach");
         System.out.println("2. Edit Coach");
@@ -351,36 +417,36 @@ public class Admin extends Person{
         System.out.println("9. Delete Equipment");
         System.out.println("0. Back");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        int choice = input.nextInt();
+        input.nextLine(); // Consume the newline character
 
         switch (choice) {
             case 1:
-                addCoach(gym);
+                addCoach();
                 break;
             case 2:
-                editCoach(gym);
+                editCoach();
                 break;
             case 3:
-                deleteCoach(gym);
+                deleteCoach();
                 break;
             case 4:
-                addCustomer(gym);
+                addCustomer();
                 break;
             case 5:
-                editCustomer(gym);
+                editCustomer();
                 break;
             case 6:
-                deleteCustomer(gym);
+                deleteCustomer();
                 break;
             case 7:
-                addEquipment(gym);
+                addEquipment();
                 break;
             case 8:
-                editEquipment(gym);
+                editEquipment();
                 break;
             case 9:
-                deleteEquipment(gym);
+                deleteEquipment();
                 break;
             case 0:
                 return;
