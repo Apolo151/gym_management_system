@@ -1,36 +1,18 @@
 package Gym;
-import EQ_GYM.*;
-/**
- *
- * @author abdallah
- */
-import java.util.Scanner;
-import java.util.ArrayList;
+
 import EQ_GYM.Equipment;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public abstract class Admin extends Person{
-    
-    public enum EqType {
-        BIKE,
-        DUMBELLS,
-        TREADMILL,
-        LEGPRESS,
-        WEIGHT_BENCH
-    }
-    
-    public enum check {
-        COACH,
-        CUSTOMER
-    }
-        
-    
     public Admin(String Name , int ID , String Gender ,String Address,
                  int Phone_number, String E_mail){
         super(Name, ID, Gender, Address, Phone_number, E_mail);
     }
 
-    public Date getUserDate(Scanner input){
+    public static Date getUserDate(Scanner input){
         int day, month, year;
         System.out.println("Enter the Date you want to specify: (a single number for each value, 0 for any)");
         System.out.println("Day: ");
@@ -42,30 +24,43 @@ public abstract class Admin extends Person{
         //
         return (new Date(day, month, year));
     }
+
+    private enum userType {
+        COACH,
+        CUSTOMER
+    }
     
-    private boolean existCheck(int coachID, Coach coach){
-        for (Coach c: Gym.listOfCoaches) {
-            if (c.getID() == coachID) {
-                coach = c;
-                return true;
+    private static Person existCheck(int ID, userType t){
+        if(t == userType.COACH){
+            for (Coach coach: Gym.listOfCoaches) {
+                if (coach.getID() == ID) {
+                    return coach;
+                }
             }
         }
+        else{
+            for (Customer customer: Gym.listOfCustomers) {
+                if (customer.getID() == ID) {
+                    return customer;
+                }
+            }
+        }
+
         //
-        return false;
+        return null;
     }
         
-    private boolean existCheck(int customerID, Customer customer){
-        for (Customer c: Gym.listOfCustomers) {
-            if (c.getID() == customerID) {
-                customer = c;
-                return true;
+    /*private static Customer existCheck(int customerID){
+        for (Customer customer: Gym.listOfCustomers) {
+            if (customer.getID() == customerID) {
+                return customer;
             }
         }
         //
-        return false;
-    }
+        return null;
+    }*/
 
-    public void addCoach(Scanner input) {
+    public static void addCoach(Scanner input) {
         System.out.println("Enter the Coach's Name:");
         String name = input.nextLine();
 
@@ -94,9 +89,9 @@ public abstract class Admin extends Person{
 
 
     // Edit Coach Info
-    public void editCoach(int coachID, Scanner input) {
-        Coach coachEdit = null;
-        if (!existCheck(coachID, coachEdit)) {
+    public static void editCoach(int coachID, Scanner input) {
+        Coach coachEdit = (Coach)existCheck(coachID, userType.COACH);
+        if (coachEdit == null) {
             System.out.println("No Coach was found with the provided ID");
             return;
         }
@@ -144,11 +139,11 @@ public abstract class Admin extends Person{
     }
 
     
-    public void deleteCoach(int coachID){
+    public static void deleteCoach(int coachID){
         Gym.listOfCustomers.removeIf(coach -> coach.getID() == coachID);
     }
 
-    public void addCustomer(Scanner input) {
+    public static void addCustomer(Scanner input) {
         System.out.println("Enter the Customer's Name:");
         String name = input.nextLine();
 
@@ -156,7 +151,8 @@ public abstract class Admin extends Person{
         int id = input.nextInt();
 
         System.out.println("Enter the Customer's Gender:");
-        String gender = input.nextLine();
+        String gender = input.next();
+        input.nextLine(); // Consume the newline character
 
         System.out.println("Enter the Customer's Address:");
         String address = input.nextLine();
@@ -175,9 +171,19 @@ public abstract class Admin extends Person{
         for (Coach coach : Gym.listOfCoaches) {
             if (coach.getID() == coachId) {
                 // Add the new customer to the list of Gym customers
-                Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId));
+
                 // Add the new customer to the list of Coach customers
+                if(coach.number_of_customers > 9){
+                    System.out.println("Currently this Coach is training the Max number of customers (10)");
+                    System.out.println("Customer not added.");
+                    return;
+                }
+                // Add to all gym customers
+                Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId));
+                // Add to Coach customers
                 coach.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+
+                coach.number_of_customers++;
                 coachIdCorrect=true;
                 break;
             }
@@ -191,9 +197,9 @@ public abstract class Admin extends Person{
     }
 
     // Edit Customer Info
-    public void editCustomer(int customerID, Scanner input){
-        Customer customerEdit = null;
-        if(!existCheck(customerID, customerEdit)){
+    public static void editCustomer(int customerID, Scanner input){
+        Customer customerEdit = (Customer)existCheck(customerID, userType.CUSTOMER);
+        if(customerEdit==null){
             System.out.println("No Customer was found with the provided ID");
             return;
         }
@@ -245,21 +251,62 @@ public abstract class Admin extends Person{
         System.out.println("Customer information updated successfully.");
     }
     
-    public void deleteCustomer(int customerID){
+    public static void deleteCustomer(int customerID){
         Gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
     }
 
     
-    public void addEquipment(EqType type, Equipment equipment){
+    public static void addEquipment(Equipment equipment){
         // Add the equipment to the gym's list
         Gym.sportsEquipment.add(equipment);
     }
-    
-    public void editEquipment(Equipment equipment){
-        
+
+    public static void editEquipment(int equipmentCode, Scanner input) {
+        Equipment equipmentEdit = null;
+
+        // Check if the equipment with the provided code exists
+        for (Equipment equipment : Gym.sportsEquipment) {
+            if (equipment.getCode() == equipmentCode) {
+                equipmentEdit = equipment;
+                break;
+            }
+        }
+
+        if (equipmentEdit == null) {
+            System.out.println("No equipment was found with the provided code");
+            return;
+        }
+
+        System.out.println("Choose the information to edit:");
+        System.out.println("1. Name");
+        System.out.println("2. Quantity");
+        System.out.println("0. Cancel");
+
+        int choice = input.nextInt();
+        input.nextLine(); // Consume the newline character
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new name: ");
+                equipmentEdit.setName(input.nextLine());
+                break;
+            case 2:
+                System.out.print("Enter new quantity: ");
+                equipmentEdit.setQuantity(input.nextInt());
+                break;
+            case 0:
+                System.out.println("Editing canceled.");
+                return;
+            default:
+                System.out.println("Invalid choice. Editing canceled.");
+                return;
+        }
+
+        System.out.println("Equipment information updated successfully.");
     }
+
     
-    public void deleteEquipment(int equipmentCode){
+    public static void deleteEquipment(int equipmentCode){
         Gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
 
@@ -273,7 +320,7 @@ public abstract class Admin extends Person{
     }*/
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public void displayCustomersInMonthOrDay(Date date){
+    public static void displayCustomersInMonthOrDay(Date date){
         Scanner input = new Scanner (System.in);
         /*String c;
         System.out.println("Month or Day? (enter m or d)");
@@ -308,10 +355,11 @@ public abstract class Admin extends Person{
     }
     
     // Display all the customers of a specific coach
-    public void displayCoachCustomers(int coachID){
+    public static void displayCoachCustomers(int coachID){
         for(Customer customer: Gym.listOfCustomers){
-            if(customer.subscription.getCoach_id() == coachID){
+            if(customer.getCoachID() == coachID){
                 customer.display();
+                System.out.println("--------");
             }
         }
     }
@@ -328,16 +376,17 @@ public abstract class Admin extends Person{
     }*/
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
-    public void displaySortedCoaches(){
+    public static void displaySortedCoaches(){
         ArrayList<Coach> sCoaches = new ArrayList<>(Gym.listOfCoaches);
         Collections.sort(sCoaches);
         //
         for(Coach coach: sCoaches){
             coach.display();
+            System.out.println("------");
         }
     }
 
-    public void readScenario(Scanner input) {
+    public static void readScenario(Scanner input) {
         while (true) {
             System.out.println("Choose an action:");
             System.out.println("1. Add/Edit/Delete Coaches, Equipment, and Customers");
@@ -384,7 +433,7 @@ public abstract class Admin extends Person{
         }
     }
 
-    private void manageObjects(Scanner input) {
+    private static void manageObjects(Scanner input) {
         System.out.println("Choose an action:");
         System.out.println("1. Add Coach");
         System.out.println("2. Edit Coach");

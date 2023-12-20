@@ -110,6 +110,10 @@ public class Customer extends Person {
         this.List_of_inbodies = List_of_inbodies;
     }
 
+    public int getCoachID() {
+        return coachID;
+    }
+
     public void setName(String Name) {
         this.Name = Name;
     }

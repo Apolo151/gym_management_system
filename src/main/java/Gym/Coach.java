@@ -31,10 +31,11 @@ public class Coach extends Person implements Comparable<Coach> {
         System.out.println("Name: "+Name);
         System.out.println("ID:"+this.getID());
         System.out.println("Gender: " + Gender);
-        System.out.println("Adress: "+this.getAdress());
+        System.out.println("Address: "+this.getAdress());
         System.out.println("Pohne_number: "+Phone_number);
         System.out.println("E_mail: "+E_mail);
         System.out.println("Working Hours: "+working_hours);
+        System.out.println("Number of Customer: " + number_of_customers);
     }
 
     public  void read (){
@@ -66,7 +67,7 @@ public class Coach extends Person implements Comparable<Coach> {
     }
     
     void show_customers (){
-        for (Customer cu: Gym.listOfCustomers){
+        for (Customer cu: this.List_of_customers){
             int i =1 ;
             if(cu.coachID == this.getID())
                 cu.display();

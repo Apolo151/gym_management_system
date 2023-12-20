@@ -207,6 +207,16 @@ public class Main {
         }
     }
 
+    private static void addGymCustomersToCoachCustomers(){
+        for(Customer cu: Gym.listOfCustomers){
+            for(Coach co: Gym.listOfCoaches){
+                if(co.getID() == cu.getCoachID()){
+                    co.List_of_customers.add(cu);
+                }
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -243,6 +253,7 @@ public class Main {
         ReadFile(file);
         System.out.println("Coaches Length: " + Gym.listOfCoaches.toArray().length);
         System.out.println("Customer Length: " + Gym.listOfCustomers.toArray().length);
+        addGymCustomersToCoachCustomers();
         // Sign in & Choose Role
         boolean run = true;
         while(run) {
@@ -305,12 +316,27 @@ public class Main {
                     break;
                 case "Admin":
                     // Check Username and Password
-                    String userName, pass;
-                    userName = pass = null;
-                    while(!userName.equals("Admin") || !pass.equals("Admin")){
-                        System.out.println("Enter");
+                    String userName, pass, choice="r";
+                    userName = pass = " ";
+                    while(true){
+                        System.out.println("Enter the Admin's Username: ");
+                        userName = input.nextLine();
+                        System.out.println("Enter the Admin's Password: ");
+                        pass = input.nextLine();
+                        //
+                        if(!userName.equals("Admin") || !pass.equals("Admin")){
+                            System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
+                            choice = input.nextLine();
+                            if(choice.equals("r"))
+                                continue;
+                            else
+                                break;
+                        }
+                        break;
                     }
-
+                    if(choice.equals("r")){
+                        Admin.readScenario(input);
+                    }
                     break;
                 case "Stop":
                     run = false;
