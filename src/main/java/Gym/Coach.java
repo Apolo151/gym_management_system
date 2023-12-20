@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Coach extends Person implements Comparable<Coach> {
     int working_hours;
     int number_of_customers;
-    ArrayList<Customer> List_of_customers = new ArrayList<>();
+    public ArrayList<Customer> List_of_customers = new ArrayList<>();
 
 
     public Coach(String Name , int ID , String Gender ,String Adress ,int Phone_number, String E_mail, int W_H){
@@ -69,6 +69,7 @@ public class Coach extends Person implements Comparable<Coach> {
         for (Customer cu: List_of_customers){
             int i =1 ;
             cu.display();
+            System.out.println("-------");
             i++;
         }
      }
@@ -80,10 +81,9 @@ public class Coach extends Person implements Comparable<Coach> {
      }
      
     void show_details_of_Customer (String name){
+        System.out.println("Length: " + List_of_customers.toArray().length);
          for (Customer cu: List_of_customers){
-            if(name.equals(cu.Name)){
                  cu.display();
-            }
         }
     }
     
@@ -142,12 +142,15 @@ public class Coach extends Person implements Comparable<Coach> {
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-            System.out.println("");
+            //System.out.println("");
 
             switch (choice) {
                 case 1:
                     System.out.println("\nList of All Customers:");
-                    show_customers();
+                    if(this.List_of_customers.isEmpty())
+                        System.out.println("You have no Customers.");
+                    else
+                        this.show_customers();
                     break;
                 case 2:
                     System.out.print("\nEnter customer name to get inbody history: ");

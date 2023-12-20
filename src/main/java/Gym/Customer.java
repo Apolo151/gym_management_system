@@ -17,11 +17,12 @@ public class Customer extends Person {
     }
     
     public Customer( String Name , int ID , String Gender ,String Adress,
-            int Phone_number, String E_mail, int coachID, Gym gym, Subscription sub){
+            int Phone_number, String E_mail, int coachID){
         super(Name, ID, Gender, Adress, Phone_number, E_mail);
         this.coachID = coachID;
-        this.gym = gym;
-        this.subscription = sub;
+
+
+        //this.subscription = sub;
     }
     
     public Customer(Customer customer){
@@ -58,12 +59,12 @@ public class Customer extends Person {
     
     // Display coach info
     void displayCoachInfo(){
-        this.gym.listOfCoaches.get(this.coachID).display();
+        Gym.listOfCoaches.get(this.coachID).display();
     }
     
     // Display all Gym Equipment
     void displayGymEquipment(){
-        for(Equipment eq : this.gym.sportsEquipment){
+        for(Equipment eq : Gym.sportsEquipment){
             eq.disp();
         }
     }
@@ -154,7 +155,7 @@ public class Customer extends Person {
                     displayMembershipPlan();
                     break;
                 case 4:
-                    System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
+                    /*System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
                     String dateString = scanner.next();
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -163,7 +164,7 @@ public class Customer extends Person {
                         displayInBodyAtDate(date);
                     } catch (ParseException e) {
                         System.out.println("Invalid date format. Please enter a valid date.");
-                    }
+                    }*/
                     break;
                 case 5:
                     System.out.println("\nHow Many Kilos Need to be Reduced:");

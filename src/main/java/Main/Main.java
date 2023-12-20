@@ -66,11 +66,14 @@ public class Main {
         ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
         ArrayList<InBody> InBodyList = new ArrayList<>();
         
-        gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));
-        gym.listOfCoaches.add(new Coach("Coacher2F", 2, "female", "9 el Street", 07775000, "Coacher2F@gmail.com", 6));
-        gym.listOfCustomers.add(new Customer(1, "Cu1", gym));
-        gym.listOfCustomers.add(new Customer(2, "Cu2", gym));
-        System.out.println(gym.listOfCustomers.toArray().length);
+        Gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));
+        Gym.listOfCoaches.add(new Coach("Coacher2F", 2, "female", "9 el Street", 07775000, "Coacher2F@gmail.com", 6));
+        Gym.listOfCustomers.add(new Customer("Cu1", 101, "male", "17 Moon Street", 500090, "Customer1@hotmail.com", 2));
+        Gym.listOfCustomers.add(new Customer("Cu2", 102, "female", "18 Sun Street", 500500, "Customer255@gmail.com", 1));
+        Gym.listOfCoaches.get(0).List_of_customers.add(Gym.listOfCustomers.get(1));
+        System.out.println("First Coach Cust No = " + Gym.listOfCoaches.get(0).List_of_customers.toArray().length); // Debugging
+        System.out.println("All Gym Customer number = " + Gym.listOfCustomers.toArray().length); // Debugging
+        //
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the file path");
         String file = input.nextLine();
@@ -89,64 +92,61 @@ public class Main {
             int i =0;
             switch (role)
             {
-                case "Customer":
-                    while(nextFunction)
-                    {
-                        Scanner scan = new Scanner(System.in);
-                        Customer customer =  null;
-                        while(customer == null){
-                            System.out.println("Enter you name:");
-                            String cName = scan.nextLine();
-                            for(Customer co: gymO.listOfCustomers){
-                                if(co.getName().equals(cName)){
-                                    customer = co;
-                                }
+            case "Customer":
+                    //Scanner scan = new Scanner(System.in);
+                    Customer customer =  null;
+                    while(customer == null){
+                        System.out.println("Enter you name:");
+                        String cName = input.nextLine();
+                        for(Customer co: Gym.listOfCustomers){
+                            if(co.getName().equals(cName)){
+                                customer = co;
                             }
-                            //
-                            if (customer == null){
-                                System.out.println("No Customer exists with the provided name");
-                                System.out.println("Exit (e) or Retry(r) ?");
-                                String option = scan.nextLine();
-                                if(option.equals("e")){
-                                    break;
-                                }
-                            }
-
                         }
                         //
-                        customer.readScenario();
+                        if (customer == null){
+                            System.out.println("No Customer exists with the provided name");
+                            System.out.println("Exit (e) or Retry(r) ?");
+                            String option = input.nextLine();
+                            if(option.equals("e")){
+                                break;
+                            }
+                        }
+
                     }
+                    //
+                    customer.readScenario();
                     break;
                 case "Coach":
-                    while(nextFunction)
-                    {
-                        Scanner scan = new Scanner(System.in);
-                        Coach coach =  null;
-                        while(coach == null){
-                            System.out.println("Enter you name:");
-                            String cName = scan.nextLine();
-                            System.out.println(gymO.listOfCoaches.toArray().length);
-                            for(Coach co: gymO.listOfCoaches){
-                                System.out.println(co.getName());
-                                if(co.getName().equals(cName)){
-                                    coach = new Coach(co);
-                                }
+                    //Scanner scan = new Scanner(System.in);
+                    Coach coach =  null;
+                    while(coach == null){
+                        System.out.println("Enter you name:");
+                        String cName = input.nextLine();
+                        //System.out.println(Gym.listOfCoaches.toArray().length);
+                        for(Coach co: Gym.listOfCoaches){
+                            //System.out.println(co.getName());
+                            if(co.getName().equals(cName)){
+                                coach = co;
                             }
-                            //
-                            if (coach == null){
-                                System.out.println("No Coach"
-                                        + " exists with the provided name");
-                                System.out.println("Exit (e) or Retry(r) ?");
-                                String option = scan.nextLine();
-                                if(option.equals("e")){
-                                    break;
-                                }
-                            }
-
                         }
                         //
+                        if (coach == null){
+                            System.out.println("No Coach exists with the provided name");
+                            System.out.println("Exit (e) or Retry(r) ?");
+                            String option = input.nextLine();
+                            if(option.equals("e")){
+                                break;
+                            }
+                        }
+
+                    }
+                    //
+                    if(coach != null){
+                        System.out.println(coach.List_of_customers.toArray().length);
                         coach.readScenario();
                     }
+
                     break;
                 case "Admin":
                     

@@ -51,11 +51,11 @@ public class Admin extends Person{
         return false;
     }
     
-    public void addCoach(Gym gym){
+    /*public void addCoach(Gym gym){
         Coach coach;
         System.out.println("Enter the Coach's Name:" );
         gym.listOfCoaches.add(new Coach(coach));
-    }
+    }*/
 
     // Edit Coach Info
     public void editCoach(Gym gym, int coachID) {
@@ -179,12 +179,12 @@ public class Admin extends Person{
         System.out.println("Customer information updated successfully.");
     }
     
-    public void deleteCustomer(Gym gym, int customerID){
-        gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
+    public void deleteCustomer(int customerID){
+        Gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
     }
 
     
-    public void addEquipment(Gym gym, EqType type, Equipment equipment){
+    public void addEquipment(EqType type, Equipment equipment){
         // Assuming Equipment class has a constructor that takes a name and quantity
         switch (type) {
             case BIKE:
@@ -206,7 +206,7 @@ public class Admin extends Person{
         }
 
         // Add the equipment to the gym's list
-        gym.sportsEquipment.add(equipment);
+        Gym.sportsEquipment.add(equipment);
     }
     
     public void editEquipment(Gym gym, Equipment equipment){
@@ -214,12 +214,12 @@ public class Admin extends Person{
     }
     
     public void deleteEquipment(Gym gym, int equipmentCode){
-        gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
+        Gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
     
     
     public void showSubscriptionHistory(Gym gym, int customerID){
-        for(Subscription sub: gym.listOfSubscriptions){
+        for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
                 sub.getMembershipPlan().display();
             }
@@ -227,15 +227,15 @@ public class Admin extends Person{
     }
     
     // Display all the customers that subscribed to the gym in a given month/day
-    public void displayGymCustomers(Gym gym, Date date){
+    public void displayGymCustomers(Date date){
         Scanner input = new Scanner (System.in);
         String c;
         System.out.println("Month or Day? (enter m or d)");
         c = input.nextLine();
-        if(c.equals('m')){
-            for(Subscription sub : gym.listOfSubscriptions){
+        if(c.equals("m")){
+            for(Subscription sub : Gym.listOfSubscriptions){
                 if(sub.getMembershipPlan().start_date.month == date.month){
-                   for(Customer customer: gym.listOfCustomers){
+                   for(Customer customer: Gym.listOfCustomers){
                        if(customer.Name.equals(sub.getMembershipPlan().member_name)){
                            customer.display();
                            break;
@@ -246,9 +246,9 @@ public class Admin extends Person{
         }
         //
         else{
-            for(Subscription sub : gym.listOfSubscriptions){
+            for(Subscription sub : Gym.listOfSubscriptions){
                 if(sub.getMembershipPlan().start_date.day == date.day){
-                   for(Customer customer: gym.listOfCustomers){
+                   for(Customer customer: Gym.listOfCustomers){
                        if(customer.Name.equals(sub.getMembershipPlan().member_name)){
                            customer.display();
                            break;
@@ -262,8 +262,8 @@ public class Admin extends Person{
     }
     
     // Display all the customers of a specific coach
-    public void displayCoachCustomers(Coach coachID){
-        for(Customer customer: coach.List_of_customers){
+    public void displayCoachCustomers(int coachID){
+        for(Customer customer: Gym.listOfCustomers){
             if(customer.subscription.getCoach_id() == coachID){
                 customer.display();
             }
@@ -271,9 +271,9 @@ public class Admin extends Person{
     }
     
     // Display the GYM income in a given month
-    public void displayGymIncome(Gym gym, Date date){
+    public void displayGymIncome(Date date){
         double income = 0;
-        for(Subscription sub: gym.listOfSubscriptions){
+        for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
             if(mem.start_date.month == date.month && mem.start_date.year == date.year){
                 income+= mem.discount_price(mem.number_of_plan);
@@ -282,16 +282,16 @@ public class Admin extends Person{
     }
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
-    public void displaySortedCoaches(Gym gym){
-        ArrayList<Coach> sCoaches = new ArrayList<>(gym.listOfCoaches);
+    public void displaySortedCoaches(){
+        ArrayList<Coach> sCoaches = new ArrayList<>(Gym.listOfCoaches);
         Collections.sort(sCoaches);
         //
         for(Coach coach: sCoaches){
             coach.display();
         }
     }
-    
-    public void readScenario(Gym gym) {
+
+    /*public void readScenario(Gym gym) {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -321,7 +321,7 @@ public class Admin extends Person{
                     displayCoachCustomers(gym);
                     break;
                 case 5:
-                    displayGymIncome(gym, );
+                    displayGymIncome(gym);
                     break;
                 case 6:
                     displaySortedCoaches(gym);
@@ -388,7 +388,7 @@ public class Admin extends Person{
                 System.out.println("Invalid choice. Please try again.");
                 break;
         }
-    }
+    }*/
 
     
        
