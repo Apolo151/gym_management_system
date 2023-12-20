@@ -251,26 +251,6 @@ public abstract class Admin extends Person{
 
     
     public void addEquipment(EqType type, Equipment equipment){
-        // Assuming Equipment class has a constructor that takes a name and quantity
-        switch (type) {
-            case BIKE:
-                equipment = new Bike();
-                break;
-            case DUMBELLS:
-                equipment = new Dumbbells();
-                break;
-            case TREADMILL:
-                equipment = new Treadmill();
-                break;
-            case LEGPRESS:
-                equipment = new Leg_Press();
-                break;
-            case WEIGHT_BENCH:
-                equipment = new Weight_Bench();
-                break;
-            // Add more cases for other equipment types if needed
-        }
-
         // Add the equipment to the gym's list
         Gym.sportsEquipment.add(equipment);
     }
@@ -302,7 +282,7 @@ public abstract class Admin extends Person{
             for(Subscription sub : Gym.listOfSubscriptions){
                 if(sub.getMembershipPlan().start_date.month == date.month){
                    for(Customer customer: Gym.listOfCustomers){
-                       if(customer.Name.equals(sub.getMembershipPlan().member_name)){
+                       if(customer.Name.equals(sub.getMembershipPlan())){
                            customer.display();
                            break;
                        }
@@ -315,7 +295,7 @@ public abstract class Admin extends Person{
             for(Subscription sub : Gym.listOfSubscriptions){
                 if(sub.getMembershipPlan().start_date.day == date.day){
                    for(Customer customer: Gym.listOfCustomers){
-                       if(customer.Name.equals(sub.getMembershipPlan().member_name)){
+                       if(customer.Name.equals(sub.getMembershipPlan())){
                            customer.display();
                            break;
                        }

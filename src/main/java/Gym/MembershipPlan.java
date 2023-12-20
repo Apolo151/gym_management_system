@@ -4,16 +4,17 @@ import Gym.Date;
 public class MembershipPlan {
     //String member_name;
     Date start_date =  new Date();
+    int numberOfMonths;
     //Date end_date = new Date();
     final float price_of_month = 300;
     int number_of_plan;
     //
     
     public MembershipPlan (String member_name,  Date start_date,  Date end_date,  int number_of_plan){
-        this.member_name = member_name ;
-        this.start_date = start_date ;
-        this.end_date = end_date ;
-        this.number_of_plan =number_of_plan ;
+        this.member_name = member_name;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.number_of_plan =number_of_plan;
 
     }
     public MembershipPlan (String member_name   ,  int number_of_plan){
