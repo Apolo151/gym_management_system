@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Coach extends Person /*implements Comparable<Coach>*/ {
     int working_hours;
-    int number_of_customers;
+    public int number_of_customers;
     public ArrayList<Customer> List_of_customers = new ArrayList<>();
 
 
@@ -83,10 +83,14 @@ public class Coach extends Person /*implements Comparable<Coach>*/ {
      }
      
     void show_details_of_Customer (String name){
-        System.out.println("Length: " + List_of_customers.toArray().length);
-         for (Customer cu: List_of_customers){
-                 cu.display();
+        //System.out.println("Length: " + List_of_customers.toArray().length);
+         for (Customer cu: Gym.listOfCustomers){
+                 if(cu.getName().equals(name)){
+                     cu.display();
+                     return;
+                 }
         }
+        System.out.println("No Customer found with the specified name.");
     }
     
     void show_details_of_Customer_gender (String gender){

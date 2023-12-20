@@ -7,10 +7,10 @@ Elliptical,011,4
 Dumbbells,003,10
 Leg Press,002,2
 Customer
-John Doe,0,Male,456 Oak St,555678,john@example.com,2
-Jane Doe,1,Female,789 Pine St,558765,jane@example.com,1
-Mark Johnson,2,Male,111 Maple St,559876,mark@example.com,0
-Lisa Wilson,3,Female,222 Cedar St,556543,lisa@example.com,1
+John Doe,0,male,456 Oak St,555678,john@example.com,2
+Jane Doe,1,female,789 Pine St,558765,jane@example.com,1
+Mark Johnson,2,male,111 Maple St,559876,mark@example.com,0
+Lisa Wilson,3,female,222 Cedar St,556543,lisa@example.com,1
 Coach
 Coach Smith,0,Male,321 Elm St,554321,coach@example.com,8
 Coach Johnson,1,Female,654 Birch St,557890,coach2@example.com,10

@@ -392,15 +392,11 @@ public abstract class Admin {
         ArrayList<Coach> sortedCoaches = new ArrayList<>(Gym.listOfCoaches);
 
         // Sort the coaches based on the number of customers (descending order)
-        Collections.sort(sortedCoaches, new Comparator<Coach>() {
-            @Override
-            public int compare(Coach coach1, Coach coach2) {
-                return coach2.number_of_customers - coach1.number_of_customers;
-            }
-        });
+        Collections.sort(Gym.listOfCoaches, (c1, c2) -> {return c2.number_of_customers-c1.number_of_customers;});
         //
-        for(Coach coach: sortedCoaches){
+        for(Coach coach: Gym.listOfCoaches){
             coach.display();
+            System.out.println("--------");
         }
     }
 

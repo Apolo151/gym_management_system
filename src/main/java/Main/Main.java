@@ -102,11 +102,13 @@ public class Main {
                         //Subscription sub = listOfSubscriptions.get(i);
                         i++;
                         Coach coach = null;
-                        Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Address,
-                                Phone_number, E_mail, coachID));
+                        Customer cu = new Customer(Name, ID, Gender,Address,
+                                Phone_number, E_mail, coachID);
+                        Gym.listOfCustomers.add(cu);
                         for(Coach co: Gym.listOfCoaches){
                             if(co.getID() == coachID){
-                                co.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+                                    co.List_of_customers.add(cu);
+                                co.number_of_customers++;
                                 break;
                             }
                         }
