@@ -87,13 +87,13 @@ public class Coach extends Person implements Comparable<Coach> {
 
     void show_list_of_inbodies (Customer cus){
         cus.addInBody();
+        //boolean check=false;
         for (InBody in : cus.List_of_inbodies){
             in.Display();
         }
     }
 
     void show_details_of_Customer (String name){
-        System.out.println("Length: " + Gym.listOfCustomers.toArray().length);
         for (Customer cu: Gym.listOfCustomers){
             if(cu.getName().equals(name)) {
                 cu.display();
@@ -104,9 +104,9 @@ public class Coach extends Person implements Comparable<Coach> {
 
     void show_details_of_Customer_gender (String gender){
         addCustomerToCoach();
-        System.out.println(this.List_of_customers.toArray().length);
+        // Array
         for (Customer cu: this.List_of_customers){
-            int i =1 ;
+            int i =1;
             if(gender.equals(cu.Gender) ){
                 System.out.println("\t\tcustomer 1");
                 cu.display();

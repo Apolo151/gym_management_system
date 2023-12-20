@@ -12,25 +12,22 @@ public class InBody {
     private String Name;
     private String Gender;
     private int Age;
-    Date date = new Date();
+    Date date = null;
     SimpleDateFormat st= new SimpleDateFormat("yyyy/MM/dd"+"\t"+"hh:mm");
-    
-    
-    
-    public InBody(double Weight, double Height, int Age, String Name, String Gender) {
+
+
+
+    public InBody(double Weight, double Height, int Age, String Name, String Gender,Date date) {
         this.Weight = Weight;
         this.Height = Height;
         this.Age = Age;
         this.Name = Name;
         this.Gender = Gender;
-    }
-    
-    public InBody(double Price){
-        
+        this.date = date;
     }
 
-    public String getName() {
-        return Name;
+    public InBody(double Price){
+
     }
 
     private double BMR() {
@@ -42,17 +39,17 @@ public class InBody {
         }
         return Calories;
     }
-    
+
     private void Bulk() {
         System.out.println("To gain half a kilogram per week, you must eat \"" + (Calories + 500) + "\" calories per day");
         System.out.println("To gain a kilogram per week, you must eat \"" + (Calories + 1000) + "\" calories per day");
     }
-    
+
     private void Cut() {
         System.out.println("To lose half a kilogram per week, you must eat \"" + (Calories - 500) + "\" calories per day");
         System.out.println("To lose a kilogram per week, you must eat \"" + (Calories - 1000) + "\" calories per day");
     }
-    
+
     protected void howManyKilosToReduce(){
         if (Gender.equals("Male")||Gender.equals("male")){
             if(Weight ==(50+2.3*((Height/100*39.37)-60))){
@@ -77,19 +74,23 @@ public class InBody {
             }
         }
     }
-    
+
     private void BodyNeeds(){
         System.out.println("Your protein needs : "+(Weight*1.9));
         System.out.println("Your healthy fat needs : "+((.3*Calories)/9));
         System.out.println("Your carb needs : "+((Calories-((.3*Calories)/9)+(Weight*1.9))/4));
     }
-    
+
     private void MemberInfo(){
         System.out.println("Name\t\tGender\t\tAge\t\tHeight\t\tWeight\t\tTime of Measurement");
         System.out.println("---------------------------------------------------------------------------");
         System.out.println(Name+"\t\t"+Gender+"\t\t"+Age+"\t\t"+Height+"\t\t"+Weight+"\t\t"+st.format(date)+"\n\n");
     }
-    
+    public String getName()
+    {
+        return Name;
+    }
+
     public void Display(){
         BMR();
         MemberInfo();

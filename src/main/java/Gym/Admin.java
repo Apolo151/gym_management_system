@@ -326,6 +326,7 @@ public abstract class Admin {
 
     
     public static void deleteEquipment(int equipmentCode){
+        // search and add
         Gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
 
@@ -388,7 +389,7 @@ public abstract class Admin {
         month = input.nextInt();
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
-            if(mem.start_date.getMonth() == month && mem.start_date.getYear() == year){
+            if(mem.start_date.getMonth()+1 == month && mem.start_date.getYear()+1 == year){
                 income+= mem.discount_price(mem.number_of_plan);
             }
         }
@@ -405,6 +406,7 @@ public abstract class Admin {
         //
         for(Coach coach: sortedCoaches){
             coach.display();
+            System.out.println("No. of customers: " + coach.number_of_customers);
             System.out.println("--------");
         }
     }

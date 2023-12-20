@@ -28,6 +28,7 @@ public class Main {
     static ArrayList<Gym> gymObj = new ArrayList<>();
     static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
     public static ArrayList<InBody> inBodyList = new ArrayList<>();
+
     public static void ReadFile(String file)
     {
         File newFile = new File(file);
@@ -152,7 +153,17 @@ public class Main {
                         int Age = Integer.valueOf(attribute[2]);
                         String Name = attribute[4];
                         String Gender = attribute[3];
-                        inBodyList.add(new InBody(Weight,Height,Age,Name,Gender));
+                        String sDate = attribute[5];
+                        Date date =null;
+                        try{
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            date = dateFormat.parse(sDate);
+                        }
+                        catch(ParseException e){
+                            e.printStackTrace();
+
+                        }
+                        inBodyList.add(new InBody(Weight,Height,Age,Name,Gender,date));
                     }
                 }
                 if(line.equals("Coach"))
@@ -192,7 +203,7 @@ public class Main {
                         String Name = attribute[0];
                         int ID = Integer.valueOf(attribute[1]);
                         String Gender = attribute[2];
-                        String Address = attribute[3];
+                        String Adress = attribute[3];
                         int Phone_number =  Integer.valueOf(attribute[4]);
                         String E_mail = attribute[5];
                         int coachID =  Integer.valueOf(attribute[6]);
@@ -200,17 +211,8 @@ public class Main {
                         Subscription sub = Gym.listOfSubscriptions.get(i);
                         i++;
 
-                        Coach coach = null;
-                        Customer cu = new Customer(Name, ID, Gender,Address,
-                                Phone_number, E_mail, coachID);
-                        Gym.listOfCustomers.add(cu);
-                        for(Coach co: Gym.listOfCoaches){
-                            if(co.getID() == coachID){
-                                co.List_of_customers.add(cu);
-                                co.number_of_customers++;
-                                break;
-                            }
-                        }
+                        Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
+                                Phone_number, E_mail, coachID,sub));
                     }
                 }
 
@@ -223,6 +225,7 @@ public class Main {
         }
 
     }
+
     public static void WriteFile(String classOutput)
     {
         try
@@ -380,6 +383,5 @@ public class Main {
             }
         }
         // Write Output
-
     }
 }

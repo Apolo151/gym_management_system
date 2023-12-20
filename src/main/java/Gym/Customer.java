@@ -98,8 +98,9 @@ public class Customer extends Person {
 
     // Display inbody info at a specific date
     void displayInBodyAtDate(java.util.Date date){
+        addInBody();
         for(InBody in : this.List_of_inbodies){
-            if(in.date == date){
+            if(in.date.equals(date)){
                 in.Display();
             }
         }
