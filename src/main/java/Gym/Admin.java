@@ -275,11 +275,11 @@ public class Admin extends Person{
         Gym.sportsEquipment.add(equipment);
     }
     
-    public void editEquipment(Gym gym, Equipment equipment){
+    public void editEquipment(Equipment equipment){
         
     }
     
-    public void deleteEquipment(Gym gym, int equipmentCode){
+    public void deleteEquipment(int equipmentCode){
         Gym.sportsEquipment.removeIf(equipment -> equipment.getCode() == equipmentCode);
     }
     
@@ -422,31 +422,37 @@ public class Admin extends Person{
 
         switch (choice) {
             case 1:
-                addCoach();
+                System.out.println("En");
+                addCoach(input);
                 break;
             case 2:
-                editCoach();
+                System.out.println("Enter the Coaches ID: ");
+                editCoach(input.nextInt(), input);
                 break;
             case 3:
-                deleteCoach();
+                System.out.println("Enter the Coaches ID: ");
+                deleteCoach(input.nextInt());
                 break;
             case 4:
-                addCustomer();
+                addCustomer(input);
                 break;
             case 5:
-                editCustomer();
+                System.out.println("Enter the Customer's ID: ");
+                editCustomer(input.nextInt(), input);
                 break;
             case 6:
-                deleteCustomer();
+                System.out.println("Enter the Customer's ID: ");
+                deleteCustomer(input.nextInt());
                 break;
             case 7:
-                addEquipment();
+                // TODO addEquipment();
                 break;
             case 8:
-                editEquipment();
+                // TODO editEquipment();
                 break;
             case 9:
-                deleteEquipment();
+                System.out.println("Enter the Equipment's Code: ");
+                deleteEquipment(input.nextInt());
                 break;
             case 0:
                 return;
@@ -454,7 +460,7 @@ public class Admin extends Person{
                 System.out.println("Invalid choice. Please try again.");
                 break;
         }
-    }*/
+    }
 
     
        
