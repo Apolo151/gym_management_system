@@ -1,6 +1,8 @@
 package Main;
 
 //import EQ_GYM.*;
+import EQ_GYM.Dumbbells;
+import EQ_GYM.Treadmill;
 import Gym.*;
 
 import java.io.FileWriter;
@@ -56,7 +58,7 @@ public class Main {
                 }
                 if(line.equals("Equipment"))
                 {
-                    /*while(true)
+                    while(true)
                     {
                         line = scanner.nextLine();
                         if(className.get(line)!= null)
@@ -65,11 +67,17 @@ public class Main {
                         }
                         String[] attribute = line.split(",");
                         String name = attribute[0];
-                        String address = attribute[1];
-                        long phoneNumber = Long.valueOf(attribute[2]);
-
-                        gymObj.add(new Gym(name, address, phoneNumber));
-                    }*/
+                        String code = attribute[1];
+                        int quantity = Integer.valueOf(attribute[2]);
+                        switch (name) {
+                            case "Dumbbells":
+                                Gym.sportsEquipment.add(new Dumbbells(name, code, quantity));
+                                break;
+                            case "Treadmill":
+                                Gym.sportsEquipment.add(new Treadmill(name, code, quantity));
+                                break;
+                        }
+                    }
                 }
                 if(line.equals("Customer"))
                 {
@@ -239,7 +247,7 @@ public class Main {
         boolean run = true;
         while(run) {
             boolean nextFunction = true;
-            System.out.println("Who are you little guy ? (type 'Stop' to run)");
+            System.out.println("Who are you little guy ?(Admin, Coach, Customer) (type 'Stop' to run)");
             String role = input.nextLine();
             int i = 0;
             switch (role)
@@ -266,7 +274,7 @@ public class Main {
                         }
 
                     }
-                    //
+                    // Check password
                     if(customer != null) customer.readScenario();
                     break;
                 case "Coach":
@@ -296,7 +304,13 @@ public class Main {
                     if(coach != null) coach.readScenario();
                     break;
                 case "Admin":
-                    
+                    // Check Username and Password
+                    String userName, pass;
+                    userName = pass = null;
+                    while(!userName.equals("Admin") || !pass.equals("Admin")){
+                        System.out.println("Enter");
+                    }
+
                     break;
                 case "Stop":
                     run = false;
@@ -306,5 +320,7 @@ public class Main {
 
             }
         }
+        // Write Output
+
     }
 }

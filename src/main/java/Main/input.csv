@@ -1,5 +1,11 @@
 Gym
 FitnessCenter,123MainSt,5551234
+Equipment
+Treadmill,001,5
+Rowing Machine,002,3
+Elliptical,011,4
+Dumbbells,003,10
+Leg Press,002,2
 Customer
 John Doe,0,Male,456 Oak St,555678,john@example.com,2
 Jane Doe,1,Female,789 Pine St,558765,jane@example.com,1

@@ -2,9 +2,9 @@ package Gym;
 import Gym.Date;
 
 public class MembershipPlan {
-    String member_name;
+    //String member_name;
     Date start_date =  new Date();
-    Date end_date = new Date();
+    //Date end_date = new Date();
     final float price_of_month = 300;
     int number_of_plan;
     //

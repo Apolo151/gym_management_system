@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import EQ_GYM.Equipment;
 import java.util.Collections;
 
-public class Admin extends Person{
+public abstract class Admin extends Person{
     
     public enum EqType {
         BIKE,
@@ -257,7 +257,7 @@ public class Admin extends Person{
                 equipment = new Bike();
                 break;
             case DUMBELLS:
-                equipment = new Dumbbels();
+                equipment = new Dumbbells();
                 break;
             case TREADMILL:
                 equipment = new Treadmill();
@@ -445,7 +445,7 @@ public class Admin extends Person{
                 deleteCustomer(input.nextInt());
                 break;
             case 7:
-                // TODO addEquipment();
+                Gym.sportsEquipment.add(Equipment.addEquipment(input));
                 break;
             case 8:
                 // TODO editEquipment();
