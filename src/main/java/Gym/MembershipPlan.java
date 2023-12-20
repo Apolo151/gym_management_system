@@ -1,36 +1,40 @@
-/*
 package Gym;
-import Gym.Date;
+
+import java.util.Date;
 
 public class MembershipPlan {
-    //String member_name;
-    Date start_date =  new Date();
-    int numberOfMonths;
+    String member_name;
+    Date start_date = null ;
+    //int numberOfMonths;
     //Date end_date = new Date();
     final float price_of_month = 300;
     int number_of_plan;
     //
-    
-    public MembershipPlan (String member_name,  Date start_date,  Date end_date,  int number_of_plan){
+
+    public MembershipPlan (String member_name,  Date start_date, int number_of_plan){
         this.member_name = member_name;
         this.start_date = start_date;
-        this.end_date = end_date;
         this.number_of_plan =number_of_plan;
 
     }
-    public MembershipPlan (String member_name   ,  int number_of_plan){
-        this.member_name = member_name ;
+    public MembershipPlan (Date start_date, int number_of_plan){
+        this.start_date = start_date;
+        this.number_of_plan =number_of_plan;
+
+    }
+    public MembershipPlan (String member_name,int number_of_plan){
+        this.member_name = member_name;
         this.number_of_plan =number_of_plan ;
 
     }
-    public MembershipPlan (){
-            this("",0);
+    /*public MembershipPlan (){
+            this(0);
         start_date =new Date();
         end_date = new Date();
-    }
+    }*/
     //
-    
-    public boolean check_is_active (Date day_date , Date end_date){
+
+    /*public boolean check_is_active (Date day_date, Date end_date){
         boolean check = true ;
         if (end_date.year==day_date.year){
             if (end_date.month== day_date.month){ // 1
@@ -58,11 +62,11 @@ public class MembershipPlan {
         else if (end_date.year < day_date.year){
             return false;
         }
-        
+
         return false;
-    }
-    
-    public void updtate_member (Date end_date ,boolean ch ,Date day_date ){
+    }*/
+
+    /*public void updtate_member (Date end_date ,boolean ch ,Date day_date ){
         boolean check = false ;
         if(ch==false){
             switch (number_of_plan){
@@ -142,37 +146,37 @@ public class MembershipPlan {
         else {
             System.out.println("not need active");
         }
-    }
-    
+    }*/
+
     public float discount_price ( int number_of_plan ) {
         float price_member =0 ;
         switch (number_of_plan){
             case 1:
                 price_member =price_of_month ; // 1month                        300
                 break;
-                case 2:
+            case 2:
                 price_member =price_of_month * 2 ; // 2 month                   600
                 break;
-                case 3:
-                    price_member =price_of_month * (8/3); // 3 month            800
-                    break;
-                case 4 :
-                    price_member = price_of_month * (16/3) ; // 6 month         1600
-                    break;
-                case 5 :
-                    price_member = price_of_month * 10 ; // 1 year              3000
-                    break;
+            case 3:
+                price_member =price_of_month * (8/3); // 3 month            800
+                break;
+            case 4 :
+                price_member = price_of_month * (16/3) ; // 6 month         1600
+                break;
+            case 5 :
+                price_member = price_of_month * 10 ; // 1 year              3000
+                break;
             default:
                 System.out.println("any way case ");
                 break;
-            }
+        }
 
-            return price_member ;
+        return price_member ;
     }
 
     public  void display () {
-        System.out.println("Name: " + member_name);
+        //System.out.println("Name: " + member_name);
         System.out.println("Number of plan: " + number_of_plan);
-        System.out.println("Day: " + end_date.day+"\tmonth: " + end_date.month+"\tYear: " + end_date.year);
+        System.out.println("Day: " + start_date.getDay()+"\tmonth: " + start_date.getDate()+"\tYear: " + start_date.getYear());
     }
-}*/
+}

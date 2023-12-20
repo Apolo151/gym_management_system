@@ -27,6 +27,7 @@ import static Gym.Gym.sportsEquipment;*/
 
 public class Main {
     static Map<String, Boolean> className = new HashMap<>();
+    static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
     static ArrayList<Gym> gymObj = new ArrayList<>();
     public static void ReadFile(String file)
     {
@@ -129,26 +130,32 @@ public class Main {
                 }
                 if(line.equals("Membership Plan:"))
                 {
-                    /*while(true)
-                    {
+                    while(true) {
                         line = scanner.nextLine();
-                        if(className.get(line)!= null)
-                        {
+                        if (className.get(line) != null) {
                             break;
                         }
                         String[] attribute = line.split(",");
-                        DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+
                         String member_name = attribute[0];
-                        Date start_date = new Date(attribute[1]);
-                        Date end_date = df.parse(attribute[2]);
+                        String sDate = attribute[1];
+
+                        Date start_date = null;
+                        try {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            start_date = dateFormat.parse(sDate);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+
+                        }
                         int number_of_plan = Integer.valueOf(attribute[2]);
 
-                        membershipPlans.add(new MembershipPlan(member_name,start_date ,end_date, number_of_plan));
+                        membershipPlans.add(new MembershipPlan(member_name, start_date, number_of_plan));
                     }
                 }
                 if(line.equals("Subscription:"))
                 {
-                    while(true)
+                    /*while(true)
                     {
                         line = scanner.nextLine();
                         if(className.get(line)!= null)
@@ -315,7 +322,7 @@ public class Main {
                 case "Admin":
                     // Check Username and Password
                     String userName, pass, choice="r";
-                    userName = pass = " ";
+                    /* = pass = " ";
                     while(true){
                         System.out.println("Enter the admin Username: ");
                         userName = input.nextLine();
@@ -331,7 +338,7 @@ public class Main {
                                 break;
                         }
                         break;
-                    }
+                    }*/
                     if(choice.equals("r")){
                         Admin.readScenario(input);
                     }
@@ -345,6 +352,7 @@ public class Main {
             }
         }
         // Write Output
+        WriteFile("output.csv");
 
     }
 }

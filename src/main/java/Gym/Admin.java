@@ -260,13 +260,31 @@ public abstract class Admin extends Person{
     }
     
     public static void deleteCustomer(int customerID){
+        Customer customerCheck = (Customer)existCheck(customerID,userType.CUSTOMER);
+        if(customerCheck==null) {
+            System.out.println("No Customer exists with this ID.");
+            return;
+        }
+        for(Subscription sub: Gym.listOfSubscriptions){
+            if(sub.getCostumer_id() == customerID){
+                deleteSub(sub);
+            }
+        }
+        //
+        Coach coach = (Coach)existCheck(customerCheck.coachID, userType.COACH);
+        if(coach != null) coach.List_of_customers.removeIf(customer -> customer.getID() == customerID);
         Gym.listOfCustomers.removeIf(customer -> customer.getID() == customerID);
+
+    }
+
+    public static void deleteSub(Subscription sub){
+        Gym.listOfSubscriptions.remove(sub);
     }
 
     
-    public static void addEquipment(Equipment equipment){
+    public static void addEquipment(Scanner input){
         // Add the equipment to the gym's list
-        Gym.sportsEquipment.add(equipment);
+        Gym.sportsEquipment.add(Equipment.addEquipment(input));
     }
 
     public static void editEquipment(int equipmentCode, Scanner input) {
@@ -319,13 +337,13 @@ public abstract class Admin extends Person{
     }
 
 
-/*    public void showSubscriptionHistory(int customerID){
+    public void showSubscriptionHistory(int customerID){
         for(Subscription sub: Gym.listOfSubscriptions){
             if(sub.getCostumer_id() == customerID){
-                sub.getMembershipPlan().display();
+                //sub.getMembershipPlan().display();
             }
         }
-    }*/
+    }
     
     // Display all the customers that subscribed to the gym in a given month/day
     public static void displayCustomersInMonthOrDay(Date date){
@@ -488,7 +506,7 @@ public abstract class Admin extends Person{
                 deleteCustomer(input.nextInt());
                 break;
             case 7:
-                Gym.sportsEquipment.add(Equipment.addEquipment(input));
+                addEquipment(input);
                 break;
             case 8:
                 // TODO editEquipment();
