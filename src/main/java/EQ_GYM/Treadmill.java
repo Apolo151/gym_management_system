@@ -1,17 +1,19 @@
 package EQ_GYM;
 
 public class Treadmill extends Equipment{
-    static int q_count=0;
-    Treadmill(){
+    final int MAX_SPEED = 15;
+
+    public Treadmill(){
         super("Treadmill");
-        quantity=++q_count;
+    }
+    public Treadmill(String name , int quantity,int code){
+        super(name, quantity, code);
     }
 
-    public void disp(){
-        for (int i=0; i<quantity;i++){
-            System.out.println();
-        }
+    public void display(){
+        System.out.println("Type: " + this.getName());
+        System.out.println("Quantity: " + this.quantity);
+        System.out.println("Code: " + this.getCode());
     }
-
 
 }
