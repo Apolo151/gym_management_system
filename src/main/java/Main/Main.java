@@ -87,7 +87,7 @@ public class Main {
         boolean run = true;
         while(run) {
             boolean nextFunction = true;
-            System.out.println("Who are you little guy ?");
+            System.out.println("Who are you little guy ? (type 'Stop' to run)");
             String role = input.nextLine();
             int i =0;
             switch (role)
