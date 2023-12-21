@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,6 +26,27 @@ import static Gym.Gym.sportsEquipment;*/
 
 public class Main {
     static Scanner input = new Scanner(System.in);
+    public static Date stringToDate(String sDate)
+    {
+        Date date = null;
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            date = dateFormat.parse(sDate);
+        }
+        catch(ParseException e){
+            e.printStackTrace();
+
+        }
+        return date;
+    }
+    public static String dateToString(Date date)
+    {
+        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String sDate = formatter.format(date);
+        return sDate;
+    }
+
+
     public static void ReadFile(String file)
     {
         File newFile = new File(file);
@@ -98,22 +120,10 @@ public class Main {
 
                         String member_name = attribute[0];
                         String sDate = attribute[1];
+                        Date start_date = stringToDate(sDate);
+                        int number_of_plan = Integer.valueOf(attribute[2]);
 
-                        Date start_date = null;
-                        try{
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                            start_date = dateFormat.parse(sDate);
-                        }
-
-                        catch(ParseException e){
-                            e.printStackTrace();
-
-                        }
-
-                        int noOfMonths = Integer.valueOf(attribute[2]);
-                        int number_of_plan = Integer.valueOf(attribute[3]);
-
-                        membershipPlans.add(new MembershipPlan(member_name,start_date, noOfMonths, number_of_plan));
+                        membershipPlans.add(new MembershipPlan(member_name,start_date, number_of_plan));
                     }
                 }
                 if(line.equals("Subscription"))
@@ -152,16 +162,14 @@ public class Main {
                         String Name = attribute[4];
                         String Gender = attribute[3];
                         String sDate = attribute[5];
-                        Date date =null;
-                        try{
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                            date = dateFormat.parse(sDate);
-                        }
-                        catch(ParseException e){
-                            e.printStackTrace();
-
-                        }
+                        Date date = stringToDate(sDate);
                         inBodyList.add(new InBody(Weight,Height,Age,Name,Gender,date));
+                        //
+                        for(Customer cu: Gym.listOfCustomers){
+                            if(cu.getName().equals(Name)){
+                                cu.List_of_inbodies.add(inBodyList.get(inBodyList.toArray().length-1));
+                            }
+                        }
                     }
                 }
                 if(line.equals("Coach"))
@@ -231,12 +239,39 @@ public class Main {
         }
 
     }
-    public static void WriteFile(String classOutput)
+    public static void WriteFile()
     {
         try
         {
-            FileWriter outputFile = new FileWriter("output.csv");
-            outputFile.write(classOutput);
+            String sDate;
+            FileWriter outputFile = new FileWriter("input1.txt");
+            outputFile.write("Gym\n");
+            for(Gym gym : gymObj)
+                outputFile.write(gym.getName()+','+gym.getAddress()+','+gym.getPhoneNumber()+"\n");
+            outputFile.write("Equipment\n");
+            for(Equipment eq : Gym.sportsEquipment)
+                outputFile.write(eq.getName()+','+eq.getCode()+','+eq.getQuantity()+"\n");
+            outputFile.write("MembershipPlan\n");
+            for(MembershipPlan mem : membershipPlans) {
+                sDate = dateToString(mem.getStart_date());
+                outputFile.write(mem.getMember_name() + ',' +sDate+ ',' + mem.getNumberOfMonths() + ',' + mem.getNumber_of_plan() + "\n");
+            }
+            outputFile.write("Subscriptions\n");
+            for(Subscription sub : Gym.listOfSubscriptions)
+                outputFile.write(sub.getCoach_id()+','+ sub.getCostumer_id()+','+"\n");
+            outputFile.write("InBody\n");
+            for(InBody inbody : inBodyList) {
+                sDate = dateToString(inbody.getDate());
+                outputFile.write(inbody.getWeight() + ',' + inbody.getHeight() + ',' + inbody.getAge() + ',' + inbody.getGender() + ',' + inbody.getName() + ',' +sDate+ "\n");
+            }
+            outputFile.write("Coach\n");
+            for(Coach co : Gym.listOfCoaches)
+                outputFile.write(co.getName()+','+co.getID()+','+co.getGender()+','+co.getAddress()+','+co.getPhone_number()+','+co.getE_mail()+','+co.getWorking_hours()+','+co.getPassword()+"\n");
+            outputFile.write("Customer\n");
+            for(Customer cu : Gym.listOfCustomers)
+                outputFile.write(cu.getName()+','+cu.getID()+','+cu.getGender()+','+cu.getAddress()+','+cu.getPhone_number()+','+cu.getE_mail()+','+cu.getCoachID()+','+cu.getPassword()+"\n");
+            outputFile.write("Exit\n");
+
             outputFile.close();
         }
         catch (Exception e)
@@ -308,25 +343,25 @@ public class Main {
             System.out.println("------------");
             //
             System.out.println("You have to call an Admin Boiii");
-            String userName, pass, choice="r";
+            String userName, pass, choice = "r";
             //
-            while(true){
+            while (true) {
                 System.out.println("Enter the admin Username: ");
                 userName = input.nextLine();
                 System.out.println("Enter the admin Password: ");
                 pass = input.nextLine();
                 //
-                if(!userName.equals("admin") || !pass.equals("admin")){
+                if (!userName.equals("Admin") || !pass.equals("Admin")) {
                     System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
                     choice = input.nextLine();
-                    if(choice.equals("r"))
+                    if (choice.equals("r"))
                         continue;
                     else
                         break;
                 }
                 break;
             }
-            if(choice.equals("r")) {
+            if (choice.equals("r")) {
                 Admin.registerUser(role, input);
                 System.out.println("You registered successfully.");
             }
@@ -353,18 +388,7 @@ public class Main {
         className.put("InBody", true);
         className.put("Admin", true);
         className.put("Exit",true);
-        Date date = null;
-        String d = "19/12/2001";
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            date  = dateFormat.parse(d);
-        }
 
-        catch(ParseException e){
-            e.printStackTrace();
-
-        }
-        System.out.println(date);
         ArrayList<InBody> InBodyList = new ArrayList<>();
 
         /*Gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));
@@ -375,12 +399,13 @@ public class Main {
         System.out.println("First Coach Cust No = " + Gym.listOfCoaches.get(0).List_of_customers.toArray().length); // Debugging
         System.out.println("All Gym Customer number = " + Gym.listOfCustomers.toArray().length); // Debugging*/
         //
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter the file path");
         String file = input.nextLine();
 
         // Read File
         ReadFile(file);
+        //
         System.out.println("Coaches Length: " + Gym.listOfCoaches.toArray().length);
         System.out.println("Customer Length: " + Gym.listOfCustomers.toArray().length);
         System.out.println("Equipment Length: " + Gym.sportsEquipment.toArray().length);
@@ -388,9 +413,9 @@ public class Main {
         System.out.println("Membership Length: " + membershipPlans.toArray().length);
         System.out.println("InBody Length: " + inBodyList.toArray().length);
         //
-        for(Customer cu: Gym.listOfCustomers){
-            cu.addInBody();
-        }
+        //for(Customer cu: Gym.listOfCustomers){
+        //    cu.addInBody();
+        //}
         // Sign in & Choose Role
 
         boolean run = true;
@@ -462,5 +487,7 @@ public class Main {
             }
         }
         // Write Output
+        WriteFile();
+        System.out.println("Good Bye...");
     }
 }

@@ -109,7 +109,7 @@ public class Coach extends Person implements Comparable<Coach> {
         for (Customer cu: this.List_of_customers){
             int i =1;
             if(gender.equals(cu.Gender) ){
-                System.out.println("\t\tcustomer 1");
+                System.out.println("\t\tcustomer " + i);
                 cu.display();
                 i++;
             }
@@ -174,7 +174,7 @@ public class Coach extends Person implements Comparable<Coach> {
                     System.out.println(List_of_customers.toArray().length);
                     for (Customer customer : List_of_customers) {
                         if (customerName.equals(customer.getName())) {
-                            customer.addInBody();
+                            //customer.addInBody();
                             System.out.println("\nInBody History of " + customerName + ":");
                             show_list_of_inbodies(customer);
                             break;
@@ -201,7 +201,6 @@ public class Coach extends Person implements Comparable<Coach> {
             }
         }
     }
-
 
 
 

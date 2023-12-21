@@ -13,7 +13,7 @@ public class InBody {
     private String Gender;
     private int Age;
     Date date = null;
-    SimpleDateFormat st= new SimpleDateFormat("yyyy/MM/dd"+"\t"+"hh:mm");
+    SimpleDateFormat st= new SimpleDateFormat("dd/MM/yyyy"+"\t"+"hh:mm");
 
 
 
@@ -89,6 +89,25 @@ public class InBody {
     public String getName()
     {
         return Name;
+    }
+    public String getGender(){
+        return Gender;
+    }
+    public double getWeight(){
+        return Weight;
+    }
+    public double getHeight()
+    {
+        return Height;
+    }
+    public int getAge()
+    {
+        return Age;
+    }
+
+    public Date getDate()
+    {
+        return date;
     }
 
     public void Display(){

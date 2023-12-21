@@ -59,7 +59,16 @@ public abstract class Admin {
         int id = input.nextInt();
 
         System.out.println("Enter the Coach's Gender:");
-        String gender = input.nextLine();
+        String gender;// = input.nextLine();
+        while(true){
+            gender = input.nextLine() ;
+            if (gender.equals("male") || gender.equals("female")){
+                break;
+            }
+            else {
+                System.out.print("Please enter a valid gender: (male/female)");
+            }
+        }
 
         System.out.println("Enter the Coach's Address:");
         String address = input.nextLine();
@@ -155,7 +164,16 @@ public abstract class Admin {
         int id = input.nextInt();
 
         System.out.println("Enter the Customer's Gender:");
-        String gender = input.nextLine();
+        String gender;// = input.nextLine();;
+        while(true){
+            gender = input.nextLine() ;
+            if (gender.equals("male") || gender.equals("female")){
+                break;
+            }
+            else {
+                System.out.print("Please enter a valid gender: (male/female)");
+            }
+        }
         //input.nextLine(); // Consume the newline character
 
         System.out.println("Enter the Customer's Address:");

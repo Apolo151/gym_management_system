@@ -102,15 +102,13 @@ public class Customer extends Person {
         for(InBody in : this.List_of_inbodies){
             if(in.date.equals(date)){
                 in.Display();
-                return;
             }
         }
-        System.out.println("You have no Inbodies at the specified date.");
     }
 
     // Display how many kilos need to be reduced according to his body
     void displayHowManyKilosToReduce(){
-        // addInBody();
+        //addInBody();
         if(this.List_of_inbodies.size() == 0){
             System.out.println("You must perform an Inbody to be able to find how many kilos you need to reduce.");
             return;
@@ -150,6 +148,7 @@ public class Customer extends Person {
     public void setE_mail(String E_mail) {
         this.E_mail = E_mail;
     }
+
 
     public void readScenario(Scanner scanner) {
         while (true) {

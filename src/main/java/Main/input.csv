@@ -6,12 +6,11 @@ Dumbbells,003,10
 Leg_Press,002,2
 Bike,004,4
 MembershipPlan
-John Doe,01/07/2022,3,2
-jane Doe,20/01/2023,6,3
+John Doe,01/07/2022,3,3
+jane Doe,20/01/2023,6,4
 Mark Johnson,05/05/2020,6,4
-Lisa Wilson,08/02/2021,3,1
-Lisa Wilson, 09/06/2021,6,2
-Johnson Doe,02/06/2022,3,1
+Lisa Wilson,08/02/2021,3,3
+Johnson Doe,02/06/2020,2,2
 Mark Doe,03/05/2020,2,2
 Subscription
 2,0
@@ -39,7 +38,7 @@ InBody
 79,180,36,male,Mark Doe,03/06/2020
 Coach
 Coach Smith,0,male,321 Elm St,554321,coach@example.com,10,pass123
-Coach Joo,1,male,654 Birch St,557890,coach2@example.com,10,pass333
+Coach Johnson,1,male,654 Birch St,557890,coach2@example.com,10,pass333
 Coach Davis,2,male,333 Oak St,558765,coach3@example.com,9,pass222
 Coach Brown,3,male,444 Pine St,554321,coach4@example.com,7,pass111
 Customer
