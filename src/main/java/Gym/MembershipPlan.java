@@ -45,6 +45,8 @@ public class MembershipPlan {
     }
 
     /*public void update_member (Date end_date ,boolean ch ,Date day_date ){
+        long durationInMillis = this.numberOfMonths * 30L * 24L * 60L * 60L * 1000L; // Convert months to milliseconds
+        Date endDate = new Date(start_date.getTime() + durationInMillis);
         boolean check = false ;
         if(ch==false){
             switch (number_of_plan){

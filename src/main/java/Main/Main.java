@@ -29,6 +29,7 @@ public class Main {
     static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
     public static ArrayList<InBody> inBodyList = new ArrayList<>();
 
+    static Scanner input = new Scanner(System.in);
     public static void ReadFile(String file)
     {
         File newFile = new File(file);
@@ -186,7 +187,7 @@ public class Main {
                         int W_H =  Integer.valueOf(attribute[6]);
                         String password = attribute[7];
 
-                        Gym.listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H, password));
+                        Gym.listOfCoaches.add(new Coach(Name, ID, Gender,Adress, Phone_number,E_mail, W_H,password));
                     }
                 }
                 if(line.equals("Customer"))
@@ -209,11 +210,18 @@ public class Main {
                         String E_mail = attribute[5];
                         int coachID =  Integer.valueOf(attribute[6]);
                         String password = attribute[7];
+
                         Subscription sub = Gym.listOfSubscriptions.get(i);
                         i++;
 
                         Gym.listOfCustomers.add(new Customer(Name, ID, Gender,Adress,
-                                Phone_number, E_mail, coachID,sub, password));
+                                Phone_number, E_mail, coachID,sub,password));
+                        // add to coaches lists
+                        for(Coach coach: Gym.listOfCoaches){
+                            if(coach.getID()==coachID){
+                                coach.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+                            }
+                        }
                     }
                 }
 
@@ -226,7 +234,6 @@ public class Main {
         }
 
     }
-
     public static void WriteFile(String classOutput)
     {
         try
@@ -240,16 +247,69 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    static void sign_up(ArrayList<User> log_list, Scanner input) {
+    static Person log_in(String role) {
+        if (role.equals("Customer")) {
+            Customer customer = null;
+            while (customer == null) {
+                System.out.println("Enter you name:");
+                String cName = String.valueOf(input.nextLine());
+                System.out.println("Enter you password:");
+                String cPassword = String.valueOf(input.nextLine());
+                for (Customer co : Gym.listOfCustomers) {
+                    if (co.getName().equals(cName) && co.getPassword().equals(cPassword)) {
+                        customer = co;
+                        System.out.println("Login successful!");
+                        System.out.println("Welcome mr :" + co.getName());
+                    }
+                }
+                //
+                if (customer == null) {
+                    System.out.println("Invalid username or password");
+                    System.out.println("Exit (e) or Retry(r) ?");
+                    String option = input.nextLine();
+                    if (option.equals("e")) {
+                        break;
+                    }
+                }
+            }
+            // Check password
+            if (customer != null) return customer;
+        }
+        else if (role.equals("Coach")) {
+            Coach coach = null;
+            while (coach == null) {
+                System.out.println("Enter you name:");
+                String cName = String.valueOf(input.nextLine());
+                System.out.println("Enter you password:");
+                String cPassword = String.valueOf(input.nextLine());
+                for (Coach co : Gym.listOfCoaches) {
+                    if (co.getName().equals(cName) && co.getPassword().equals(cPassword)) {
+                        coach = co;
+                        System.out.println("Login successful!");
+                        System.out.println("Welcome mr :" + co.getName());
+                    }
+                }
+                //
+                if (coach == null) {
+                    System.out.println("Invalid username or password");
+                    System.out.println("Exit (e) or Retry(r) ?");
+                    String option = input.nextLine();
+                    if (option.equals("e")) {
+                        break;
+                    }
+                }
+            }
+            // Check password
+            if (coach != null) return coach;
+        }
+        return null;
+    }
+
+    static void sign_up(Scanner input, String role) {
         while (true) {
             System.out.println("  SIGN UP  ");
             System.out.println("------------");
-            String name, password;
-            int type_work;
-            Scanner in = new Scanner(System.in);
-            System.out.println("Are you a: ");
-            System.out.println("1-customer " + "2-Coach ");
-            type_work = in.nextInt();
+            //
             System.out.println("You have to call an Admin Boiii");
             String userName, pass, choice="r";
             //
@@ -269,29 +329,11 @@ public class Main {
                 }
                 break;
             }
-            if(choice.equals("r")){
-                Admin.readScenario(input);
+            if(choice.equals("r")) {
+                Admin.registerUser(role, input);
                 System.out.println("You registered successfully.");
             }
-            //switch case
-            System.out.println("Enter your username: ");
-            name = in.next();
-            System.out.println("Enter your password: ");
-            password = in.next();
-            boolean f = true;
-            for (int i = 0; i < log_list.size(); i++) {
-                if (name.equals(log_list.get(i).name) && password.equals(log_list.get(i).password)) {
-                    System.out.println("This user is already exit: ");
-                    f = false;
-                    break;
-                }
-            }
-            if (f == true) {
-                System.out.println("Success sign up ");
-                System.out.println("Hello Mr : " + name);
-                log_list.add(new User(name, password));
-                break;
-            }
+            break;
 
         }
     }
@@ -345,69 +387,46 @@ public class Main {
         // Sign in & Choose Role
 
         boolean run = true;
+        String start;
         while(run) {
             boolean nextFunction = true;
             System.out.println("Who are you little guy ?(Admin, Coach, Customer) (type 'Stop' to run)");
             String role = input.nextLine();
             int i = 0;
+            //
             switch (role)
             {
                 case "Customer":
-                    //Scanner scan = new Scanner(System.in);
-                    Customer customer =  null;
-                    while(customer == null){
-                        System.out.println("Enter you name:");
-                        String cName = input.nextLine();
-                        for(Customer co: Gym.listOfCustomers){
-                            if(co.getName().equals(cName)){
-                                customer = co;
-                            }
-                        }
-                        //
-                        if (customer == null){
-                            System.out.println("No Customer exists with the provided name");
-                            System.out.println("Exit (e) or Retry(r) ?");
-                            String option = input.nextLine();
-                            if(option.equals("e")){
-                                break;
-                            }
-                        }
-
+                    System.out.println("Register(r) or Login(l) ?");
+                    start = input.nextLine();
+                    if(start.equals("r")){
+                        sign_up(input, role);
                     }
+                    else{
+                        log_in(role);
+                    }
+                    Customer customer = (Customer)log_in(role);
                     // Check password
                     if(customer != null) customer.readScenario(input);
                     break;
-
                 case "Coach":
-                    //Scanner scan = new Scanner(System.in);
-                    Coach coach =  null;
-                    while(coach == null){
-                        System.out.println("Enter your name:");
-                        String cName = input.nextLine();
-                        //System.out.println(Gym.listOfCoaches.toArray().length);
-                        for(Coach co: Gym.listOfCoaches){
-                            //System.out.println(co.getName());
-                            if(co.getName().equals(cName)){
-                                coach = co;
-                            }
-                        }
-                        //
-                        if (coach == null){
-                            System.out.println("No Coach exists with the provided name");
-                            System.out.println("Exit (e) or Retry(r) ?");
-                            String option = input.nextLine();
-                            if(option.equals("e")){
-                                break;
-                            }
-                        }
+                    System.out.println("Register(r) or Login(l) ?");
+                    start = input.nextLine();
+                    if(start.equals("r")){
+                        sign_up(input, role);
                     }
+                    else{
+                        log_in(role);
+                    }
+                    Coach coach =  null;
+                    coach = (Coach)log_in(role);
                     //
                     if(coach != null) coach.readScenario(input);
                     break;
                 case "Admin":
                     // Check Username and Password
                     String userName, pass, choice="r";
-                    /* = pass = " ";
+                    userName = pass = " ";
                     while(true){
                         System.out.println("Enter the admin Username: ");
                         userName = input.nextLine();
@@ -423,7 +442,7 @@ public class Main {
                                 break;
                         }
                         break;
-                    }*/
+                    }
                     if(choice.equals("r")){
                         Admin.readScenario(input);
                     }

@@ -152,8 +152,8 @@ public abstract class Admin {
         int id = input.nextInt();
 
         System.out.println("Enter the Customer's Gender:");
-        String gender = input.next();
-        input.nextLine(); // Consume the newline character
+        String gender = input.nextLine();
+        //input.nextLine(); // Consume the newline character
 
         System.out.println("Enter the Customer's Address:");
         String address = input.nextLine();
@@ -521,8 +521,15 @@ public abstract class Admin {
         }
     }
 
-    public static void registerUser(){
-
+    public static void registerUser(String role, Scanner input){
+        switch(role){
+            case "Customer":
+                addCustomer(input);
+            case "Coach":
+                addCoach(input);
+            default:
+                System.out.println("Invalid Choice. Outtt");
+        }
     }
 
 }

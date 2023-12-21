@@ -1,6 +1,7 @@
 package Gym;
 
 import java.sql.SQLOutput;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -171,8 +172,9 @@ public class Coach extends Person implements Comparable<Coach> {
                     System.out.print("\nEnter customer name to get inbody history: ");
                     String customerName = scanner.nextLine();
                     System.out.println(List_of_customers.toArray().length);
-                    for (Customer customer : Gym.listOfCustomers) {
+                    for (Customer customer : List_of_customers) {
                         if (customerName.equals(customer.getName())) {
+                            customer.addInBody();
                             System.out.println("\nInBody History of " + customerName + ":");
                             show_list_of_inbodies(customer);
                             break;
