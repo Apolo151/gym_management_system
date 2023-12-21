@@ -114,9 +114,11 @@ public class Main {
                             e.printStackTrace();
 
                         }
-                        int number_of_plan = Integer.valueOf(attribute[2]);
 
-                        membershipPlans.add(new MembershipPlan(member_name,start_date, number_of_plan));
+                        int noOfMonths = Integer.valueOf(attribute[2]);
+                        int number_of_plan = Integer.valueOf(attribute[3]);
+
+                        membershipPlans.add(new MembershipPlan(member_name,start_date, noOfMonths, number_of_plan));
                     }
                 }
                 if(line.equals("Subscription"))
@@ -319,7 +321,7 @@ public class Main {
                 System.out.println("Enter the admin Password: ");
                 pass = input.nextLine();
                 //
-                if(!userName.equals("Admin") || !pass.equals("Admin")){
+                if(!userName.equals("admin") || !pass.equals("admin")){
                     System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
                     choice = input.nextLine();
                     if(choice.equals("r"))
@@ -433,7 +435,7 @@ public class Main {
                         System.out.println("Enter the admin Password: ");
                         pass = input.nextLine();
                         //
-                        if(!userName.equals("Admin") || !pass.equals("Admin")){
+                        if(!userName.equals("admin") || !pass.equals("admin")){
                             System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
                             choice = input.nextLine();
                             if(choice.equals("r"))

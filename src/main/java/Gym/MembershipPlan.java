@@ -6,7 +6,7 @@ public class MembershipPlan {
     String member_name;
     Date start_date = null ;
     int numberOfMonths;
-    //Date end_date = new Date();
+    Date end_date = new Date();
     final float price_of_month = 300;
     int number_of_plan;
     //
@@ -16,6 +16,8 @@ public class MembershipPlan {
         this.start_date = start_date;
         this.numberOfMonths = noOfMonths;
         this.number_of_plan =number_of_plan;
+        long durationInMillis = this.numberOfMonths * 30L * 24L * 60L * 60L * 1000L; // Convert months to milliseconds
+        this.end_date = new Date(start_date.getTime() + durationInMillis);
 
     }
     public MembershipPlan (String member_name, Date start_date, int number_of_plan){
@@ -36,11 +38,8 @@ public class MembershipPlan {
     }*/
     //
 
-    public boolean check_is_active (){
-        long durationInMillis = this.numberOfMonths * 30L * 24L * 60L * 60L * 1000L; // Convert months to milliseconds
-        Date endDate = new Date(start_date.getTime() + durationInMillis);
-
-        return !this.start_date.after(endDate);
+    public boolean check_is_active (Date day_date){
+        return !day_date.after(this.end_date);
 
     }
 

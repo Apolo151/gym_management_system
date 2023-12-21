@@ -10,17 +10,18 @@ import java.util.Date;
 public abstract class Admin {
 
     public static Date getUserDate(Scanner input){
-        /*int day, month, year;
-        System.out.println("Enter the Date you want to specify: (a single number for each value, 0 for any)");
-        System.out.println("Day: ");
+        int day, month, year;
+        System.out.println("Enter the Date you want to specify: (a single number for each value)");
+        System.out.println("Day: (1-31)");
         day = input.nextInt();
-        System.out.println("Month: ");
+        System.out.println("Month: (1-12)");
         month = input.nextInt();
         System.out.println("Year: ");
         year = input.nextInt();
+        year-=1900;
         //
-        return (new Date(day, month, year));*/
-        return new Date();
+        return (new Date(year, month, day));
+        //return new Date();
     }
 
     private enum userType {
@@ -387,19 +388,15 @@ public abstract class Admin {
     // Display the GYM income in a given month
     public static void displayGymIncome(Scanner input){
         double income = 0;
-        int month, year;
-        System.out.println("Enter year: (2000-2050)");
-        year = input.nextInt();
-        System.out.println("Enter month: (1-12)");
-        month = input.nextInt();
+        Date userDate = getUserDate(input);
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
-            if(mem.start_date.getMonth()+1 == month && mem.start_date.getYear()+1 == year){
-                income+= mem.discount_price(mem.number_of_plan);
+            if(mem.end_date.after(userDate) && userDate.after(mem.start_date)){
+                income+= mem.discount_price(mem.number_of_plan)/12;
             }
         }
         //
-        System.out.println("The income in month " + month + " of the year " + year + " Was: " + income);
+        System.out.println("The income in month " + Integer.valueOf(userDate.getMonth()+1) + " of the year " + Integer.valueOf(userDate.getYear()+1900) + " Was: " + income);
     }
     
     // Display Gym Coaches, sorted descendingly according to their number of customers
