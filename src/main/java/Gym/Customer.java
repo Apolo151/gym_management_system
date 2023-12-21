@@ -98,17 +98,19 @@ public class Customer extends Person {
 
     // Display inbody info at a specific date
     void displayInBodyAtDate(java.util.Date date){
-        addInBody();
+        //addInBody();
         for(InBody in : this.List_of_inbodies){
             if(in.date.equals(date)){
                 in.Display();
+                return;
             }
         }
+        System.out.println("You have no Inbodies at the specified date.");
     }
 
     // Display how many kilos need to be reduced according to his body
     void displayHowManyKilosToReduce(){
-        addInBody();
+        // addInBody();
         if(this.List_of_inbodies.size() == 0){
             System.out.println("You must perform an Inbody to be able to find how many kilos you need to reduce.");
             return;
@@ -177,7 +179,7 @@ public class Customer extends Person {
                     displayMembershipPlan();
                     break;
                 case 4:
-                    System.out.print("\nEnter the date (format: yyyy-MM-dd) to display in-body information: ");
+                    System.out.print("\nEnter the date (format: dd/MM/yyyy) to display in-body information: ");
                     String dateString = scanner.next();
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

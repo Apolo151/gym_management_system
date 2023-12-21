@@ -1,6 +1,7 @@
 package Gym;
 
 import EQ_GYM.Equipment;
+import Main.Main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,7 @@ public abstract class Admin {
         day = input.nextInt();
         System.out.println("Month: (1-12)");
         month = input.nextInt();
+        month--;
         System.out.println("Year: ");
         year = input.nextInt();
         year-=1900;
@@ -337,10 +339,10 @@ public abstract class Admin {
     }
 
 
-    public static void showSubscriptionHistory(int customerID){
-        for(Subscription sub: Gym.listOfSubscriptions){
-            if(sub.getCostumer_id() == customerID){
-                sub.getMembershipPlan().display();
+    public static void showSubscriptionHistory(String customerName){
+        for(MembershipPlan mem: Main.membershipPlans){
+            if(mem.getMember_name().equals(customerName)){
+                mem.display();
             }
         }
     }
@@ -389,9 +391,10 @@ public abstract class Admin {
     public static void displayGymIncome(Scanner input){
         double income = 0;
         Date userDate = getUserDate(input);
+        Date userDateEnd = new Date(userDate.getYear(), userDate.getMonth(), 31);
         for(Subscription sub: Gym.listOfSubscriptions){
             MembershipPlan mem = sub.getMembershipPlan();
-            if(mem.end_date.after(userDate) && userDate.after(mem.start_date)){
+            if(mem.end_date.after(userDate) && userDateEnd.after(mem.start_date)){
                 income+= mem.discount_price(mem.number_of_plan)/12;
             }
         }
@@ -432,9 +435,9 @@ public abstract class Admin {
                     manageObjects(input);
                     break;
                 case 2:
-                    System.out.println("Enter the Customer's ID: ");
-                    int cuID = input.nextInt();
-                    showSubscriptionHistory(cuID);
+                    System.out.println("Enter the Customer's Name: ");
+                    String cuName = input.nextLine();
+                    showSubscriptionHistory(cuName);
                     break;
                 case 3:
                     displayCustomersInDate(input);

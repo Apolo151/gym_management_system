@@ -24,11 +24,6 @@ import static Gym.Gym.listOfCoaches;
 import static Gym.Gym.sportsEquipment;*/
 
 public class Main {
-    static Map<String, Boolean> className = new HashMap<>();
-    static ArrayList<Gym> gymObj = new ArrayList<>();
-    static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
-    public static ArrayList<InBody> inBodyList = new ArrayList<>();
-
     static Scanner input = new Scanner(System.in);
     public static void ReadFile(String file)
     {
@@ -340,6 +335,12 @@ public class Main {
         }
     }
 
+    static Map<String, Boolean> className = new HashMap<>();
+    static ArrayList<Gym> gymObj = new ArrayList<>();
+    public static ArrayList<MembershipPlan> membershipPlans = new ArrayList<>();
+    public static ArrayList<InBody> inBodyList = new ArrayList<>();
+
+
     public static void main(String[] args) {
 
         // Create Map of Classes
@@ -386,6 +387,10 @@ public class Main {
         System.out.println("Subscription Length: " + Gym.listOfSubscriptions.toArray().length);
         System.out.println("Membership Length: " + membershipPlans.toArray().length);
         System.out.println("InBody Length: " + inBodyList.toArray().length);
+        //
+        for(Customer cu: Gym.listOfCustomers){
+            cu.addInBody();
+        }
         // Sign in & Choose Role
 
         boolean run = true;
@@ -404,9 +409,9 @@ public class Main {
                     if(start.equals("r")){
                         sign_up(input, role);
                     }
-                    else{
+                    /*else{
                         log_in(role);
-                    }
+                    }*/
                     Customer customer = (Customer)log_in(role);
                     // Check password
                     if(customer != null) customer.readScenario(input);
@@ -417,11 +422,10 @@ public class Main {
                     if(start.equals("r")){
                         sign_up(input, role);
                     }
-                    else{
+                    /*else{
                         log_in(role);
-                    }
-                    Coach coach =  null;
-                    coach = (Coach)log_in(role);
+                    }*/
+                    Coach coach = (Coach)log_in(role);
                     //
                     if(coach != null) coach.readScenario(input);
                     break;

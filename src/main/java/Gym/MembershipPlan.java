@@ -153,6 +153,22 @@ public class MembershipPlan {
         return price_member ;
     }
 
+    public String getMember_name() {
+        return member_name;
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public int getNumberOfMonths() {
+        return numberOfMonths;
+    }
+
+    public int getNumber_of_plan() {
+        return number_of_plan;
+    }
+
     public  void display () {
         System.out.println("Name: " + member_name);
         System.out.println("Number of plan: " + number_of_plan);
