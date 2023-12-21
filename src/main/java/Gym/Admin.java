@@ -1,7 +1,7 @@
 package Gym;
 
 import EQ_GYM.Equipment;
-import Main.Main;
+import Main.Main.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -193,6 +193,7 @@ public abstract class Admin {
 
         // Find the coach with the specified ID and add the customer to their list
         boolean coachIdCorrect=false;
+        Customer customer = null;
         for (Coach coach : Gym.listOfCoaches) {
             if (coach.getID() == coachId) {
                 // Add the new customer to the list of Gym customers
@@ -206,7 +207,8 @@ public abstract class Admin {
                 // Add to all gym customers
                 Gym.listOfCustomers.add(new Customer(name, id, gender, address, phoneNumber, email, coachId, password));
                 // Add to Coach customers
-                coach.List_of_customers.add(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1));
+                customer = Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1);
+                coach.List_of_customers.add(customer);
 
                 coach.number_of_customers++;
                 coachIdCorrect=true;
@@ -217,6 +219,11 @@ public abstract class Admin {
             System.out.println("No Coach exists with the specified Coach ID");
             return;
         }
+
+        MembershipPlan mem = new MembershipPlan(Gym.listOfCustomers.get(Gym.listOfCustomers.toArray().length-1).getName());
+        Main.Main.membershipPlans.add(mem);
+        Gym.listOfSubscriptions.add(new Subscription(coachId, customer.getID(), mem));
+        customer.setSubscription(Gym.listOfSubscriptions.get(Gym.listOfSubscriptions.toArray().length-1));
 
         System.out.println("Customer added successfully!");
     }
@@ -358,7 +365,7 @@ public abstract class Admin {
 
 
     public static void showSubscriptionHistory(String customerName){
-        for(MembershipPlan mem: Main.membershipPlans){
+        for(MembershipPlan mem: Main.Main.membershipPlans){
             if(mem.getMember_name().equals(customerName)){
                 mem.display();
             }
@@ -543,8 +550,10 @@ public abstract class Admin {
         switch(role){
             case "Customer":
                 addCustomer(input);
+                break;
             case "Coach":
                 addCoach(input);
+                break;
             default:
                 System.out.println("Invalid Choice. Outtt");
         }

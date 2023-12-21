@@ -93,16 +93,28 @@ public class Customer extends Person {
 
     // Display membership plan details
     void displayMembershipPlan(){
-        this.subscription.getMembershipPlan().display();
+        try{
+            this.subscription.getMembershipPlan().display();
+        }
+        catch(Exception e){
+            System.out.println("Customer has no subscription");
+        }
     }
 
     // Display inbody info at a specific date
     void displayInBodyAtDate(java.util.Date date){
         //addInBody();
+        boolean check = false;
+        System.out.println(List_of_inbodies.toArray().length);
         for(InBody in : this.List_of_inbodies){
             if(in.date.equals(date)){
                 in.Display();
+                check = true;
             }
+        }
+        //
+        if(!check){
+            System.out.println("You don't have any inbodies at the specified date.");
         }
     }
 

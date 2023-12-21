@@ -254,15 +254,15 @@ public class Main {
             outputFile.write("MembershipPlan\n");
             for(MembershipPlan mem : membershipPlans) {
                 sDate = dateToString(mem.getStart_date());
-                outputFile.write(mem.getMember_name() + ',' +sDate+ ',' + mem.getNumberOfMonths() + ',' + mem.getNumber_of_plan() + "\n");
+                outputFile.write(mem.getMember_name() + ',' +sDate+ ',' + String.valueOf(mem.getNumberOfMonths()) + ',' + mem.getNumber_of_plan() + "\n");
             }
             outputFile.write("Subscriptions\n");
             for(Subscription sub : Gym.listOfSubscriptions)
-                outputFile.write(sub.getCoach_id()+','+ sub.getCostumer_id()+','+"\n");
+                outputFile.write(String.valueOf(sub.getCoach_id())+','+ sub.getCostumer_id()+"\n");
             outputFile.write("InBody\n");
             for(InBody inbody : inBodyList) {
                 sDate = dateToString(inbody.getDate());
-                outputFile.write(inbody.getWeight() + ',' + inbody.getHeight() + ',' + inbody.getAge() + ',' + inbody.getGender() + ',' + inbody.getName() + ',' +sDate+ "\n");
+                outputFile.write(String.valueOf(inbody.getWeight())+','+String.valueOf(inbody.getHeight())+ ','+String.valueOf(inbody.getAge())+ ','+inbody.getGender()+','+inbody.getName()+ ','+sDate+ "\n");
             }
             outputFile.write("Coach\n");
             for(Coach co : Gym.listOfCoaches)
@@ -413,9 +413,9 @@ public class Main {
         System.out.println("Membership Length: " + membershipPlans.toArray().length);
         System.out.println("InBody Length: " + inBodyList.toArray().length);
         //
-        //for(Customer cu: Gym.listOfCustomers){
-        //    cu.addInBody();
-        //}
+        for(Customer cu: Gym.listOfCustomers){
+            cu.addInBody();
+        }
         // Sign in & Choose Role
 
         boolean run = true;
