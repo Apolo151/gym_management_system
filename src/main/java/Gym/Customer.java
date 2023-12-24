@@ -80,7 +80,12 @@ public class Customer extends Person {
 
     // Display coach info
     void displayCoachInfo(){
-        Gym.listOfCoaches.get(this.coachID).display();
+        for(Coach coach: Gym.listOfCoaches){
+            if(coach.getID() == this.coachID){
+                coach.display();
+                return;
+            }
+        }
     }
 
     // Display all Gym Equipment

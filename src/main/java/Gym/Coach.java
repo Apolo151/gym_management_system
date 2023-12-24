@@ -106,8 +106,8 @@ public class Coach extends Person implements Comparable<Coach> {
     void show_details_of_Customer_gender (String gender){
         //addCustomerToCoach();
         // Array
+        int i = 1;
         for (Customer cu: this.List_of_customers){
-            int i =1;
             if(gender.equals(cu.Gender) ){
                 System.out.println("\t\tcustomer " + i);
                 cu.display();
@@ -157,6 +157,7 @@ public class Coach extends Person implements Comparable<Coach> {
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
+
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -201,5 +202,5 @@ public class Coach extends Person implements Comparable<Coach> {
             }
         }
     }
-
+    
 }

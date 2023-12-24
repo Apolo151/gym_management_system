@@ -19,13 +19,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Date;
 
-/*import static Gym.Gym.listOfCustomers;
-import static Gym.Gym.listOfSubscriptions;
-import static Gym.Gym.listOfCoaches;
-import static Gym.Gym.sportsEquipment;*/
-
 public class Main {
     static Scanner input = new Scanner(System.in);
+    static final String FILE_PATH = "input.txt";
     public static Date stringToDate(String sDate)
     {
         Date date = null;
@@ -244,7 +240,7 @@ public class Main {
         try
         {
             String sDate;
-            FileWriter outputFile = new FileWriter("input1.txt");
+            FileWriter outputFile = new FileWriter(FILE_PATH);
             outputFile.write("Gym\n");
             for(Gym gym : gymObj)
                 outputFile.write(gym.getName()+','+gym.getAddress()+','+gym.getPhoneNumber()+"\n");
@@ -254,9 +250,9 @@ public class Main {
             outputFile.write("MembershipPlan\n");
             for(MembershipPlan mem : membershipPlans) {
                 sDate = dateToString(mem.getStart_date());
-                outputFile.write(mem.getMember_name() + ',' +sDate+ ',' + String.valueOf(mem.getNumberOfMonths()) + ',' + mem.getNumber_of_plan() + "\n");
+                outputFile.write(mem.getMember_name() + ',' +sDate+ ',' + Integer.valueOf(mem.getNumberOfMonths()) + ',' + mem.getNumber_of_plan() + "\n");
             }
-            outputFile.write("Subscriptions\n");
+            outputFile.write("Subscription\n");
             for(Subscription sub : Gym.listOfSubscriptions)
                 outputFile.write(String.valueOf(sub.getCoach_id())+','+ sub.getCostumer_id()+"\n");
             outputFile.write("InBody\n");
@@ -271,7 +267,6 @@ public class Main {
             for(Customer cu : Gym.listOfCustomers)
                 outputFile.write(cu.getName()+','+cu.getID()+','+cu.getGender()+','+cu.getAddress()+','+cu.getPhone_number()+','+cu.getE_mail()+','+cu.getCoachID()+','+cu.getPassword()+"\n");
             outputFile.write("Exit\n");
-
             outputFile.close();
         }
         catch (Exception e)
@@ -351,13 +346,16 @@ public class Main {
                 System.out.println("Enter the admin Password: ");
                 pass = input.nextLine();
                 //
-                if (!userName.equals("Admin") || !pass.equals("Admin")) {
+                if (!userName.equals("admin") || !pass.equals("admin")) {
                     System.out.println("Invalid Credentials, Retry(r) or Exit(e)?");
                     choice = input.nextLine();
                     if (choice.equals("r"))
                         continue;
                     else
                         break;
+                }
+                else{
+                    System.out.println("Admin approval acquired.");
                 }
                 break;
             }
@@ -391,38 +389,29 @@ public class Main {
 
         ArrayList<InBody> InBodyList = new ArrayList<>();
 
-        /*Gym.listOfCoaches.add(new Coach("CoacherM", 1, "male", "7 al Street", 07775000, "CoacherM@gmail.com", 8));
-        Gym.listOfCoaches.add(new Coach("Coacher2F", 2, "female", "9 el Street", 07775000, "Coacher2F@gmail.com", 6));
-        Gym.listOfCustomers.add(new Customer("Cu1", 101, "male", "17 Moon Street", 500090, "Customer1@hotmail.com", 2));
-        Gym.listOfCustomers.add(new Customer("Cu2", 102, "female", "18 Sun Street", 500500, "Customer255@gmail.com", 1));
-        Gym.listOfCoaches.get(0).List_of_customers.add(Gym.listOfCustomers.get(1));
-        System.out.println("First Coach Cust No = " + Gym.listOfCoaches.get(0).List_of_customers.toArray().length); // Debugging
-        System.out.println("All Gym Customer number = " + Gym.listOfCustomers.toArray().length); // Debugging*/
-        //
-        //Scanner input = new Scanner(System.in);
-        System.out.println("Enter the file path");
-        String file = input.nextLine();
+        //System.out.println("Enter the file path");
+        //String file = input.nextLine();
 
         // Read File
-        ReadFile(file);
-        //
+        ReadFile(FILE_PATH);
+        /*
         System.out.println("Coaches Length: " + Gym.listOfCoaches.toArray().length);
         System.out.println("Customer Length: " + Gym.listOfCustomers.toArray().length);
         System.out.println("Equipment Length: " + Gym.sportsEquipment.toArray().length);
         System.out.println("Subscription Length: " + Gym.listOfSubscriptions.toArray().length);
         System.out.println("Membership Length: " + membershipPlans.toArray().length);
         System.out.println("InBody Length: " + inBodyList.toArray().length);
-        //
+        */
         for(Customer cu: Gym.listOfCustomers){
             cu.addInBody();
         }
         // Sign in & Choose Role
-
+        //
         boolean run = true;
         String start;
         while(run) {
             boolean nextFunction = true;
-            System.out.println("Who are you little guy ?(Admin, Coach, Customer) (type 'Stop' to run)");
+            System.out.println("Who are you little guy? (Admin, Coach, Customer) (type 'Stop' to exit)");
             String role = input.nextLine();
             int i = 0;
             //
@@ -459,9 +448,9 @@ public class Main {
                     String userName, pass, choice="r";
                     userName = pass = " ";
                     while(true){
-                        System.out.println("Enter the admin Username: ");
+                        System.out.println("Enter the admin's Username: ");
                         userName = input.nextLine();
-                        System.out.println("Enter the admin Password: ");
+                        System.out.println("Enter the admin's Password: ");
                         pass = input.nextLine();
                         //
                         if(!userName.equals("admin") || !pass.equals("admin")){

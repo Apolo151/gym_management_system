@@ -42,12 +42,6 @@ public class MembershipPlan {
         this.number_of_plan =number_of_plan ;
 
     }
-    /*public MembershipPlan (){
-            this(0);
-        start_date =new Date();
-        end_date = new Date();
-    }*/
-    //
 
     public boolean check_is_active (Date day_date){
         return !day_date.after(this.end_date);
@@ -70,7 +64,7 @@ public class MembershipPlan {
                         month = 1;
                         year++;
                     }
-                    System.out.println("the next date is " + month +"\t" + day_date.getYear());
+                    System.out.println("the next date is " + Integer.valueOf(month+1) +"\t" + Integer.valueOf(day_date.getYear()+1900));
                     break;
                 case 2:
 
@@ -85,7 +79,7 @@ public class MembershipPlan {
                         month =1;
                         year++;
                     }
-                    System.out.println("the next date is " + end_date.getMonth() +"\t" + day_date.getYear());
+                    System.out.println("the next date is " + Integer.valueOf(month+1) +"\t" + Integer.valueOf(day_date.getYear()+1900));
                     break;
                 case 3:
 
@@ -104,7 +98,7 @@ public class MembershipPlan {
                         month =1;
                         year++;
                     }
-                    System.out.println("the next date is " + month +"\t" + year);
+                    System.out.println("the next date is " + Integer.valueOf(month+1) +"\t" + Integer.valueOf(day_date.getYear()+1900));
                     break;
                 case 4 :
                     if (check == ch && month<=6){
@@ -124,11 +118,11 @@ public class MembershipPlan {
                             year++;
                         }
                     }
-                    System.out.println("the next date is " + month + "\t" +year );
+                    System.out.println("the next date is " + Integer.valueOf(month+1) +"\t" + Integer.valueOf(day_date.getYear()+1900));
                     break;
                 case 5 :
                     year = day_date.getYear()+1 ;
-                    System.out.println("the next date is " + month+"\t" + year);
+                    System.out.println("the next date is " + Integer.valueOf(month+1) +"\t" + Integer.valueOf(day_date.getYear()+1900));
                     break;
                 default:
                     System.out.println("any way case ");
