@@ -1,3 +1,6 @@
+# Gym Management System
+A gym management system that provides fitness businesses the functionality to manage schedules, memberships, and facilities.
+
 # Scenarios
 
 **First: the program greets the user and asks the user to choose what type of user he or she is (Admin, Customer, Coach)**
